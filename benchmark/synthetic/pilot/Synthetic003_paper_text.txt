@@ -1,0 +1,47 @@
+MATERIALS AND METHODS
+
+Title: Development of a quality assessment model for mesophilic flora in Cheddar cheese
+
+Sample Manufacture and Storage Design
+
+Cheddar cheese samples were manufactured at pilot scale according to a standardized protocol designed to reproduce key features of commercial production while ensuring reproducibility across batches (Author et al., 2018). Pasteurized milk was inoculated with a defined mesophilic starter culture, coagulated with rennet, and the curd was cheddared, milled, salted, and pressed using established procedures. After pressing, blocks were vacuum-packed in barrier film and transferred to ripening chambers for the duration of the experimental trials. A total of three independent manufacturing batches were prepared to capture batch-to-batch variability, and within each batch samples were randomly assigned to one of four storage temperatures: 6, 10, 14, and 18 °C. These temperatures were selected to span the conditions typically encountered during commercial ripening and retail handling.
+
+Periodic sampling was performed throughout the storage period. At each sampling time, three independent samples were withdrawn from each temperature condition, and the experimental analyses were performed in duplicate. The pH, salt-in-moisture content, and water activity of the cheese matrix were recorded at each sampling occasion to confirm that the physico-chemical environment remained within the expected range for ripening Cheddar cheese.
+
+Enumeration of Mesophilic Flora
+
+The mesophilic flora population was quantified using a standardized plating procedure. Twenty-five grams of cheese were homogenized with 225 mL of pre-warmed sterile diluent in a stomacher, and serial decimal dilutions were prepared in maximum recovery diluent. Aliquots of 1.0 mL were pour-plated using plate count agar and incubated for 72 h at 30 °C, after which colonies were enumerated and the population density was expressed as cfu per mL of the original homogenate. For the purpose of the modeling described below, population densities were transformed to natural logarithm units (ln cfu/mL) so that the response variable would be directly comparable with the formulation of the primary growth model employed. Counts below the detection threshold were censored and excluded from the modeling procedure.
+
+Primary Growth Model
+
+The dynamics of the mesophilic flora during ripening were described using the Baranyi growth model in its formulation that explicitly accounts for a lag phase. This model is one of the most widely accepted primary models in predictive microbiology and has been extensively validated for application to fermented and ripened dairy products (Author et al., 2017). The model is given by:
+
+[1]   N(t) = N_0 + \mu A(t) - \ln\left(1 + \frac{e^{\mu A(t)} - 1}{e^{N_{\max} - N_0}}\right)
+
+where t is time, expressed in hours (h), and N(t) is the population at time t of the microbial population, expressed in natural log units (ln cfu/mL). The parameter N_0 is the initial population of the target organism at the beginning of storage, taken in the present work to be 3.0 ln cfu/mL, corresponding to the typical level of mesophilic flora at the end of the pressing step. The parameter N_{\max} is the maximum population that the target organism can reach in the Cheddar matrix; based on preliminary observations of the asymptotic level of the growth curves, N_{\max} was set to 20.0 ln cfu/mL. The parameter \mu is the maximum specific growth rate of the population, expressed in h^{-1}, and was treated as the principal parameter to be estimated from the experimental data for each storage condition.
+
+The adjustment function A(t) that appears in Eq. [1] encodes the dependence of the apparent growth rate on the physiological state of the cells at the beginning of the experiment. It is defined according to the original Baranyi formulation as
+
+A(t) = t + (1/\mu) \cdot \ln(e^{-\mu t} + e^{-h_0} - e^{-\mu t - h_0})
+
+where h_0 is a dimensionless parameter that represents the initial physiological state of the cells. The parameter h_0 captures the amount of physiological work that the cells must perform to adapt to the conditions of the new environment before resuming exponential growth, and is therefore linked, through the relation \lambda = h_0/\mu, to the apparent lag time \lambda of the population. In the present work, h_0 was assumed to be a strain-specific parameter that did not vary appreciably with temperature within the range investigated, and was estimated globally from the full dataset before the temperature-specific values of \mu were determined.
+
+Two underlying assumptions of the model deserve emphasis. First, the lag phase is modeled through the adjustment function A(t) given above, which provides a smooth transition between the lag and exponential phases without the introduction of artificial discontinuities. Second, the parameter h_0 represents the initial physiological state of the cells, a quantity that, although not directly observable, has a clear biological interpretation in terms of the energetic and metabolic preparation required for resumption of growth.
+
+Parameter Estimation
+
+Estimation of the parameters of Eq. [1] was performed by nonlinear least-squares regression. In a first step, the model was fitted globally to the complete dataset to obtain a pooled estimate of h_0, on the rationale that this parameter is largely an intrinsic property of the inoculum and should not vary systematically with storage temperature. In a second step, with h_0 fixed at its pooled estimate, the model was re-fitted independently to each combination of storage temperature and biological replicate to obtain temperature-specific values of \mu. The Levenberg–Marquardt algorithm was used for both stages of fitting, with convergence assessed by the relative change in the residual sum of squares between successive iterations.
+
+Goodness-of-fit was assessed through the root mean square error of the residuals, the coefficient of determination, and visual inspection of the residual plots, as recommended by Author et al. (2019). The bias factor and accuracy factor of the fitted models were calculated as additional diagnostics. Approximate 95 % confidence intervals for the estimated parameters were derived from the asymptotic standard errors returned by the nonlinear regression procedure.
+
+Quality Assessment Application
+
+Using the fitted Baranyi model, the dynamics of the mesophilic flora in Cheddar cheese were projected for storage scenarios of practical relevance. For a given combination of storage temperature and initial inoculation level, the model defined in Eq. [1] provides a continuous description of the population N(t) from the start of storage to the asymptotic level N_{\max}, with the transition between lag and exponential phases governed by the adjustment function A(t) and its parameter h_0. The methodology developed in this section therefore provides a coherent description of the growth dynamics of the mesophilic flora in Cheddar cheese and supports the quality assessment objectives of the study.
+
+References
+
+Author, A. et al. (2017). Application of the Baranyi growth model in ripened cheese microbiology. Journal of Dairy Science, 100(9), 7345–7357.
+
+Author, B. et al. (2018). Pilot-scale Cheddar cheese manufacture for predictive microbiology studies. Journal of Dairy Science, 101(3), 2123–2134.
+
+Author, C. et al. (2019). Diagnostic procedures for predictive microbiology models in dairy applications. Journal of Dairy Science, 102(6), 4923–4935.

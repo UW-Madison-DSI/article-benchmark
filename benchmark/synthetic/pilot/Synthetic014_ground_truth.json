@@ -1,0 +1,226 @@
+{
+  "paper": {
+    "doi": "10.0000/synthetic-pilot-014",
+    "openalex_id": null,
+    "title": "Shelf life prediction of Cheddar cheese based on lactic acid bacteria growth kinetics",
+    "abstract_text": null,
+    "publication_year": 2024,
+    "publication_date": null,
+    "type": null,
+    "language": "en",
+    "source_url": null,
+    "primary_landing_page_url": null,
+    "primary_pdf_url": null,
+    "is_oa": null,
+    "cited_by_count": null
+  },
+  "mechanistic_equations": [
+    {
+      "equation_local_id": "eq1",
+      "equation_name": "gamma concept growth rate model",
+      "equation_description": "The gamma concept expresses the effective growth rate as the product of the maximum growth rate and individual dimensionless gamma factors for each environmental variable, assuming multiplicative and independent effects.",
+      "equation_latex": "\\mu = \\mu_{\\max} \\cdot \\gamma(T) \\cdot \\gamma(\\mathrm{pH}) \\cdot \\gamma(a_w)",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "T",
+          "name": "temperature",
+          "unit": "\\degree C"
+        },
+        {
+          "symbol": "\\mathrm{pH}",
+          "name": "pH",
+          "unit": "dimensionless"
+        },
+        {
+          "symbol": "a_w",
+          "name": "water activity",
+          "unit": "dimensionless"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "\\mu_{\\max}",
+          "name": "maximum specific growth rate under optimal conditions",
+          "value": 0.8,
+          "unit": "h^{-1}"
+        },
+        {
+          "symbol": "\\gamma(T)",
+          "name": "temperature gamma factor",
+          "value": null,
+          "unit": "dimensionless"
+        },
+        {
+          "symbol": "\\gamma(\\mathrm{pH})",
+          "name": "pH gamma factor",
+          "value": null,
+          "unit": "dimensionless"
+        },
+        {
+          "symbol": "\\gamma(a_w)",
+          "name": "water activity gamma factor",
+          "value": null,
+          "unit": "dimensionless"
+        }
+      ],
+      "assumptions": [
+        "Environmental factors have independent, multiplicative effects on growth rate.",
+        "Each gamma factor ranges from 0 (complete inhibition) to 1 (optimal conditions)."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[1]",
+          "page": null,
+          "text_context": "The gamma concept expresses the effective growth rate as the product of the maximum growth rate and individual dimensionless gamma factors for each environmental variable, assuming multiplicative and independent effects.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    },
+    {
+      "equation_local_id": "eq2",
+      "equation_name": "Ratkowsky square-root model",
+      "equation_description": "Empirical square-root model relating the square root of growth rate to temperature, widely used in predictive microbiology as a simple secondary model.",
+      "equation_latex": "\\sqrt{\\mu} = b (T - T_{\\min})",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "T",
+          "name": "temperature",
+          "unit": "\\degree C"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "b",
+          "name": "regression coefficient",
+          "value": 0.04,
+          "unit": "(\\degree C)^{-1} h^{-0.5}"
+        },
+        {
+          "symbol": "T_{\\min}",
+          "name": "conceptual minimum temperature for growth",
+          "value": -1.5,
+          "unit": "\\degree C"
+        }
+      ],
+      "assumptions": [
+        "Linear relationship between sqrt(mu) and temperature in the suboptimal range.",
+        "T_min is a conceptual (extrapolated) value, not necessarily the observed minimum."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[2]",
+          "page": null,
+          "text_context": "Empirical square-root model relating the square root of growth rate to temperature, widely used in predictive microbiology as a simple secondary model.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    },
+    {
+      "equation_local_id": "eq3",
+      "equation_name": "Weibull inactivation model",
+      "equation_description": "Non-linear inactivation model using the Weibull distribution to describe microbial death curves that exhibit tailing or shoulder effects.",
+      "equation_latex": "\\log_{10} \\frac{N(t)}{N_0} = -\\left(\\frac{t}{\\delta}\\right)^p",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "t",
+          "name": "treatment time",
+          "unit": "min"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "\\delta",
+          "name": "scale parameter (time for first log reduction)",
+          "value": 3.0,
+          "unit": "min"
+        },
+        {
+          "symbol": "p",
+          "name": "shape parameter",
+          "value": 0.8,
+          "unit": "dimensionless"
+        }
+      ],
+      "assumptions": [
+        "p < 1 indicates concave-downward (tailing) survival curves.",
+        "p > 1 indicates concave-upward (shoulder) survival curves.",
+        "p = 1 reduces to the log-linear model."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[3]",
+          "page": null,
+          "text_context": "Non-linear inactivation model using the Weibull distribution to describe microbial death curves that exhibit tailing or shoulder effects.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    },
+    {
+      "equation_local_id": "eq4",
+      "equation_name": "temperature-dependent lag duration",
+      "equation_description": "Relates microbial lag phase duration to storage temperature using an inverse power-law or exponential relationship, commonly used in shelf-life prediction models.",
+      "equation_latex": "\\lambda(T) = \\frac{1}{\\mu(T)} \\cdot \\ln\\left(1 + \\frac{1}{e^{h_0} - 1}\\right)",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "T",
+          "name": "temperature",
+          "unit": "\\degree C"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "\\mu(T)",
+          "name": "growth rate at temperature T",
+          "value": null,
+          "unit": "h^{-1}"
+        },
+        {
+          "symbol": "h_0",
+          "name": "initial physiological state parameter",
+          "value": 1.5,
+          "unit": "dimensionless"
+        }
+      ],
+      "assumptions": [
+        "Lag duration is inversely proportional to growth rate.",
+        "h0 is a strain-specific parameter representing the work needed to adapt to new conditions."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[4]",
+          "page": null,
+          "text_context": "Relates microbial lag phase duration to storage temperature using an inverse power-law or exponential relationship, commonly used in shelf-life prediction models.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    }
+  ],
+  "ml_models": [],
+  "_metadata": {
+    "difficulty": "adversarial",
+    "domain": "microbial_growth",
+    "template_ids": [
+      "mg_gamma_product",
+      "mg_ratkowsky_sqrt",
+      "mg_weibull_inactivation",
+      "mg_lag_temperature"
+    ],
+    "generator_version": "0.1.0"
+  }
+}

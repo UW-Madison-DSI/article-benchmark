@@ -1,0 +1,57 @@
+MATERIALS AND METHODS
+
+Title: A cardinal parameter approach to estimate spoilage risk in Cheddar cheese
+
+Sample Manufacture and Storage
+
+Cheddar cheese samples were manufactured at pilot scale according to a standardized protocol designed to reproduce key features of commercial production (Author et al., 2018). Pasteurized milk was inoculated with a defined mesophilic starter culture, coagulated with rennet, and the curd was cheddared, milled, salted, and pressed. After pressing, blocks were vacuum-packed and assigned to one of four ripening temperatures (6, 10, 14, and 18 °C). Three independent batches were produced. Within each batch, samples were withdrawn at predetermined sampling times for compositional and microbiological analysis. The pH, salt-in-moisture content, and water activity of the cheese matrix were determined at each sampling time to verify that the physico-chemical conditions remained within the validity domain of the secondary models.
+
+The target organism considered in this study was a representative spoilage organism associated with Cheddar cheese during ripening. Inoculation levels were adjusted to give an initial population of approximately 3.0 log10 cfu/g, and enumeration was performed at predetermined sampling intervals using standard plate-count techniques following the procedures described by Author et al. (2019). The parameter values used in fitting the secondary models are summarized in Table 1.
+
+Modeling Framework
+
+The framework adopted in this work to describe the spoilage risk associated with the target organism is based on the cardinal parameter approach, which has gained widespread acceptance in predictive microbiology because of the biological interpretability of its parameters and its modularity with respect to environmental factors (Author et al., 2017). The framework integrates three equations: a primary gamma concept model that combines the multiplicative contributions of temperature, pH, and water activity into an overall growth rate; a cardinal temperature submodel that describes the temperature gamma factor; and a water activity submodel that describes the corresponding gamma factor. The cross-references between these equations are emphasized in the subsections that follow.
+
+Gamma Concept Growth Rate Model
+
+The combined effect of the environmental factors on the maximum specific growth rate of the target organism was described using the gamma concept, in which each environmental factor contributes a multiplicative term that varies between zero (complete inhibition) and one (optimal conditions). The model is given by:
+
+[1]   \mu = \mu_{\max} \cdot \gamma(T) \cdot \gamma(\mathrm{pH}) \cdot \gamma(a_w)
+
+where T is the temperature in °C, \mathrm{pH} is the pH of the matrix (dimensionless), and a_w is the water activity (dimensionless). The parameter \mu_{\max} is the maximum specific growth rate of the target organism under conditions in which all environmental factors are simultaneously optimal, expressed in h^{-1}; in the present work, the initial estimate of \mu_{\max} was set to 0.8 h^{-1} on the basis of literature data for the target group of organisms. The remaining factors \gamma(T), \gamma(\mathrm{pH}), and \gamma(a_w) are dimensionless gamma factors describing the relative effect of temperature, pH, and water activity, respectively. As described by Author et al. (2017), the gamma concept rests on two principal assumptions: that the environmental factors exert independent, multiplicative effects on the growth rate, and that each gamma factor lies between 0 (complete inhibition) and 1 (optimal conditions).
+
+In the present application of the model, the pH gamma factor was retained at a value close to unity throughout the experimental range, since the pH of the Cheddar matrix did not vary substantially during ripening once the initial acidification phase had been completed; the principal contributions to the variation of \mu therefore came from the temperature and water activity submodels described below.
+
+Cardinal Temperature Submodel
+
+The temperature dependence of the growth rate was described using a simplified cardinal temperature model, formulated as a squared ratio over the suboptimal temperature range:
+
+[2]   \gamma(T) = \left(\frac{T - T_{\min}}{T_{\mathrm{opt}} - T_{\min}}\right)^2
+
+where T is the temperature in °C. The parameter T_{\min} is the minimum growth temperature of the target organism, set to 0.0 °C in the present work, and T_{\mathrm{opt}} is the optimal growth temperature, set to 37.0 °C. As noted in standard references on predictive microbiology, this formulation is applicable for temperatures between T_{\min} and T_{\mathrm{opt}}; below T_{\min}, the model is constrained to give \gamma(T) = 0, indicating no growth. The squared cardinal model adopted in Eq. [2] follows the convention introduced by Ratkowsky and subsequently formalized by Zwietering, and is closely related in functional form to the square-root models that have been used extensively in dairy applications.
+
+The choice of the squared form, rather than the full cardinal model with high-temperature term, was justified by the fact that the experimental temperature range (6 to 18 °C) lies well below the optimum for the target organism, and therefore the asymmetric decline above the optimum does not affect the predictions of the model. Parameter values used in the present application are summarized in Table 1, where T_{\min} is the minimum growth temperature and T_{\mathrm{opt}} is the optimal growth temperature as defined above.
+
+Water Activity Submodel
+
+The dependence of the growth rate on the water activity of the matrix was described by a linear gamma submodel that scales between zero at the minimum water activity for growth and one at unit water activity. The model is given by:
+
+[3]   \gamma(a_w) = \frac{a_w - a_{w,\min}}{1 - a_{w,\min}}
+
+where a_w is the water activity of the matrix, expressed as a dimensionless quantity. The parameter a_{w,\min} is the minimum water activity that supports growth of the target organism, set to 0.92 in the present work on the basis of literature data; this value was held constant across all experimental conditions. Where mu is defined in Eq. [1], its value is computed from the multiplicative combination of \gamma(T) given by Eq. [2] and \gamma(a_w) given by Eq. [3], with the pH gamma factor retained close to unity as discussed above.
+
+The model defined in Eq. [3] rests on two principal assumptions. First, there is a linear relationship between a_w and the growth rate fraction \gamma(a_w), which is an acceptable approximation in the relatively narrow range of water activity values typically encountered in Cheddar cheese during ripening. Second, a_w = 1 corresponds to the full growth potential from this factor, that is, a state in which water activity does not exert any limiting effect on growth.
+
+Parameter Estimation and Application
+
+The parameters of the cardinal submodels defined in Eqs. [2] and [3] were estimated by nonlinear least-squares regression using the Levenberg–Marquardt algorithm. The submodels were first fitted to the gamma factor profiles inferred from the experimental data, treating the cardinal parameters as free parameters and using literature values as initial guesses. The maximum growth rate parameter \mu_{\max} of Eq. [1] was then estimated by fitting the gamma concept model to growth rate values obtained at conditions close to the optimum for the non-temperature factors, after normalizing each observed \mu value by the corresponding products of the gamma factors. Initial values for the cardinal parameters were taken from the literature.
+
+Goodness-of-fit was assessed using the root mean square error of the residuals, the coefficient of determination, and visual inspection of residual plots, complemented by the bias and accuracy factors recommended in standard practice (Author et al., 2017). Approximate 95 % confidence intervals for the estimated parameters were derived from the asymptotic standard errors of the nonlinear regression. The complete set of fitted parameter values, together with their associated uncertainty estimates, is reported in Table 1, providing the basis for the cardinal parameter approach to estimating spoilage risk in Cheddar cheese described in this work.
+
+References
+
+Author, A. et al. (2017). Cardinal parameter models in predictive microbiology. Journal of Dairy Science, 100(5), 3645–3656.
+
+Author, B. et al. (2018). Pilot-scale Cheddar cheese manufacture for predictive microbiology studies. Journal of Dairy Science, 101(3), 2123–2134.
+
+Author, C. et al. (2019). Enumeration of spoilage organisms in ripening cheese. Journal of Dairy Science, 102(6), 4923–4935.

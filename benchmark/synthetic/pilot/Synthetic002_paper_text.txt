@@ -1,0 +1,43 @@
+MATERIALS AND METHODS
+
+Title: Development of a quality assessment model for dairy microflora in raw milk
+
+Sample Collection and Preparation
+
+Raw milk samples were collected from three commercial dairy farms operating in the same regional production area to ensure compositional consistency. Sampling was performed directly from the bulk tank immediately after the morning milking, using sterile glass containers that had previously been autoclaved. Samples were transported to the laboratory under refrigeration within 60 min of collection. On arrival, the gross composition (fat, protein, lactose, and total solids), pH, and somatic cell count of each sample were determined to confirm that the milk fell within the expected commercial quality range, and any sample falling outside the acceptance criteria was excluded from the study.
+
+For the kinetic experiments, milk from each farm was pooled and divided into aliquots of 100 mL, each of which was placed in a sterile screw-cap bottle. Aliquots were then equilibrated for at least 30 min at the target storage temperature before time-zero sampling. Storage temperatures used in this study were 4, 8, 12, and 15 °C, covering the typical range from chilled bulk-tank conditions through the abuse temperatures occasionally encountered in transport and handling. Each storage condition was performed in triplicate, and the entire experimental design was replicated on three independent occasions.
+
+Microbial Enumeration
+
+Enumeration of the dairy microflora was performed at predetermined sampling intervals selected to capture the full kinetic profile, with a higher frequency in the period of rapid population increase. At each sampling time, 1.0 mL of milk was aseptically transferred to 9.0 mL of buffered peptone water, and serial decimal dilutions were prepared. Aliquots of 1.0 mL or 0.1 mL were spread-plated on standard plate count agar, and plates were incubated for 48 h at 30 °C following the procedure described by Author et al. (2018). Colony counts within the range of 25 to 250 colonies per plate were used for calculating the population density, expressed as colony-forming units per milliliter (cfu/mL).
+
+The enumerated population represented the total mesophilic microflora of the raw milk, which is considered representative of the spoilage flora developing under chilled storage conditions. Counts were obtained from duplicate plates per dilution and averaged before further analysis. Measurements below the detection limit of the plating method were censored and excluded from subsequent parameter estimation.
+
+Primary Growth Model
+
+The kinetics of the microbial population in raw milk during storage were described using the logistic growth model. This formulation provides a symmetric sigmoidal curve that has been widely applied to dairy microflora when the available data do not justify the introduction of an explicit lag phase parameter (Author et al., 2017). The model is expressed as:
+
+[1]   N(t) = \frac{N_{\max}}{1 + \left(\frac{N_{\max}}{N_0} - 1\right) e^{-\mu t}}
+
+where t is the time since the beginning of storage, expressed in hours (h). The parameter N_{\max} is the carrying capacity of the system, that is, the maximum population density that the microbial population can attain in the raw milk matrix under the prevailing physico-chemical conditions; in the present work N_{\max} was set to 1 × 10^9 cfu/mL on the basis of literature reports for similar substrates. The parameter N_0 is the initial population of the dairy microflora at the start of the trial, taken to be 1 × 10^3 cfu/mL in accordance with the typical microbial load of high-quality bulk-tank milk used in the experimental design. The parameter \mu is the growth rate constant of the microbial population, expressed in h^{-1}, and characterizes the intrinsic rate at which the population approaches its carrying capacity. For the present work, a representative value of 0.4 h^{-1} was used as a starting point in the fitting procedure, with the final estimate being refined for each experimental condition.
+
+The use of the logistic model rests on two principal assumptions. First, the growth curve is symmetric around its inflection point, an approximation that is reasonable for many bacterial populations growing in liquid dairy substrates (Author et al., 2016). Second, no explicit lag phase is included; this is justified for raw milk because the native microflora is generally adapted to the substrate and capable of resuming proliferation rapidly once temperature conditions become favorable. The absence of an explicit lag parameter also reduces the number of degrees of freedom in the fitting procedure, which is advantageous when the early portion of the growth curve is not densely sampled.
+
+Parameter Estimation
+
+The logistic model defined in Eq. [1] was fitted to the experimental data by nonlinear least-squares regression, using the Levenberg–Marquardt algorithm. The dependent variable was the natural-scale concentration N(t), although the residuals were also examined in log-transformed scale to verify that the fit was uniformly satisfactory across the orders of magnitude spanned by the population. Initial values for \mu were derived from the slope of a tangent line drawn through the inflection region of each experimental curve, while N_0 and N_{\max} were fixed at their nominal values to focus the estimation procedure on the kinetic parameter most directly affected by storage temperature.
+
+Convergence of the optimization was monitored using the relative change in residual sum of squares between successive iterations. Goodness-of-fit was assessed through the root mean square error of the residuals, the coefficient of determination, and visual inspection of residual plots against time. Approximate 95 % confidence intervals for \mu were derived from the asymptotic standard errors of the nonlinear regression. The fitted values of \mu were then tabulated against storage temperature to provide a summary of the kinetic response of the dairy microflora under the conditions of the study.
+
+Quality Assessment Application
+
+Using the fitted logistic model, projections of microbial development in raw milk were generated for storage conditions of practical relevance. For a given temperature scenario, the growth rate constant \mu obtained from the fitting procedure was substituted into Eq. [1] together with the appropriate initial population N_0, and the resulting curve was used to estimate the time required for the microbial concentration to reach predefined quality thresholds. The methodology established in this work therefore provides a quantitative description of the development of the dairy microflora in raw milk during refrigerated storage and supports systematic evaluation of milk quality under realistic temperature scenarios.
+
+References
+
+Author, A. et al. (2016). Sigmoidal growth modeling of bacterial populations in liquid dairy substrates. Journal of Dairy Science, 99(6), 4567–4578.
+
+Author, B. et al. (2017). Comparative evaluation of primary models for dairy microflora growth. Journal of Dairy Science, 100(8), 6234–6246.
+
+Author, C. et al. (2018). Standard enumeration of total mesophilic microflora in raw bulk-tank milk. Journal of Dairy Science, 101(11), 9456–9467.

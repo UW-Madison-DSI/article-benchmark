@@ -1,0 +1,388 @@
+{
+  "domain": "microbial_growth",
+  "description": "Equation templates for predictive microbiology in dairy science: primary growth models, secondary (environmental) models, inactivation kinetics, and empirical relationships.",
+  "templates": [
+    {
+      "template_id": "mg_baranyi_no_lag",
+      "equation_name": "Baranyi growth model (no lag phase)",
+      "equation_description": "Logistic primary growth model for bacterial concentration over time, assuming no lag phase. The population grows from an initial level toward a maximum carrying capacity with growth rate governed by environmental conditions.",
+      "equation_latex": "N(t) = N_{\\max} + \\log_{10}\\left(\\frac{e^{\\mu t}}{e^{\\mu t} - 1 + 10^{N_{\\max} - N_0}}\\right)",
+      "variables": [
+        {"symbol": "t", "name": "time", "unit": "h", "description": "elapsed time since start of growth"},
+        {"symbol": "N(t)", "name": "population at time t", "unit": "log10 cfu/g", "description": "logarithmic concentration of the target organism at time t"}
+      ],
+      "parameters": [
+        {"symbol": "N_{\\max}", "name": "maximum population density", "value": 8.0, "unit": "log10 cfu/g"},
+        {"symbol": "N_0", "name": "initial population density", "value": 2.5, "unit": "log10 cfu/g"},
+        {"symbol": "\\mu", "name": "specific growth rate", "value": null, "unit": "h^{-1}"}
+      ],
+      "assumptions": [
+        "No lag phase; growth begins immediately at the given rate.",
+        "Logistic growth with a fixed maximum population density."
+      ],
+      "equation_type": "primary_growth_model",
+      "typical_organisms": ["Clostridium tyrobutyricum", "Listeria monocytogenes", "Pseudomonas spp."],
+      "difficulty_notes": "Straightforward extraction when presented as a displayed equation with parameters defined nearby."
+    },
+    {
+      "template_id": "mg_baranyi_with_lag",
+      "equation_name": "Baranyi growth model (with lag phase)",
+      "equation_description": "Full Baranyi primary growth model incorporating both a lag phase adjustment function and logistic saturation. The lag is modeled through an adjustment function A(t) that depends on the initial physiological state of the cells.",
+      "equation_latex": "N(t) = N_0 + \\mu A(t) - \\ln\\left(1 + \\frac{e^{\\mu A(t)} - 1}{e^{N_{\\max} - N_0}}\\right)",
+      "variables": [
+        {"symbol": "t", "name": "time", "unit": "h"},
+        {"symbol": "N(t)", "name": "population at time t", "unit": "ln cfu/mL"}
+      ],
+      "parameters": [
+        {"symbol": "N_0", "name": "initial population", "value": 3.0, "unit": "ln cfu/mL"},
+        {"symbol": "N_{\\max}", "name": "maximum population", "value": 20.0, "unit": "ln cfu/mL"},
+        {"symbol": "\\mu", "name": "maximum specific growth rate", "value": null, "unit": "h^{-1}"}
+      ],
+      "assumptions": [
+        "Lag phase is modeled via an adjustment function A(t) = t + (1/mu) * ln(exp(-mu*t) + exp(-h0) - exp(-mu*t - h0)).",
+        "Parameter h0 represents the initial physiological state of the cells."
+      ],
+      "equation_type": "primary_growth_model",
+      "typical_organisms": ["Listeria monocytogenes", "Salmonella spp.", "E. coli O157:H7"],
+      "difficulty_notes": "Harder to extract because the adjustment function A(t) is typically defined separately, creating a multi-equation system."
+    },
+    {
+      "template_id": "mg_gompertz",
+      "equation_name": "modified Gompertz growth model",
+      "equation_description": "Reparameterized Gompertz equation describing sigmoidal microbial growth as a function of time, with biologically meaningful parameters for maximum growth rate, lag time, and asymptotic population.",
+      "equation_latex": "\\log_{10} N(t) = A + C \\cdot \\exp\\left(-\\exp\\left(\\frac{\\mu_m \\cdot e}{C}(\\lambda - t) + 1\\right)\\right)",
+      "variables": [
+        {"symbol": "t", "name": "time", "unit": "h"}
+      ],
+      "parameters": [
+        {"symbol": "A", "name": "lower asymptote (initial log count)", "value": 2.0, "unit": "log10 cfu/mL"},
+        {"symbol": "C", "name": "log increase from initial to maximum", "value": 6.0, "unit": "log10 cfu/mL"},
+        {"symbol": "\\mu_m", "name": "maximum specific growth rate", "value": 0.5, "unit": "log10 cfu/mL/h"},
+        {"symbol": "\\lambda", "name": "lag time", "value": 5.0, "unit": "h"},
+        {"symbol": "e", "name": "Euler's number", "value": 2.71828, "unit": null}
+      ],
+      "assumptions": [
+        "Sigmoidal growth curve; applicable when growth data show a clear lag, exponential, and stationary phase.",
+        "Reparameterized form from Zwietering et al. (1990) for biological interpretability."
+      ],
+      "equation_type": "primary_growth_model",
+      "typical_organisms": ["Lactobacillus spp.", "Staphylococcus aureus"],
+      "difficulty_notes": "The nested exponentials make LaTeX extraction tricky; LLMs may flatten or rewrite the nesting."
+    },
+    {
+      "template_id": "mg_logistic",
+      "equation_name": "logistic growth model",
+      "equation_description": "Simple logistic growth equation for microbial populations, describing symmetric sigmoidal growth toward a carrying capacity.",
+      "equation_latex": "N(t) = \\frac{N_{\\max}}{1 + \\left(\\frac{N_{\\max}}{N_0} - 1\\right) e^{-\\mu t}}",
+      "variables": [
+        {"symbol": "t", "name": "time", "unit": "h"}
+      ],
+      "parameters": [
+        {"symbol": "N_{\\max}", "name": "carrying capacity", "value": 1e9, "unit": "cfu/mL"},
+        {"symbol": "N_0", "name": "initial population", "value": 1000, "unit": "cfu/mL"},
+        {"symbol": "\\mu", "name": "growth rate constant", "value": 0.4, "unit": "h^{-1}"}
+      ],
+      "assumptions": [
+        "Symmetric growth curve around the inflection point.",
+        "No explicit lag phase."
+      ],
+      "equation_type": "primary_growth_model",
+      "typical_organisms": ["generic bacterial growth"],
+      "difficulty_notes": "Simple and commonly encountered; straightforward to extract."
+    },
+    {
+      "template_id": "mg_gamma_temperature",
+      "equation_name": "cardinal temperature model (gamma factor)",
+      "equation_description": "Dimensionless gamma factor representing the fractional effect of temperature on microbial growth rate, using the cardinal temperature model with minimum and optimal temperatures.",
+      "equation_latex": "\\gamma(T) = \\left(\\frac{T - T_{\\min}}{T_{\\mathrm{opt}} - T_{\\min}}\\right)^2",
+      "variables": [
+        {"symbol": "T", "name": "temperature", "unit": "\\degree C"}
+      ],
+      "parameters": [
+        {"symbol": "T_{\\min}", "name": "minimum growth temperature", "value": 0.0, "unit": "\\degree C"},
+        {"symbol": "T_{\\mathrm{opt}}", "name": "optimal growth temperature", "value": 37.0, "unit": "\\degree C"}
+      ],
+      "assumptions": [
+        "Applicable for temperatures between T_min and T_opt.",
+        "Below T_min, gamma(T) = 0 (no growth).",
+        "Squared cardinal model following Ratkowsky or Zwietering convention."
+      ],
+      "equation_type": "secondary_model_gamma",
+      "typical_organisms": ["Clostridium tyrobutyricum", "Listeria monocytogenes", "Pseudomonas fluorescens"],
+      "difficulty_notes": "Often appears as part of a set of gamma factors; extraction must identify it as one component of a multi-factor model."
+    },
+    {
+      "template_id": "mg_gamma_pH",
+      "equation_name": "cardinal pH model (gamma factor)",
+      "equation_description": "Dimensionless gamma factor representing the effect of pH on microbial growth rate, using minimum, optimum, and maximum pH values in a cardinal parameter model.",
+      "equation_latex": "\\gamma(\\mathrm{pH}) = \\frac{(\\mathrm{pH} - \\mathrm{pH}_{\\min})(\\mathrm{pH}_{\\max} - \\mathrm{pH})}{(\\mathrm{pH}_{\\mathrm{opt}} - \\mathrm{pH}_{\\min})(\\mathrm{pH}_{\\max} - \\mathrm{pH}_{\\mathrm{opt}})}",
+      "variables": [
+        {"symbol": "\\mathrm{pH}", "name": "pH of the medium", "unit": "dimensionless"}
+      ],
+      "parameters": [
+        {"symbol": "\\mathrm{pH}_{\\min}", "name": "minimum growth pH", "value": 4.5, "unit": "dimensionless"},
+        {"symbol": "\\mathrm{pH}_{\\mathrm{opt}}", "name": "optimum growth pH", "value": 7.0, "unit": "dimensionless"},
+        {"symbol": "\\mathrm{pH}_{\\max}", "name": "maximum growth pH", "value": 9.0, "unit": "dimensionless"}
+      ],
+      "assumptions": [
+        "Growth rate is zero at pH_min and pH_max.",
+        "Growth rate is maximal at pH_opt.",
+        "Assumes independent, multiplicative effect of pH on growth rate."
+      ],
+      "equation_type": "secondary_model_gamma",
+      "typical_organisms": ["Clostridium tyrobutyricum", "Bacillus cereus"],
+      "difficulty_notes": "The nested parentheses in numerator and denominator can cause extraction errors if not carefully parsed."
+    },
+    {
+      "template_id": "mg_gamma_aw",
+      "equation_name": "water activity gamma factor",
+      "equation_description": "Linear cardinal model describing the effect of water activity on microbial growth rate, scaling from zero at the minimum water activity to one at pure water.",
+      "equation_latex": "\\gamma(a_w) = \\frac{a_w - a_{w,\\min}}{1 - a_{w,\\min}}",
+      "variables": [
+        {"symbol": "a_w", "name": "water activity", "unit": "dimensionless"}
+      ],
+      "parameters": [
+        {"symbol": "a_{w,\\min}", "name": "minimum water activity for growth", "value": 0.92, "unit": "dimensionless"}
+      ],
+      "assumptions": [
+        "Linear relationship between a_w and growth rate fraction.",
+        "a_w = 1 corresponds to full growth potential from this factor."
+      ],
+      "equation_type": "secondary_model_gamma",
+      "typical_organisms": ["Staphylococcus aureus", "Clostridium botulinum"],
+      "difficulty_notes": "Simple formula but the subscript notation (a_{w,min}) is a common extraction challenge."
+    },
+    {
+      "template_id": "mg_gamma_product",
+      "equation_name": "gamma concept growth rate model",
+      "equation_description": "The gamma concept expresses the effective growth rate as the product of the maximum growth rate and individual dimensionless gamma factors for each environmental variable, assuming multiplicative and independent effects.",
+      "equation_latex": "\\mu = \\mu_{\\max} \\cdot \\gamma(T) \\cdot \\gamma(\\mathrm{pH}) \\cdot \\gamma(a_w)",
+      "variables": [
+        {"symbol": "T", "name": "temperature", "unit": "\\degree C"},
+        {"symbol": "\\mathrm{pH}", "name": "pH", "unit": "dimensionless"},
+        {"symbol": "a_w", "name": "water activity", "unit": "dimensionless"}
+      ],
+      "parameters": [
+        {"symbol": "\\mu_{\\max}", "name": "maximum specific growth rate under optimal conditions", "value": 0.8, "unit": "h^{-1}"},
+        {"symbol": "\\gamma(T)", "name": "temperature gamma factor", "value": null, "unit": "dimensionless"},
+        {"symbol": "\\gamma(\\mathrm{pH})", "name": "pH gamma factor", "value": null, "unit": "dimensionless"},
+        {"symbol": "\\gamma(a_w)", "name": "water activity gamma factor", "value": null, "unit": "dimensionless"}
+      ],
+      "assumptions": [
+        "Environmental factors have independent, multiplicative effects on growth rate.",
+        "Each gamma factor ranges from 0 (complete inhibition) to 1 (optimal conditions)."
+      ],
+      "equation_type": "secondary_model_composite",
+      "typical_organisms": ["any organism modeled with cardinal parameter approach"],
+      "difficulty_notes": "This equation ties together multiple gamma factors; extraction must identify it as a composite equation and link to the individual gamma definitions."
+    },
+    {
+      "template_id": "mg_ratkowsky_sqrt",
+      "equation_name": "Ratkowsky square-root model",
+      "equation_description": "Empirical square-root model relating the square root of growth rate to temperature, widely used in predictive microbiology as a simple secondary model.",
+      "equation_latex": "\\sqrt{\\mu} = b (T - T_{\\min})",
+      "variables": [
+        {"symbol": "T", "name": "temperature", "unit": "\\degree C"}
+      ],
+      "parameters": [
+        {"symbol": "b", "name": "regression coefficient", "value": 0.04, "unit": "(\\degree C)^{-1} h^{-0.5}"},
+        {"symbol": "T_{\\min}", "name": "conceptual minimum temperature for growth", "value": -1.5, "unit": "\\degree C"}
+      ],
+      "assumptions": [
+        "Linear relationship between sqrt(mu) and temperature in the suboptimal range.",
+        "T_min is a conceptual (extrapolated) value, not necessarily the observed minimum."
+      ],
+      "equation_type": "secondary_model_temperature",
+      "typical_organisms": ["Pseudomonas spp.", "Brochothrix thermosphacta"],
+      "difficulty_notes": "Simple formula but the square root on the left-hand side is unusual and may confuse extractors."
+    },
+    {
+      "template_id": "mg_exp_growth",
+      "equation_name": "exponential growth phase",
+      "equation_description": "Simple exponential growth equation for the log phase of microbial growth, before the population approaches carrying capacity.",
+      "equation_latex": "N(t) = N_0 \\cdot e^{\\mu t}",
+      "variables": [
+        {"symbol": "t", "name": "time", "unit": "h"}
+      ],
+      "parameters": [
+        {"symbol": "N_0", "name": "initial population", "value": 100, "unit": "cfu/mL"},
+        {"symbol": "\\mu", "name": "specific growth rate", "value": 0.5, "unit": "h^{-1}"}
+      ],
+      "assumptions": [
+        "Unlimited resources; no carrying capacity constraint.",
+        "Applicable only during the exponential (log) phase."
+      ],
+      "equation_type": "primary_growth_model",
+      "typical_organisms": ["generic"],
+      "difficulty_notes": "Very simple; often appears as a component of a larger model rather than a standalone equation."
+    },
+    {
+      "template_id": "mg_aw_salt",
+      "equation_name": "water activity from salt content",
+      "equation_description": "Empirical linear relationship relating water activity of a dairy product to its water-phase salt concentration.",
+      "equation_latex": "a_w = 0.995 - 0.00721 \\cdot S_{wp}",
+      "variables": [
+        {"symbol": "S_{wp}", "name": "water-phase salt concentration", "unit": "% w/w"}
+      ],
+      "parameters": [
+        {"symbol": "0.995", "name": "intercept", "value": 0.995, "unit": "dimensionless"},
+        {"symbol": "0.00721", "name": "slope", "value": 0.00721, "unit": "per % salt"}
+      ],
+      "assumptions": [
+        "Linear approximation valid for typical cheese salt concentrations.",
+        "Derived from empirical measurements on dairy products."
+      ],
+      "equation_type": "empirical_relationship",
+      "typical_organisms": ["N/A (physical property model)"],
+      "difficulty_notes": "Parameters are numeric constants embedded in the equation rather than named symbols; extraction must identify them."
+    },
+    {
+      "template_id": "mg_log_linear_inactivation",
+      "equation_name": "log-linear inactivation model",
+      "equation_description": "First-order thermal inactivation kinetics for bacterial spores or vegetative cells during heat treatment, describing log-linear decline in viable count.",
+      "equation_latex": "\\log_{10} N(t) = \\log_{10} N_0 - \\frac{t}{D}",
+      "variables": [
+        {"symbol": "t", "name": "heating time", "unit": "min"}
+      ],
+      "parameters": [
+        {"symbol": "N_0", "name": "initial count", "value": 1e6, "unit": "cfu/mL"},
+        {"symbol": "D", "name": "decimal reduction time", "value": 5.0, "unit": "min"}
+      ],
+      "assumptions": [
+        "First-order inactivation kinetics.",
+        "D-value is constant at a given temperature."
+      ],
+      "equation_type": "inactivation_model",
+      "typical_organisms": ["Clostridium botulinum spores", "Bacillus cereus spores"],
+      "difficulty_notes": "Simple but may appear with temperature-dependent D values (z-value model) as a companion equation."
+    },
+    {
+      "template_id": "mg_z_value",
+      "equation_name": "z-value thermal resistance model",
+      "equation_description": "Describes how the decimal reduction time (D-value) changes with temperature, where z is the temperature increase required to reduce D by one log cycle.",
+      "equation_latex": "\\log_{10} D(T) = \\log_{10} D_{\\mathrm{ref}} - \\frac{T - T_{\\mathrm{ref}}}{z}",
+      "variables": [
+        {"symbol": "T", "name": "temperature", "unit": "\\degree C"}
+      ],
+      "parameters": [
+        {"symbol": "D_{\\mathrm{ref}}", "name": "D-value at reference temperature", "value": 10.0, "unit": "min"},
+        {"symbol": "T_{\\mathrm{ref}}", "name": "reference temperature", "value": 121.1, "unit": "\\degree C"},
+        {"symbol": "z", "name": "z-value", "value": 10.0, "unit": "\\degree C"}
+      ],
+      "assumptions": [
+        "Log-linear relationship between D and temperature.",
+        "Applicable within the relevant temperature range for the organism."
+      ],
+      "equation_type": "secondary_inactivation_model",
+      "typical_organisms": ["Clostridium botulinum spores", "Bacillus cereus spores"],
+      "difficulty_notes": "Often paired with the log-linear inactivation model; extraction should link the two."
+    },
+    {
+      "template_id": "mg_weibull_inactivation",
+      "equation_name": "Weibull inactivation model",
+      "equation_description": "Non-linear inactivation model using the Weibull distribution to describe microbial death curves that exhibit tailing or shoulder effects.",
+      "equation_latex": "\\log_{10} \\frac{N(t)}{N_0} = -\\left(\\frac{t}{\\delta}\\right)^p",
+      "variables": [
+        {"symbol": "t", "name": "treatment time", "unit": "min"}
+      ],
+      "parameters": [
+        {"symbol": "\\delta", "name": "scale parameter (time for first log reduction)", "value": 3.0, "unit": "min"},
+        {"symbol": "p", "name": "shape parameter", "value": 0.8, "unit": "dimensionless"}
+      ],
+      "assumptions": [
+        "p < 1 indicates concave-downward (tailing) survival curves.",
+        "p > 1 indicates concave-upward (shoulder) survival curves.",
+        "p = 1 reduces to the log-linear model."
+      ],
+      "equation_type": "inactivation_model",
+      "typical_organisms": ["various sporeformers", "Listeria monocytogenes"],
+      "difficulty_notes": "The fraction N(t)/N_0 on the left-hand side and the exponent p on the right make this equation structurally distinct."
+    },
+    {
+      "template_id": "mg_lag_temperature",
+      "equation_name": "temperature-dependent lag duration",
+      "equation_description": "Relates microbial lag phase duration to storage temperature using an inverse power-law or exponential relationship, commonly used in shelf-life prediction models.",
+      "equation_latex": "\\lambda(T) = \\frac{1}{\\mu(T)} \\cdot \\ln\\left(1 + \\frac{1}{e^{h_0} - 1}\\right)",
+      "variables": [
+        {"symbol": "T", "name": "temperature", "unit": "\\degree C"}
+      ],
+      "parameters": [
+        {"symbol": "\\mu(T)", "name": "growth rate at temperature T", "value": null, "unit": "h^{-1}"},
+        {"symbol": "h_0", "name": "initial physiological state parameter", "value": 1.5, "unit": "dimensionless"}
+      ],
+      "assumptions": [
+        "Lag duration is inversely proportional to growth rate.",
+        "h0 is a strain-specific parameter representing the work needed to adapt to new conditions."
+      ],
+      "equation_type": "lag_phase_model",
+      "typical_organisms": ["Listeria monocytogenes", "Salmonella spp."],
+      "difficulty_notes": "The parameter h0 is often described in text rather than displayed in a parameter table."
+    },
+    {
+      "template_id": "mg_spoilage_shelf_life",
+      "equation_name": "microbial spoilage threshold model",
+      "equation_description": "Defines product shelf life as the time for the microbial population to reach a spoilage threshold concentration from a given initial contamination level.",
+      "equation_latex": "t_{\\mathrm{shelf}} = \\frac{\\ln(N_{\\mathrm{spoil}}) - \\ln(N_0)}{\\mu}",
+      "variables": [
+        {"symbol": "N_0", "name": "initial contamination level", "unit": "cfu/mL"},
+        {"symbol": "N_{\\mathrm{spoil}}", "name": "spoilage threshold", "unit": "cfu/mL"}
+      ],
+      "parameters": [
+        {"symbol": "N_{\\mathrm{spoil}}", "name": "spoilage threshold concentration", "value": 1e7, "unit": "cfu/mL"},
+        {"symbol": "\\mu", "name": "growth rate at storage temperature", "value": null, "unit": "h^{-1}"}
+      ],
+      "assumptions": [
+        "Exponential growth assumed throughout shelf life.",
+        "Spoilage occurs when a threshold concentration is reached.",
+        "No lag phase considered."
+      ],
+      "equation_type": "shelf_life_model",
+      "typical_organisms": ["Pseudomonas spp.", "psychrotolerant sporeformers"],
+      "difficulty_notes": "Simple formula but the dual role of N_spoil (as both a variable and a parameter) can confuse extraction."
+    },
+    {
+      "template_id": "mg_monte_carlo_threshold",
+      "equation_name": "defect probability from Monte Carlo simulation",
+      "equation_description": "Estimates the proportion of production units exhibiting a defect by comparing simulated microbial concentrations against a threshold, used in risk assessment models.",
+      "equation_latex": "P_{\\mathrm{defect}} = \\frac{1}{M} \\sum_{i=1}^{M} \\mathbf{1}\\left(N_i(t) \\geq N_{\\mathrm{threshold}}\\right)",
+      "variables": [
+        {"symbol": "t", "name": "time point for assessment", "unit": "d"},
+        {"symbol": "N_i(t)", "name": "simulated concentration in unit i", "unit": "cfu/g"},
+        {"symbol": "M", "name": "number of Monte Carlo iterations", "unit": "dimensionless"}
+      ],
+      "parameters": [
+        {"symbol": "N_{\\mathrm{threshold}}", "name": "defect threshold concentration", "value": 1e5, "unit": "cfu/g"},
+        {"symbol": "M", "name": "number of iterations", "value": 10000, "unit": "dimensionless"}
+      ],
+      "assumptions": [
+        "Each iteration represents an independent production unit with stochastically sampled parameters.",
+        "Indicator function returns 1 if the concentration exceeds the threshold."
+      ],
+      "equation_type": "risk_assessment",
+      "typical_organisms": ["Clostridium tyrobutyricum", "Listeria monocytogenes"],
+      "difficulty_notes": "The indicator function notation and summation make this a harder extraction target."
+    },
+    {
+      "template_id": "mg_cardinal_temp_full",
+      "equation_name": "full cardinal temperature model",
+      "equation_description": "Extended cardinal temperature model with minimum, optimum, and maximum temperatures, applicable across the full growth range including super-optimal temperatures.",
+      "equation_latex": "\\gamma(T) = \\frac{(T - T_{\\max})(T - T_{\\min})^2}{(T_{\\mathrm{opt}} - T_{\\min})\\left((T_{\\mathrm{opt}} - T_{\\min})(T - T_{\\mathrm{opt}}) - (T_{\\mathrm{opt}} - T_{\\max})(T_{\\mathrm{opt}} + T_{\\min} - 2T)\\right)}",
+      "variables": [
+        {"symbol": "T", "name": "temperature", "unit": "\\degree C"}
+      ],
+      "parameters": [
+        {"symbol": "T_{\\min}", "name": "minimum growth temperature", "value": 1.0, "unit": "\\degree C"},
+        {"symbol": "T_{\\mathrm{opt}}", "name": "optimum growth temperature", "value": 30.0, "unit": "\\degree C"},
+        {"symbol": "T_{\\max}", "name": "maximum growth temperature", "value": 45.0, "unit": "\\degree C"}
+      ],
+      "assumptions": [
+        "Growth rate is zero at T_min and T_max, maximal at T_opt.",
+        "Asymmetric response around the optimum.",
+        "Rosso et al. (1993) cardinal model."
+      ],
+      "equation_type": "secondary_model_gamma",
+      "typical_organisms": ["Listeria monocytogenes", "Salmonella spp.", "E. coli"],
+      "difficulty_notes": "Complex nested parentheses in the denominator; high difficulty for LaTeX extraction."
+    }
+  ]
+}

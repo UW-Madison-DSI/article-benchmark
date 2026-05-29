@@ -1,0 +1,81 @@
+MATERIALS AND METHODS
+
+Title: Development of a quality assessment model for starter cultures in mozzarella
+
+Sample Preparation and Experimental Design
+
+Mozzarella cheese samples were manufactured at pilot scale according to a standardized protocol reflecting key features of commercial production while ensuring reproducibility (Author et al., 2018). The starter culture composition was held constant across batches, and the water activity (a_w) and pH of the matrix were monitored throughout production to ensure that the conditions fell within the typical commercial range. After processing, samples were portioned into 50 g aliquots, vacuum-packaged in barrier film, and assigned to one of four storage temperatures (4, 8, 12, and 18 °C). Three independent batches were produced, and within each batch triplicate samples were drawn at each predetermined sampling time. Symbols are used consistently across the equations below unless explicitly noted otherwise; in particular T denotes temperature in °C, t denotes time in h, and N(t) denotes the population at time t, with units defined for each model. Parameter values used in fitting are summarized in Tables 1 and 2.
+
+The target organism considered in this study was a representative starter-culture component used in mozzarella manufacture. Inoculation levels were adjusted to give an initial population of approximately 2.0 log10 cfu/g, with the precise value depending on the experimental condition and reported in the corresponding tables. Enumeration was performed at predetermined sampling intervals using standard plate-count techniques following the procedures described by Author et al. (2019).
+
+Modeling Framework
+
+The framework adopted in this work integrates seven equations into a coherent description of the growth kinetics of the target organism. A gamma concept growth rate model summarizes the multiplicative effects of environmental factors; a squared cardinal temperature model and the Ratkowsky square-root model contribute as alternative descriptions of the temperature dependence of the growth rate; a modified Gompertz model and a Baranyi model with explicit lag serve as primary growth models for different stages of the analysis; an exponential growth model is included for the analysis of the active growth phase; and a water activity gamma factor completes the gamma concept. The cross-references between these equations are highlighted in the subsections that follow.
+
+Gamma Concept Growth Rate Model
+
+The combined effect of environmental factors on the maximum specific growth rate of the target organism was described using the gamma concept:
+
+[1]   \mu = \mu_{\max} \cdot \gamma(T) \cdot \gamma(\mathrm{pH}) \cdot \gamma(a_w)
+
+where T is the temperature in °C, \mathrm{pH} is the pH of the matrix (dimensionless), and a_w is the water activity (dimensionless). The parameter \mu_{\max} is the maximum specific growth rate of the target organism under conditions in which all environmental factors are simultaneously optimal, expressed in h^{-1}; an initial value of 0.8 h^{-1} was adopted. The dimensionless gamma factors \gamma(T), \gamma(\mathrm{pH}), and \gamma(a_w) describe the relative effects of temperature, pH, and water activity, respectively. The principal assumptions are that the environmental factors exert independent, multiplicative effects on the growth rate, and that each gamma factor lies between 0 and 1.
+
+Cardinal Temperature Submodel (Squared)
+
+The temperature gamma factor was described using the squared cardinal model:
+
+[2]   \gamma(T) = \left(\frac{T - T_{\min}}{T_{\mathrm{opt}} - T_{\min}}\right)^2
+
+where T is the temperature in °C. The parameter T_{\min} is the minimum growth temperature, set to 0.0 °C, and T_{\mathrm{opt}} is the optimal growth temperature, set to 37.0 °C. The model is applicable between T_{\min} and T_{\mathrm{opt}}; below T_{\min}, the model is constrained to give \gamma(T) = 0. The squared cardinal model follows the convention introduced by Ratkowsky and subsequently formalized by Zwietering, and is closely related in functional form to the square-root model defined in Eq. [7].
+
+Modified Gompertz Growth Model
+
+The primary description of the temporal evolution of the population for datasets with a clear lag phase was provided by the modified Gompertz growth model in the reparameterization proposed by Zwietering and colleagues (Author et al., 2017):
+
+[3]   \log_{10} N(t) = A + C \cdot \exp\left(-\exp\left(\frac{\mu_m \cdot e}{C}(\lambda - t) + 1\right)\right)
+
+where t is time in h. The parameter A is the lower asymptote, corresponding to the initial log count of the population, set to 2.0 log10 cfu/mL; C is the log increase from the initial to the maximum population, set to 6.0 log10 cfu/mL; \mu_m is the maximum specific growth rate, expressed in log10 cfu/mL/h, with a representative value of 0.5 log10 cfu/mL/h; \lambda is the lag time, expressed in h, with a representative value of 5.0 h; and e is Euler's number, taken as 2.71828. The model is sigmoidal in shape and applicable when growth data show a clear lag, exponential, and stationary phase.
+
+Exponential Growth Phase
+
+For the early portion of the growth curve, prior to the deceleration imposed by the carrying capacity of the matrix, the population was described using an exponential growth model:
+
+[4]   N(t) = N_0 \cdot e^{\mu t}
+
+where t is time in h. The parameter N_0 is the initial population of the target organism, set to 100 cfu/mL in this work, and \mu is the specific growth rate, expressed in h^{-1}, with a representative value of 0.5 h^{-1}. The model assumes that nutrients and other resources are not limiting during the period of application, and is therefore applicable only during the exponential (log) phase. Where \mu is defined in Eq. [4], it has the same biological meaning as in Eqs. [1] and [6] and is related to the environmental conditions through Eq. [1].
+
+Water Activity Gamma Factor
+
+The water activity gamma factor was described by a linear submodel:
+
+[5]   \gamma(a_w) = \frac{a_w - a_{w,\min}}{1 - a_{w,\min}}
+
+where a_w is the water activity (dimensionless) and a_{w,\min} is the minimum water activity for growth of the target organism, set to 0.92 in the present work. The model assumes a linear relationship between a_w and the growth rate fraction, and that a_w = 1 corresponds to the full growth potential from this factor.
+
+Baranyi Growth Model with Lag
+
+The alternative primary growth model considered in this work, particularly for the datasets in which a smooth lag-to-exponential transition was observed, is the Baranyi growth model with explicit lag phase:
+
+[6]   N(t) = N_0 + \mu A(t) - \ln\left(1 + \frac{e^{\mu A(t)} - 1}{e^{N_{\max} - N_0}}\right)
+
+where t is time in h and N(t) is the population at time t, expressed in natural log units (ln cfu/mL). The parameter N_0 is the initial population, set to 3.0 ln cfu/mL; N_{\max} is the maximum population, set to 20.0 ln cfu/mL; and \mu is the maximum specific growth rate in h^{-1}, with the value depending on the storage condition. The adjustment function A(t) = t + (1/\mu) \cdot \ln(e^{-\mu t} + e^{-h_0} - e^{-\mu t - h_0}) introduces the lag phase, where h_0 is a strain-specific parameter representing the initial physiological state of the cells.
+
+Ratkowsky Square-Root Model
+
+The dependence of the growth rate on temperature in the suboptimal range was also described using the Ratkowsky square-root model:
+
+[7]   \sqrt{\mu} = b (T - T_{\min})
+
+where T is temperature in °C. The parameter b is the regression coefficient, expressed in (°C)^{-1} h^{-0.5}, with a representative value of 0.04 (°C)^{-1} h^{-0.5}, and T_{\min} is the conceptual minimum temperature for growth, expressed in °C, with a representative value of −1.5 °C. As described by the original authors of this formulation, T_{\min} is a conceptual (extrapolated) value, not necessarily the observed minimum. The model assumes a linear relationship between sqrt(\mu) and temperature in the suboptimal range. Note that the value of T_{\min} used in Eq. [7] differs from the value used in Eq. [2]: the former is an extrapolated parameter of a linearized model, while the latter is a true minimum growth temperature of a cardinal-type model. This deliberate distinction is preserved throughout the analysis.
+
+Parameter Estimation and Cross-Referencing
+
+Parameters of the submodels defined in Eqs. [2], [3], [5], [6], and [7] were estimated by nonlinear least-squares regression using the Levenberg–Marquardt algorithm. The cardinal parameters of Eq. [2] were estimated by fitting the temperature gamma factor profile to the observed growth rate ratios, while the Ratkowsky coefficients of Eq. [7] were derived from linear regression of sqrt(\mu) against temperature. The parameter \mu_{\max} of Eq. [1] was estimated by fitting the gamma concept model to growth rate values obtained close to the optimum conditions. The Baranyi (Eq. [6]), modified Gompertz (Eq. [3]), and exponential (Eq. [4]) primary models were each fitted to the experimental growth curves, with model selection performed by comparison of goodness-of-fit metrics including root mean square error, coefficient of determination, and bias and accuracy factors. Where shared variables appear in multiple equations with the same meaning, they are defined once and used consistently throughout; the cross-references are summarized in Tables 1 and 2, which collect parameter values and goodness-of-fit metrics. The complete framework described above provides a comprehensive description of the kinetics of the target organism in mozzarella under the storage conditions relevant to commercial practice.
+
+References
+
+Author, A. et al. (2017). Reparameterization of growth models for predictive microbiology. Journal of Dairy Science, 100(7), 5234–5246.
+
+Author, B. et al. (2018). Pilot-scale mozzarella manufacture for predictive microbiology studies. Journal of Dairy Science, 101(3), 2123–2134.
+
+Author, C. et al. (2019). Standardized enumeration of starter cultures in pasta filata cheeses. Journal of Dairy Science, 102(6), 4923–4935.

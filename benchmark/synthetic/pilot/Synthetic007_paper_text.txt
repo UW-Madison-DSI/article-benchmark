@@ -1,0 +1,57 @@
+MATERIALS AND METHODS
+
+Title: Growth kinetics of starter cultures during refrigerated storage of butter
+
+Sample Preparation and Experimental Design
+
+Butter samples were manufactured at laboratory scale following a standardized churning protocol that allowed reproducible control of the moisture and salt contents (Author et al., 2018). Pasteurized cream was inoculated with a defined starter culture composition and ripened under controlled conditions before churning. After processing, the butter was portioned into 100 g samples, packaged in aluminium foil, and assigned to one of four storage temperatures: 4, 8, 12, and 18 °C, covering the range from optimal refrigeration to moderate temperature abuse. A subset of samples was also subjected to short-duration heat treatments to characterize the thermal resistance of the target organism, as described in the corresponding subsection below.
+
+The target organism considered in this study was a representative starter-culture component traditionally used in butter manufacture. Inoculation levels were adjusted to give an initial population of approximately 2.5 log10 cfu/g, corresponding to a realistic post-processing population. Enumeration was performed at predetermined sampling intervals using selective plate-count techniques following the procedures recommended by Author et al. (2019), with results expressed as log10 cfu/g of butter. Three independent batches were produced, and within each batch triplicate samples were drawn at each sampling time.
+
+Modeling Framework
+
+The kinetic behaviour of the target organism in butter was described using three complementary equations. A primary growth model captured the temporal evolution of the population under refrigerated storage, a thermal resistance model described the dependence of the decimal reduction time on temperature for the inactivation experiments, and a Weibull inactivation model was applied to those inactivation curves that exhibited deviations from log-linear behaviour. The connections between these models, as well as the experimental contexts in which each was applied, are described in the following subsections.
+
+Primary Growth Model
+
+The dynamics of the target organism in the butter matrix during refrigerated storage were described using the Baranyi growth model in its formulation without lag phase, since preliminary inspection of the data indicated that the inoculum was already adapted to the matrix and did not exhibit a measurable lag. The model is given by:
+
+[1]   N(t) = N_{\max} + \log_{10}\left(\frac{e^{\mu t}}{e^{\mu t} - 1 + 10^{N_{\max} - N_0}}\right)
+
+where t is the elapsed time since the start of growth, expressed in hours (h), and N(t) is the population at time t of the target organism, expressed as the decadic logarithm of the population density (log10 cfu/g). The parameter N_{\max} is the maximum population density of the target organism in the matrix, set to 8.0 log10 cfu/g on the basis of the asymptotic levels observed in the experimental curves. The parameter N_0 is the initial population density, set to 2.5 log10 cfu/g in accordance with the nominal inoculation level. The parameter \mu is the specific growth rate of the target organism, expressed in h^{-1}, and is the principal parameter to be estimated from the data; its values for each storage condition are reported in Table 1.
+
+The model defined in Eq. [1] rests on two assumptions. First, no lag phase is considered, so that growth begins immediately at the specified rate from the moment of inoculation, in accordance with the pre-adaptation of the inoculum to the matrix. Second, the population follows a logistic-type approach to the fixed maximum density N_{\max}, capturing the deceleration of growth as the carrying capacity of the butter matrix is approached.
+
+Thermal Resistance Model
+
+For the inactivation experiments, the decimal reduction time of the target organism was determined at a range of treatment temperatures and the dependence of D on T was described using the z-value thermal resistance model. This model is widely accepted in dairy thermal processing studies (Author et al., 2017) and provides a log-linear description of the temperature dependence of the D-value:
+
+[2]   \log_{10} D(T) = \log_{10} D_{\mathrm{ref}} - \frac{T - T_{\mathrm{ref}}}{z}
+
+where T is the temperature in °C. The parameter D_{\mathrm{ref}} is the D-value of the target organism at the reference temperature, where D-values are reported in min; in the present work D_{\mathrm{ref}} was set to 10.0 min, in accordance with literature values for the target group. The parameter T_{\mathrm{ref}} is the reference temperature used in the analysis, set to 121.1 °C in agreement with the conventional reference temperature used for thermal processing studies, while z is the z-value of the target organism, expressed in °C and set to 10.0 °C as a representative starting value. As the z-value is treated as a model parameter in Eq. [2], rather than as an output of the analysis, the actual estimates for each replicate experiment are reported in Table 2.
+
+The model defined in Eq. [2] rests on two principal assumptions. First, the relationship between log10 D and the temperature T is log-linear, which is widely observed for many micro-organisms in the relevant temperature range. Second, the formulation is applicable only within the relevant temperature range for the target organism; extrapolation beyond the range used for estimation is discouraged.
+
+Weibull Inactivation Model
+
+For inactivation curves that exhibited systematic deviation from log-linear behaviour, the Weibull inactivation model was applied to describe the survival curves. This model is more flexible than the log-linear approach and accommodates both upward and downward concavity, while reducing to the log-linear case as a special instance. The model is given by:
+
+[3]   \log_{10} \frac{N(t)}{N_0} = -\left(\frac{t}{\delta}\right)^p
+
+where t is the treatment time, expressed in minutes (min). The parameter \delta is the scale parameter, corresponding to the time for the first log reduction of the target organism, expressed in min; in the present application \delta was estimated from each survival curve, with a typical value of 3.0 min. The parameter p is the shape parameter, dimensionless, with a representative starting value of 0.8 in the fitting procedure. Where mu is defined in Eq. [1], it should not be confused with the inactivation parameters of the present subsection, which describe a fundamentally different process.
+
+The interpretation of the shape parameter p is well established in the literature. A value of p < 1 indicates a concave-downward (tailing) survival curve, in which the rate of inactivation decreases with time. A value of p > 1 indicates a concave-upward (shoulder) survival curve, in which inactivation accelerates after an initial period of resistance. The special case p = 1 reduces Eq. [3] to the log-linear (first-order) inactivation model, in which case \delta corresponds to the conventional D-value.
+
+Parameter Estimation Procedure
+
+The parameters of Eqs. [1], [2], and [3] were estimated by nonlinear least-squares regression using the Levenberg–Marquardt algorithm. For Eq. [1], initial values of \mu were derived from the maximum slope of a moving-window linear regression applied to the central portion of each growth curve. The z-value model defined in Eq. [2] was fitted to the D-values obtained from the inactivation experiments, with z and D_{\mathrm{ref}} as the free parameters and T_{\mathrm{ref}} fixed at its conventional value of 121.1 °C. For Eq. [3], \delta and p were estimated by nonlinear regression of the log-survival data against time.
+
+Goodness-of-fit was assessed using the root mean square error of the residuals, the coefficient of determination, and visual inspection of residual plots, complemented by the bias and accuracy factors recommended in standard practice (Author et al., 2017). Approximate 95 % confidence intervals for the estimated parameters were derived from the asymptotic standard errors returned by the regression procedure. Parameter values for all three models, together with their associated uncertainty estimates, are tabulated in Tables 1 and 2, providing the basis for the subsequent analysis of growth kinetics of starter cultures during refrigerated storage of butter.
+
+References
+
+Author, A. et al. (2017). Decimal reduction kinetics in dairy thermal processing. Journal of Dairy Science, 100(6), 4534–4546.
+
+Author, B. et al. (2018). Standardized small-scale butter manufacture for kinetic studies. Journal of Dairy Science, 101(8), 6234–6246.
+
+Author, C. et al. (2019). Enumeration of starter cultures in fermented dairy products. Journal of Dairy Science, 102(4), 2867–2879.

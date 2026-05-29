@@ -1,0 +1,81 @@
+MATERIALS AND METHODS
+
+Title: Development of a quality assessment model for dairy microflora in fresh cheese
+
+Sample Preparation and Experimental Design
+
+Fresh cheese samples were prepared at pilot scale according to a standardized protocol designed to reproduce key features of commercial production while ensuring reproducibility across batches (Author et al., 2018). Salt content was adjusted during formulation to produce matrices with water activity (a_w) values spanning the range 0.93 to 0.99, and the pH of the matrix was monitored throughout production to remain within the typical commercial range. After preparation, samples were portioned into 50 g aliquots, packaged in sterile barrier film, and randomly assigned to one of five isothermal storage temperatures (4, 8, 12, 18, and 25 °C). Three independent batches were produced, and within each batch triplicate samples were drawn at each predetermined sampling time. Symbols used across the equations below have consistent meanings unless explicitly noted otherwise; in particular T denotes temperature in °C, t denotes time in h, and N(t) denotes the population at time t, with units defined for each primary model.
+
+The target organism was a representative member of the dairy microflora typically associated with fresh cheese, inoculated at a level of approximately 2.0 log10 cfu/g. Enumeration was performed at predetermined sampling intervals using standard plate-count techniques following the procedures described by Author et al. (2019). The complete set of fitted parameter values is reported in Tables 1 and 2; values mentioned in the text are taken from these tables.
+
+Modeling Framework
+
+The framework adopted in this study integrates seven equations into a coherent and self-consistent description of growth kinetics. A gamma concept model summarizes the multiplicative effects of environmental factors on the maximum specific growth rate; cardinal submodels for temperature and water activity provide the corresponding gamma factors; a modified Gompertz model and a Ratkowsky square-root model contribute to the primary and secondary modeling layers; a temperature-dependent lag duration model relates the apparent lag to the growth rate at any given temperature; and the full cardinal temperature model is used as the more elaborate temperature submodel when the wide temperature range of the dataset is considered. The cross-references between these equations are highlighted in the subsections that follow.
+
+Gamma Concept Growth Rate Model
+
+The combined effect of environmental factors on the maximum specific growth rate of the target organism was described using the gamma concept:
+
+[1]   \mu = \mu_{\max} \cdot \gamma(T) \cdot \gamma(\mathrm{pH}) \cdot \gamma(a_w)
+
+where T is the temperature in °C, \mathrm{pH} is the pH of the matrix (dimensionless), and a_w is the water activity (dimensionless). The parameter \mu_{\max} is the maximum specific growth rate of the target organism under conditions in which all environmental factors are simultaneously optimal, expressed in h^{-1}; a value of 0.8 h^{-1} was used as the initial estimate. The dimensionless gamma factors \gamma(T), \gamma(\mathrm{pH}), and \gamma(a_w) describe the relative effects of temperature, pH, and water activity, respectively. The model rests on the assumptions that the environmental factors exert independent, multiplicative effects on the growth rate, and that each gamma factor lies between 0 (complete inhibition) and 1 (optimal conditions).
+
+Water Activity Gamma Factor
+
+The water activity gamma factor was described by a linear submodel:
+
+[2]   \gamma(a_w) = \frac{a_w - a_{w,\min}}{1 - a_{w,\min}}
+
+where a_w is the water activity (dimensionless). The parameter a_{w,\min} is the minimum water activity for growth of the target organism, set to 0.92 in the present work. The model assumes a linear relationship between a_w and the growth rate fraction \gamma(a_w), and that a_w = 1 corresponds to the full growth potential from this factor.
+
+Modified Gompertz Growth Model
+
+The primary description of the temporal evolution of the population was provided by the modified Gompertz growth model, in the reparameterization proposed by Zwietering and colleagues:
+
+[3]   \log_{10} N(t) = A + C \cdot \exp\left(-\exp\left(\frac{\mu_m \cdot e}{C}(\lambda - t) + 1\right)\right)
+
+where t is time in h. The parameter A is the lower asymptote, corresponding to the initial log count of the population, set to 2.0 log10 cfu/mL; C is the log increase from the initial to the maximum population, set to 6.0 log10 cfu/mL; \mu_m is the maximum specific growth rate in log10 cfu/mL/h, with a representative value of 0.5 log10 cfu/mL/h; \lambda is the lag time in h, with a representative value of 5.0 h; and e is Euler's number, taken as 2.71828. The Gompertz model is sigmoidal in shape and applicable when growth data show a clear lag, exponential, and stationary phase.
+
+Cardinal Temperature Submodel (Squared)
+
+For the suboptimal temperature range, the temperature gamma factor was described using the squared cardinal model:
+
+[4]   \gamma(T) = \left(\frac{T - T_{\min}}{T_{\mathrm{opt}} - T_{\min}}\right)^2
+
+where T is temperature in °C, T_{\min} is the minimum growth temperature (0.0 °C), and T_{\mathrm{opt}} is the optimal growth temperature (37.0 °C). The model is applicable between T_{\min} and T_{\mathrm{opt}}; below T_{\min}, the model is constrained to give \gamma(T) = 0. The squared cardinal model follows the convention introduced by Ratkowsky and subsequently formalized by Zwietering.
+
+Temperature-Dependent Lag Duration
+
+The apparent lag duration of the target organism was related to the growth rate at the storage temperature through
+
+[5]   \lambda(T) = \frac{1}{\mu(T)} \cdot \ln\left(1 + \frac{1}{e^{h_0} - 1}\right)
+
+where T is temperature in °C. The parameter \mu(T) is the growth rate at temperature T, expressed in h^{-1}, and is obtained from Eq. [1] in combination with the temperature, pH, and water activity submodels. The parameter h_0 is the initial physiological state parameter, dimensionless, with a representative value of 1.5. The model rests on the assumption that the lag duration is inversely proportional to the growth rate, with h_0 a strain-specific parameter representing the work required for the cells to adapt to the new conditions.
+
+Ratkowsky Square-Root Model
+
+For comparison with the cardinal temperature submodel, the dependence of the growth rate on temperature in the suboptimal range was also described using the Ratkowsky square-root model:
+
+[6]   \sqrt{\mu} = b (T - T_{\min})
+
+where T is temperature in °C. The parameter b is the regression coefficient, expressed in (°C)^{-1} h^{-0.5}, with a representative value of 0.04 (°C)^{-1} h^{-0.5}, and T_{\min} is the conceptual minimum temperature for growth, expressed in °C, with a representative value of −1.5 °C. As described by the original authors of this formulation, T_{\min} should be interpreted as a conceptual (extrapolated) value, not necessarily coinciding with the temperature at which growth was actually detected. The model assumes a linear relationship between sqrt(\mu) and temperature in the suboptimal range.
+
+Full Cardinal Temperature Model
+
+For the wider temperature range covered by the dataset, including temperatures approaching the optimum, the full cardinal temperature model of Rosso and colleagues was used:
+
+[7]   \gamma(T) = \frac{(T - T_{\max})(T - T_{\min})^2}{(T_{\mathrm{opt}} - T_{\min})\left((T_{\mathrm{opt}} - T_{\min})(T - T_{\mathrm{opt}}) - (T_{\mathrm{opt}} - T_{\max})(T_{\mathrm{opt}} + T_{\min} - 2T)\right)}
+
+where T is temperature in °C, T_{\min} is the minimum growth temperature (1.0 °C), T_{\mathrm{opt}} is the optimum growth temperature (30.0 °C), and T_{\max} is the maximum growth temperature (45.0 °C). Note that the value of T_{\min} used in Eq. [7] differs slightly from the value used in Eq. [4]; this reflects the different temperature ranges over which the two submodels are calibrated, and is explicitly addressed in the parameter estimation procedure below. The full cardinal model captures the asymmetric response around the optimum, with \gamma(T) = 0 at T_{\min} and T_{\max} and \gamma(T) = 1 at T_{\mathrm{opt}}.
+
+Parameter Estimation and Cross-Referencing
+
+Parameters of the submodels defined in Eqs. [2], [4], [6], and [7] were estimated by nonlinear least-squares regression using the Levenberg–Marquardt algorithm. The cardinal parameters of Eqs. [4] and [7] were estimated by fitting the corresponding gamma factor profiles to the observed growth rate ratios. The Ratkowsky coefficients of Eq. [6] were derived from linear regression of sqrt(\mu) against temperature. The parameter \mu_{\max} of Eq. [1] was estimated by fitting the gamma concept model to growth rate values obtained close to the optimum conditions. The lag time predicted by Eq. [5] was related to the temperature-specific values of \mu obtained from Eqs. [1] and [4] (or [7]), and the resulting predictions were compared with the lag times estimated from the Gompertz fits of Eq. [3]. Where shared variables appear in multiple equations with the same meaning, they are defined once and used consistently throughout the framework; the cross-references are summarized in Tables 1 and 2, which collect parameter values and goodness-of-fit metrics. The complete framework described above provides a connected mathematical description of the dynamics of the dairy microflora in fresh cheese under a wide range of storage conditions.
+
+References
+
+Author, A. et al. (2017). Cardinal and square-root models in dairy predictive microbiology. Journal of Dairy Science, 100(8), 6234–6246.
+
+Author, B. et al. (2018). Pilot-scale fresh cheese manufacture for kinetic studies. Journal of Dairy Science, 101(3), 2123–2134.
+
+Author, C. et al. (2019). Standardized enumeration of dairy microflora in fresh cheese. Journal of Dairy Science, 102(6), 4923–4935.

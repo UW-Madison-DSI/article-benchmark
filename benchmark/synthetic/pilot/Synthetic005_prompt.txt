@@ -1,0 +1,197 @@
+CONTEXT: This is for an academic food science benchmarking project. We are
+generating synthetic methods sections to test equation-extraction software. The
+equations below are standard mathematical models used in dairy science for
+predicting product quality and shelf life.
+
+You are an expert in dairy science and mathematical modeling. Write a realistic
+MATERIALS AND METHODS section for a research paper with the following details:
+
+Title: Development of a quality assessment model for spore-forming bacteria in fresh cheese
+Journal style: Journal of Dairy Science
+
+The section must contain ALL of the following equations embedded naturally in the prose.
+Use generic terms like "target organism", "spoilage flora", or "microbial population"
+rather than specific species names.
+
+Equation [1]:
+  Name: gamma concept growth rate model
+  LaTeX: \mu = \mu_{\max} \cdot \gamma(T) \cdot \gamma(\mathrm{pH}) \cdot \gamma(a_w)
+  Variables: [
+  {
+    "symbol": "T",
+    "name": "temperature",
+    "unit": "\\degree C"
+  },
+  {
+    "symbol": "\\mathrm{pH}",
+    "name": "pH",
+    "unit": "dimensionless"
+  },
+  {
+    "symbol": "a_w",
+    "name": "water activity",
+    "unit": "dimensionless"
+  }
+]
+  Parameters: [
+  {
+    "symbol": "\\mu_{\\max}",
+    "name": "maximum specific growth rate under optimal conditions",
+    "value": 0.8,
+    "unit": "h^{-1}"
+  },
+  {
+    "symbol": "\\gamma(T)",
+    "name": "temperature gamma factor",
+    "value": null,
+    "unit": "dimensionless"
+  },
+  {
+    "symbol": "\\gamma(\\mathrm{pH})",
+    "name": "pH gamma factor",
+    "value": null,
+    "unit": "dimensionless"
+  },
+  {
+    "symbol": "\\gamma(a_w)",
+    "name": "water activity gamma factor",
+    "value": null,
+    "unit": "dimensionless"
+  }
+]
+  Assumptions: ["Environmental factors have independent, multiplicative effects on growth rate.", "Each gamma factor ranges from 0 (complete inhibition) to 1 (optimal conditions)."]
+
+Equation [2]:
+  Name: full cardinal temperature model
+  LaTeX: \gamma(T) = \frac{(T - T_{\max})(T - T_{\min})^2}{(T_{\mathrm{opt}} - T_{\min})\left((T_{\mathrm{opt}} - T_{\min})(T - T_{\mathrm{opt}}) - (T_{\mathrm{opt}} - T_{\max})(T_{\mathrm{opt}} + T_{\min} - 2T)\right)}
+  Variables: [
+  {
+    "symbol": "T",
+    "name": "temperature",
+    "unit": "\\degree C"
+  }
+]
+  Parameters: [
+  {
+    "symbol": "T_{\\min}",
+    "name": "minimum growth temperature",
+    "value": 1.0,
+    "unit": "\\degree C"
+  },
+  {
+    "symbol": "T_{\\mathrm{opt}}",
+    "name": "optimum growth temperature",
+    "value": 30.0,
+    "unit": "\\degree C"
+  },
+  {
+    "symbol": "T_{\\max}",
+    "name": "maximum growth temperature",
+    "value": 45.0,
+    "unit": "\\degree C"
+  }
+]
+  Assumptions: ["Growth rate is zero at T_min and T_max, maximal at T_opt.", "Asymmetric response around the optimum.", "Rosso et al. (1993) cardinal model."]
+
+Equation [3]:
+  Name: exponential growth phase
+  LaTeX: N(t) = N_0 \cdot e^{\mu t}
+  Variables: [
+  {
+    "symbol": "t",
+    "name": "time",
+    "unit": "h"
+  }
+]
+  Parameters: [
+  {
+    "symbol": "N_0",
+    "name": "initial population",
+    "value": 100,
+    "unit": "cfu/mL"
+  },
+  {
+    "symbol": "\\mu",
+    "name": "specific growth rate",
+    "value": 0.5,
+    "unit": "h^{-1}"
+  }
+]
+  Assumptions: ["Unlimited resources; no carrying capacity constraint.", "Applicable only during the exponential (log) phase."]
+
+Equation [4]:
+  Name: cardinal temperature model (gamma factor)
+  LaTeX: \gamma(T) = \left(\frac{T - T_{\min}}{T_{\mathrm{opt}} - T_{\min}}\right)^2
+  Variables: [
+  {
+    "symbol": "T",
+    "name": "temperature",
+    "unit": "\\degree C"
+  }
+]
+  Parameters: [
+  {
+    "symbol": "T_{\\min}",
+    "name": "minimum growth temperature",
+    "value": 0.0,
+    "unit": "\\degree C"
+  },
+  {
+    "symbol": "T_{\\mathrm{opt}}",
+    "name": "optimal growth temperature",
+    "value": 37.0,
+    "unit": "\\degree C"
+  }
+]
+  Assumptions: ["Applicable for temperatures between T_min and T_opt.", "Below T_min, gamma(T) = 0 (no growth).", "Squared cardinal model following Ratkowsky or Zwietering convention."]
+
+Equation [5]:
+  Name: microbial spoilage threshold model
+  LaTeX: t_{\mathrm{shelf}} = \frac{\ln(N_{\mathrm{spoil}}) - \ln(N_0)}{\mu}
+  Variables: [
+  {
+    "symbol": "N_0",
+    "name": "initial contamination level",
+    "unit": "cfu/mL"
+  },
+  {
+    "symbol": "N_{\\mathrm{spoil}}",
+    "name": "spoilage threshold",
+    "unit": "cfu/mL"
+  }
+]
+  Parameters: [
+  {
+    "symbol": "N_{\\mathrm{spoil}}",
+    "name": "spoilage threshold concentration",
+    "value": 10000000.0,
+    "unit": "cfu/mL"
+  },
+  {
+    "symbol": "\\mu",
+    "name": "growth rate at storage temperature",
+    "value": null,
+    "unit": "h^{-1}"
+  }
+]
+  Assumptions: ["Exponential growth assumed throughout shelf life.", "Spoilage occurs when a threshold concentration is reached.", "No lag phase considered."]
+
+INSTRUCTIONS FOR WRITING STYLE:
+Write a realistic methods section. Equations should be:
+- Displayed with labels, but some variables may be defined in a separate paragraph
+- Some parameters should be introduced in the text as "where X is the..." format
+- Reference relationships between equations (e.g., "where mu is defined in Eq. [2]")
+- Include references to tables for parameter values
+
+CRITICAL REQUIREMENTS:
+1. Include EVERY equation listed above with its EXACT LaTeX form.
+2. Define ALL variables and parameters mentioned in the equation descriptions.
+3. Write 800-2500 words depending on the number of equations.
+4. Use a formal academic writing style appropriate for a dairy science journal.
+5. Do NOT include an abstract, introduction, results, or discussion.
+6. Do NOT add equations that are not in the list above.
+7. Include realistic references to literature (you may use placeholder citations like "(Author et al., 2020)").
+8. Structure the section with appropriate subsections if there are 3+ equations.
+9. Use generic terms for organisms (e.g., "the target organism", "spoilage bacteria").
+
+Return ONLY the methods section text. Do not include any metadata or JSON.

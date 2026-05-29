@@ -1,0 +1,283 @@
+{
+  "paper": {
+    "doi": "10.0000/synthetic-pilot-005",
+    "openalex_id": null,
+    "title": "Development of a quality assessment model for spore-forming bacteria in fresh cheese",
+    "abstract_text": null,
+    "publication_year": 2018,
+    "publication_date": null,
+    "type": null,
+    "language": "en",
+    "source_url": null,
+    "primary_landing_page_url": null,
+    "primary_pdf_url": null,
+    "is_oa": null,
+    "cited_by_count": null
+  },
+  "mechanistic_equations": [
+    {
+      "equation_local_id": "eq1",
+      "equation_name": "gamma concept growth rate model",
+      "equation_description": "The gamma concept expresses the effective growth rate as the product of the maximum growth rate and individual dimensionless gamma factors for each environmental variable, assuming multiplicative and independent effects.",
+      "equation_latex": "\\mu = \\mu_{\\max} \\cdot \\gamma(T) \\cdot \\gamma(\\mathrm{pH}) \\cdot \\gamma(a_w)",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "T",
+          "name": "temperature",
+          "unit": "\\degree C"
+        },
+        {
+          "symbol": "\\mathrm{pH}",
+          "name": "pH",
+          "unit": "dimensionless"
+        },
+        {
+          "symbol": "a_w",
+          "name": "water activity",
+          "unit": "dimensionless"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "\\mu_{\\max}",
+          "name": "maximum specific growth rate under optimal conditions",
+          "value": 0.8,
+          "unit": "h^{-1}"
+        },
+        {
+          "symbol": "\\gamma(T)",
+          "name": "temperature gamma factor",
+          "value": null,
+          "unit": "dimensionless"
+        },
+        {
+          "symbol": "\\gamma(\\mathrm{pH})",
+          "name": "pH gamma factor",
+          "value": null,
+          "unit": "dimensionless"
+        },
+        {
+          "symbol": "\\gamma(a_w)",
+          "name": "water activity gamma factor",
+          "value": null,
+          "unit": "dimensionless"
+        }
+      ],
+      "assumptions": [
+        "Environmental factors have independent, multiplicative effects on growth rate.",
+        "Each gamma factor ranges from 0 (complete inhibition) to 1 (optimal conditions)."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[1]",
+          "page": null,
+          "text_context": "The gamma concept expresses the effective growth rate as the product of the maximum growth rate and individual dimensionless gamma factors for each environmental variable, assuming multiplicative and independent effects.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    },
+    {
+      "equation_local_id": "eq2",
+      "equation_name": "full cardinal temperature model",
+      "equation_description": "Extended cardinal temperature model with minimum, optimum, and maximum temperatures, applicable across the full growth range including super-optimal temperatures.",
+      "equation_latex": "\\gamma(T) = \\frac{(T - T_{\\max})(T - T_{\\min})^2}{(T_{\\mathrm{opt}} - T_{\\min})\\left((T_{\\mathrm{opt}} - T_{\\min})(T - T_{\\mathrm{opt}}) - (T_{\\mathrm{opt}} - T_{\\max})(T_{\\mathrm{opt}} + T_{\\min} - 2T)\\right)}",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "T",
+          "name": "temperature",
+          "unit": "\\degree C"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "T_{\\min}",
+          "name": "minimum growth temperature",
+          "value": 1.0,
+          "unit": "\\degree C"
+        },
+        {
+          "symbol": "T_{\\mathrm{opt}}",
+          "name": "optimum growth temperature",
+          "value": 30.0,
+          "unit": "\\degree C"
+        },
+        {
+          "symbol": "T_{\\max}",
+          "name": "maximum growth temperature",
+          "value": 45.0,
+          "unit": "\\degree C"
+        }
+      ],
+      "assumptions": [
+        "Growth rate is zero at T_min and T_max, maximal at T_opt.",
+        "Asymmetric response around the optimum.",
+        "Rosso et al. (1993) cardinal model."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[2]",
+          "page": null,
+          "text_context": "Extended cardinal temperature model with minimum, optimum, and maximum temperatures, applicable across the full growth range including super-optimal temperatures.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    },
+    {
+      "equation_local_id": "eq3",
+      "equation_name": "exponential growth phase",
+      "equation_description": "Simple exponential growth equation for the log phase of microbial growth, before the population approaches carrying capacity.",
+      "equation_latex": "N(t) = N_0 \\cdot e^{\\mu t}",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "t",
+          "name": "time",
+          "unit": "h"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "N_0",
+          "name": "initial population",
+          "value": 100,
+          "unit": "cfu/mL"
+        },
+        {
+          "symbol": "\\mu",
+          "name": "specific growth rate",
+          "value": 0.5,
+          "unit": "h^{-1}"
+        }
+      ],
+      "assumptions": [
+        "Unlimited resources; no carrying capacity constraint.",
+        "Applicable only during the exponential (log) phase."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[3]",
+          "page": null,
+          "text_context": "Simple exponential growth equation for the log phase of microbial growth, before the population approaches carrying capacity.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    },
+    {
+      "equation_local_id": "eq4",
+      "equation_name": "cardinal temperature model (gamma factor)",
+      "equation_description": "Dimensionless gamma factor representing the fractional effect of temperature on microbial growth rate, using the cardinal temperature model with minimum and optimal temperatures.",
+      "equation_latex": "\\gamma(T) = \\left(\\frac{T - T_{\\min}}{T_{\\mathrm{opt}} - T_{\\min}}\\right)^2",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "T",
+          "name": "temperature",
+          "unit": "\\degree C"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "T_{\\min}",
+          "name": "minimum growth temperature",
+          "value": 0.0,
+          "unit": "\\degree C"
+        },
+        {
+          "symbol": "T_{\\mathrm{opt}}",
+          "name": "optimal growth temperature",
+          "value": 37.0,
+          "unit": "\\degree C"
+        }
+      ],
+      "assumptions": [
+        "Applicable for temperatures between T_min and T_opt.",
+        "Below T_min, gamma(T) = 0 (no growth).",
+        "Squared cardinal model following Ratkowsky or Zwietering convention."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[4]",
+          "page": null,
+          "text_context": "Dimensionless gamma factor representing the fractional effect of temperature on microbial growth rate, using the cardinal temperature model with minimum and optimal temperatures.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    },
+    {
+      "equation_local_id": "eq5",
+      "equation_name": "microbial spoilage threshold model",
+      "equation_description": "Defines product shelf life as the time for the microbial population to reach a spoilage threshold concentration from a given initial contamination level.",
+      "equation_latex": "t_{\\mathrm{shelf}} = \\frac{\\ln(N_{\\mathrm{spoil}}) - \\ln(N_0)}{\\mu}",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "N_0",
+          "name": "initial contamination level",
+          "unit": "cfu/mL"
+        },
+        {
+          "symbol": "N_{\\mathrm{spoil}}",
+          "name": "spoilage threshold",
+          "unit": "cfu/mL"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "N_{\\mathrm{spoil}}",
+          "name": "spoilage threshold concentration",
+          "value": 10000000.0,
+          "unit": "cfu/mL"
+        },
+        {
+          "symbol": "\\mu",
+          "name": "growth rate at storage temperature",
+          "value": null,
+          "unit": "h^{-1}"
+        }
+      ],
+      "assumptions": [
+        "Exponential growth assumed throughout shelf life.",
+        "Spoilage occurs when a threshold concentration is reached.",
+        "No lag phase considered."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[5]",
+          "page": null,
+          "text_context": "Defines product shelf life as the time for the microbial population to reach a spoilage threshold concentration from a given initial contamination level.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    }
+  ],
+  "ml_models": [],
+  "_metadata": {
+    "difficulty": "medium",
+    "domain": "microbial_growth",
+    "template_ids": [
+      "mg_gamma_product",
+      "mg_cardinal_temp_full",
+      "mg_exp_growth",
+      "mg_gamma_temperature",
+      "mg_spoilage_shelf_life"
+    ],
+    "generator_version": "0.1.0"
+  }
+}

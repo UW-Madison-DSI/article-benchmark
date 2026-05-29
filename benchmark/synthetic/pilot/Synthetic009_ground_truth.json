@@ -1,0 +1,400 @@
+{
+  "paper": {
+    "doi": "10.0000/synthetic-pilot-009",
+    "openalex_id": null,
+    "title": "Modeling the effect of salt concentration on lactic acid bacteria growth in butter",
+    "abstract_text": null,
+    "publication_year": 2024,
+    "publication_date": null,
+    "type": null,
+    "language": "en",
+    "source_url": null,
+    "primary_landing_page_url": null,
+    "primary_pdf_url": null,
+    "is_oa": null,
+    "cited_by_count": null
+  },
+  "mechanistic_equations": [
+    {
+      "equation_local_id": "eq1",
+      "equation_name": "gamma concept growth rate model",
+      "equation_description": "The gamma concept expresses the effective growth rate as the product of the maximum growth rate and individual dimensionless gamma factors for each environmental variable, assuming multiplicative and independent effects.",
+      "equation_latex": "\\mu = \\mu_{\\max} \\cdot \\gamma(T) \\cdot \\gamma(\\mathrm{pH}) \\cdot \\gamma(a_w)",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "T",
+          "name": "temperature",
+          "unit": "\\degree C"
+        },
+        {
+          "symbol": "\\mathrm{pH}",
+          "name": "pH",
+          "unit": "dimensionless"
+        },
+        {
+          "symbol": "a_w",
+          "name": "water activity",
+          "unit": "dimensionless"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "\\mu_{\\max}",
+          "name": "maximum specific growth rate under optimal conditions",
+          "value": 0.8,
+          "unit": "h^{-1}"
+        },
+        {
+          "symbol": "\\gamma(T)",
+          "name": "temperature gamma factor",
+          "value": null,
+          "unit": "dimensionless"
+        },
+        {
+          "symbol": "\\gamma(\\mathrm{pH})",
+          "name": "pH gamma factor",
+          "value": null,
+          "unit": "dimensionless"
+        },
+        {
+          "symbol": "\\gamma(a_w)",
+          "name": "water activity gamma factor",
+          "value": null,
+          "unit": "dimensionless"
+        }
+      ],
+      "assumptions": [
+        "Environmental factors have independent, multiplicative effects on growth rate.",
+        "Each gamma factor ranges from 0 (complete inhibition) to 1 (optimal conditions)."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[1]",
+          "page": null,
+          "text_context": "The gamma concept expresses the effective growth rate as the product of the maximum growth rate and individual dimensionless gamma factors for each environmental variable, assuming multiplicative and independent effects.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    },
+    {
+      "equation_local_id": "eq2",
+      "equation_name": "cardinal pH model (gamma factor)",
+      "equation_description": "Dimensionless gamma factor representing the effect of pH on microbial growth rate, using minimum, optimum, and maximum pH values in a cardinal parameter model.",
+      "equation_latex": "\\gamma(\\mathrm{pH}) = \\frac{(\\mathrm{pH} - \\mathrm{pH}_{\\min})(\\mathrm{pH}_{\\max} - \\mathrm{pH})}{(\\mathrm{pH}_{\\mathrm{opt}} - \\mathrm{pH}_{\\min})(\\mathrm{pH}_{\\max} - \\mathrm{pH}_{\\mathrm{opt}})}",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "\\mathrm{pH}",
+          "name": "pH of the medium",
+          "unit": "dimensionless"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "\\mathrm{pH}_{\\min}",
+          "name": "minimum growth pH",
+          "value": 4.5,
+          "unit": "dimensionless"
+        },
+        {
+          "symbol": "\\mathrm{pH}_{\\mathrm{opt}}",
+          "name": "optimum growth pH",
+          "value": 7.0,
+          "unit": "dimensionless"
+        },
+        {
+          "symbol": "\\mathrm{pH}_{\\max}",
+          "name": "maximum growth pH",
+          "value": 9.0,
+          "unit": "dimensionless"
+        }
+      ],
+      "assumptions": [
+        "Growth rate is zero at pH_min and pH_max.",
+        "Growth rate is maximal at pH_opt.",
+        "Assumes independent, multiplicative effect of pH on growth rate."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[2]",
+          "page": null,
+          "text_context": "Dimensionless gamma factor representing the effect of pH on microbial growth rate, using minimum, optimum, and maximum pH values in a cardinal parameter model.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    },
+    {
+      "equation_local_id": "eq3",
+      "equation_name": "modified Gompertz growth model",
+      "equation_description": "Reparameterized Gompertz equation describing sigmoidal microbial growth as a function of time, with biologically meaningful parameters for maximum growth rate, lag time, and asymptotic population.",
+      "equation_latex": "\\log_{10} N(t) = A + C \\cdot \\exp\\left(-\\exp\\left(\\frac{\\mu_m \\cdot e}{C}(\\lambda - t) + 1\\right)\\right)",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "t",
+          "name": "time",
+          "unit": "h"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "A",
+          "name": "lower asymptote (initial log count)",
+          "value": 2.0,
+          "unit": "log10 cfu/mL"
+        },
+        {
+          "symbol": "C",
+          "name": "log increase from initial to maximum",
+          "value": 6.0,
+          "unit": "log10 cfu/mL"
+        },
+        {
+          "symbol": "\\mu_m",
+          "name": "maximum specific growth rate",
+          "value": 0.5,
+          "unit": "log10 cfu/mL/h"
+        },
+        {
+          "symbol": "\\lambda",
+          "name": "lag time",
+          "value": 5.0,
+          "unit": "h"
+        },
+        {
+          "symbol": "e",
+          "name": "Euler's number",
+          "value": 2.71828,
+          "unit": null
+        }
+      ],
+      "assumptions": [
+        "Sigmoidal growth curve; applicable when growth data show a clear lag, exponential, and stationary phase.",
+        "Reparameterized form from Zwietering et al. (1990) for biological interpretability."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[3]",
+          "page": null,
+          "text_context": "Reparameterized Gompertz equation describing sigmoidal microbial growth as a function of time, with biologically meaningful parameters for maximum growth rate, lag time, and asymptotic population.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    },
+    {
+      "equation_local_id": "eq4",
+      "equation_name": "Baranyi growth model (with lag phase)",
+      "equation_description": "Full Baranyi primary growth model incorporating both a lag phase adjustment function and logistic saturation. The lag is modeled through an adjustment function A(t) that depends on the initial physiological state of the cells.",
+      "equation_latex": "N(t) = N_0 + \\mu A(t) - \\ln\\left(1 + \\frac{e^{\\mu A(t)} - 1}{e^{N_{\\max} - N_0}}\\right)",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "t",
+          "name": "time",
+          "unit": "h"
+        },
+        {
+          "symbol": "N(t)",
+          "name": "population at time t",
+          "unit": "ln cfu/mL"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "N_0",
+          "name": "initial population",
+          "value": 3.0,
+          "unit": "ln cfu/mL"
+        },
+        {
+          "symbol": "N_{\\max}",
+          "name": "maximum population",
+          "value": 20.0,
+          "unit": "ln cfu/mL"
+        },
+        {
+          "symbol": "\\mu",
+          "name": "maximum specific growth rate",
+          "value": null,
+          "unit": "h^{-1}"
+        }
+      ],
+      "assumptions": [
+        "Lag phase is modeled via an adjustment function A(t) = t + (1/mu) * ln(exp(-mu*t) + exp(-h0) - exp(-mu*t - h0)).",
+        "Parameter h0 represents the initial physiological state of the cells."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[4]",
+          "page": null,
+          "text_context": "Full Baranyi primary growth model incorporating both a lag phase adjustment function and logistic saturation. The lag is modeled through an adjustment function A(t) that depends on the initial physiological state of the cells.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    },
+    {
+      "equation_local_id": "eq5",
+      "equation_name": "full cardinal temperature model",
+      "equation_description": "Extended cardinal temperature model with minimum, optimum, and maximum temperatures, applicable across the full growth range including super-optimal temperatures.",
+      "equation_latex": "\\gamma(T) = \\frac{(T - T_{\\max})(T - T_{\\min})^2}{(T_{\\mathrm{opt}} - T_{\\min})\\left((T_{\\mathrm{opt}} - T_{\\min})(T - T_{\\mathrm{opt}}) - (T_{\\mathrm{opt}} - T_{\\max})(T_{\\mathrm{opt}} + T_{\\min} - 2T)\\right)}",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "T",
+          "name": "temperature",
+          "unit": "\\degree C"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "T_{\\min}",
+          "name": "minimum growth temperature",
+          "value": 1.0,
+          "unit": "\\degree C"
+        },
+        {
+          "symbol": "T_{\\mathrm{opt}}",
+          "name": "optimum growth temperature",
+          "value": 30.0,
+          "unit": "\\degree C"
+        },
+        {
+          "symbol": "T_{\\max}",
+          "name": "maximum growth temperature",
+          "value": 45.0,
+          "unit": "\\degree C"
+        }
+      ],
+      "assumptions": [
+        "Growth rate is zero at T_min and T_max, maximal at T_opt.",
+        "Asymmetric response around the optimum.",
+        "Rosso et al. (1993) cardinal model."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[5]",
+          "page": null,
+          "text_context": "Extended cardinal temperature model with minimum, optimum, and maximum temperatures, applicable across the full growth range including super-optimal temperatures.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    },
+    {
+      "equation_local_id": "eq6",
+      "equation_name": "water activity gamma factor",
+      "equation_description": "Linear cardinal model describing the effect of water activity on microbial growth rate, scaling from zero at the minimum water activity to one at pure water.",
+      "equation_latex": "\\gamma(a_w) = \\frac{a_w - a_{w,\\min}}{1 - a_{w,\\min}}",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "a_w",
+          "name": "water activity",
+          "unit": "dimensionless"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "a_{w,\\min}",
+          "name": "minimum water activity for growth",
+          "value": 0.92,
+          "unit": "dimensionless"
+        }
+      ],
+      "assumptions": [
+        "Linear relationship between a_w and growth rate fraction.",
+        "a_w = 1 corresponds to full growth potential from this factor."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[6]",
+          "page": null,
+          "text_context": "Linear cardinal model describing the effect of water activity on microbial growth rate, scaling from zero at the minimum water activity to one at pure water.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    },
+    {
+      "equation_local_id": "eq7",
+      "equation_name": "logistic growth model",
+      "equation_description": "Simple logistic growth equation for microbial populations, describing symmetric sigmoidal growth toward a carrying capacity.",
+      "equation_latex": "N(t) = \\frac{N_{\\max}}{1 + \\left(\\frac{N_{\\max}}{N_0} - 1\\right) e^{-\\mu t}}",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "t",
+          "name": "time",
+          "unit": "h"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "N_{\\max}",
+          "name": "carrying capacity",
+          "value": 1000000000.0,
+          "unit": "cfu/mL"
+        },
+        {
+          "symbol": "N_0",
+          "name": "initial population",
+          "value": 1000,
+          "unit": "cfu/mL"
+        },
+        {
+          "symbol": "\\mu",
+          "name": "growth rate constant",
+          "value": 0.4,
+          "unit": "h^{-1}"
+        }
+      ],
+      "assumptions": [
+        "Symmetric growth curve around the inflection point.",
+        "No explicit lag phase."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[7]",
+          "page": null,
+          "text_context": "Simple logistic growth equation for microbial populations, describing symmetric sigmoidal growth toward a carrying capacity.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    }
+  ],
+  "ml_models": [],
+  "_metadata": {
+    "difficulty": "hard",
+    "domain": "microbial_growth",
+    "template_ids": [
+      "mg_gamma_product",
+      "mg_gamma_pH",
+      "mg_gompertz",
+      "mg_baranyi_with_lag",
+      "mg_cardinal_temp_full",
+      "mg_gamma_aw",
+      "mg_logistic"
+    ],
+    "generator_version": "0.1.0"
+  }
+}

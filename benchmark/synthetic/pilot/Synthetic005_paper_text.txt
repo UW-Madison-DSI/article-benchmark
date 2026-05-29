@@ -1,0 +1,65 @@
+MATERIALS AND METHODS
+
+Title: Development of a quality assessment model for spore-forming bacteria in fresh cheese
+
+Sample Preparation and Experimental Design
+
+Fresh cheese samples were manufactured at pilot scale using a standardized protocol designed to reproduce key features of commercial production while ensuring reproducibility across batches (Author et al., 2018). After manufacture, samples were portioned into 50 g aliquots, packaged in sterile barrier film, and randomly assigned to one of four isothermal storage conditions (6, 10, 14, and 18 °C). The pH, salt-in-moisture content, and water activity of each batch were determined at the start of storage to confirm that the matrix characteristics were within the expected commercial range. Three independent batches were produced, and within each batch triplicate samples were drawn at each predetermined sampling time.
+
+The target organism considered in this work was a representative member of the spore-forming bacteria typically associated with fresh cheese. Inoculation levels were adjusted to yield an initial population of approximately 2.0 log10 cfu/g, corresponding to a realistic post-processing contamination level. The composition of the matrix was monitored throughout the storage trials to ensure that the prevailing pH and water activity remained within the validity domain of the secondary models used in the analysis. Detailed parameter values for the various model components are summarized in Table 1.
+
+Modeling Framework
+
+The modeling framework adopted in this study integrates five equations into a coherent description of growth and quality evolution. A growth rate model based on the gamma concept summarizes the multiplicative effect of environmental factors, a full cardinal temperature model provides the temperature gamma factor, an exponential model represents population evolution during the active growth phase, a simplified cardinal temperature model is included as a reduced version used for sensitivity analysis, and a microbial spoilage threshold model is used to translate the kinetic predictions into a practical quality assessment.
+
+Gamma Concept for Growth Rate
+
+The combined effect of environmental factors on the maximum specific growth rate of the target organism was described using the gamma concept, in which each factor is represented by a multiplicative term that varies between zero (complete inhibition) and one (optimal conditions). The model is formulated as:
+
+[1]   \mu = \mu_{\max} \cdot \gamma(T) \cdot \gamma(\mathrm{pH}) \cdot \gamma(a_w)
+
+where T is temperature in °C, \mathrm{pH} is the pH of the matrix (dimensionless), and a_w is the water activity (dimensionless). The parameter \mu_{\max} is the maximum specific growth rate of the target organism under conditions in which all environmental factors are simultaneously optimal, expressed in h^{-1}; in the present work \mu_{\max} was set to 0.8 h^{-1} on the basis of published data for the target group of organisms. The remaining factors \gamma(T), \gamma(\mathrm{pH}) and \gamma(a_w) are dimensionless gamma factors describing the relative effect of temperature, pH, and water activity, respectively, and are defined according to their corresponding submodels. As described by Author et al. (2017), the underlying assumptions of this approach are that the environmental factors exert independent, multiplicative effects on the growth rate, and that each gamma factor lies between 0 (complete inhibition) and 1 (optimal conditions).
+
+Full Cardinal Temperature Model
+
+The temperature gamma factor \gamma(T) was described using the full cardinal model proposed by Rosso and colleagues, which provides an asymmetric response around the optimum:
+
+[2]   \gamma(T) = \frac{(T - T_{\max})(T - T_{\min})^2}{(T_{\mathrm{opt}} - T_{\min})\left((T_{\mathrm{opt}} - T_{\min})(T - T_{\mathrm{opt}}) - (T_{\mathrm{opt}} - T_{\max})(T_{\mathrm{opt}} + T_{\min} - 2T)\right)}
+
+where T is the temperature in °C. The parameter T_{\min} is the minimum growth temperature of the target organism, set to 1.0 °C in the present work, T_{\mathrm{opt}} is the optimum growth temperature, set to 30.0 °C, and T_{\max} is the maximum growth temperature, set to 45.0 °C. The model captures the asymmetric response around the optimum and ensures that \gamma(T) equals zero at both T_{\min} and T_{\max} and reaches its maximum value of unity at T_{\mathrm{opt}}. The validity of this formulation has been extensively documented for a wide range of food-borne organisms (Author et al., 2017).
+
+Exponential Growth Phase
+
+For the early portion of the growth curve, prior to the deceleration imposed by the carrying capacity of the matrix, the population was described using a simple exponential model:
+
+[3]   N(t) = N_0 \cdot e^{\mu t}
+
+where t is time, expressed in hours (h). The parameter N_0 is the initial population of the target organism, set to 100 cfu/mL in this work, and \mu is the specific growth rate, expressed in h^{-1}, with an indicative value of 0.5 h^{-1} that is refined for each experimental condition through fitting of the full primary growth model. This formulation rests on two assumptions: that nutrients and other resources are not limiting during the period in which the model is applied, and that the model is therefore applicable only during the exponential (log) phase of population development.
+
+Reduced Cardinal Temperature Model
+
+For sensitivity analysis and comparison with the full cardinal model, a reduced version of the cardinal temperature gamma factor was also fitted to the data, following the convention introduced in earlier work and subsequently formalized by Ratkowsky and Zwietering. This reduced model is defined as
+
+[4]   \gamma(T) = \left(\frac{T - T_{\min}}{T_{\mathrm{opt}} - T_{\min}}\right)^2
+
+where T is the temperature in °C, T_{\min} is the minimum growth temperature (set to 0.0 °C for the present application of the reduced model), and T_{\mathrm{opt}} is the optimal growth temperature (set to 37.0 °C). This reduced formulation is applicable for temperatures between T_{\min} and T_{\mathrm{opt}}; below T_{\min}, the model is constrained to give \gamma(T) = 0, indicating no growth. The principal advantage of Eq. [4] over Eq. [2] is its simpler parametric form, although it does not capture the asymmetric decrease in \gamma(T) above the optimum.
+
+Spoilage Threshold Model
+
+The translation of the kinetic predictions into a practical quality assessment was performed using a microbial spoilage threshold model that estimates the shelf life as the time required for the population to reach a predefined threshold:
+
+[5]   t_{\mathrm{shelf}} = \frac{\ln(N_{\mathrm{spoil}}) - \ln(N_0)}{\mu}
+
+where N_0 is the initial contamination level, expressed in cfu/mL, and N_{\mathrm{spoil}} is the spoilage threshold, also expressed in cfu/mL. In the present work the spoilage threshold was set to 1 × 10^7 cfu/mL, in accordance with criteria reported by Author et al. (2018) for the relevant product category. The parameter \mu in Eq. [5] denotes the growth rate of the target organism under the storage conditions of interest and is computed from Eq. [1] using the appropriate values of T, pH, and a_w. The shelf life model rests on three principal assumptions: that exponential growth applies throughout the period leading up to spoilage, that the perception of spoilage is associated with the attainment of a defined threshold concentration, and that no significant lag phase is encountered under the conditions of interest.
+
+Parameter Estimation and Model Implementation
+
+The parameters of Eq. [2] (T_{\min}, T_{\mathrm{opt}}, T_{\max}) and the corresponding parameters of Eq. [4] were estimated by nonlinear least-squares regression of the gamma factor profile against temperature, using the Levenberg–Marquardt algorithm. The parameter \mu_{\max} appearing in Eq. [1] was estimated by fitting the model to growth rate values obtained at conditions close to the optimum for the non-temperature factors. The exponential model defined in Eq. [3] was used to estimate \mu locally for individual experiments by linear regression of \ln N(t) against time over the active growth phase. The shelf life predictions arising from Eq. [5] were generated by substitution of the appropriate \mu values, computed via Eqs. [1] and [2] or [4], together with the initial population and spoilage threshold defined for the scenario of interest. Parameter values used in the fitting procedure are given in Table 1, and a summary of the goodness-of-fit metrics is provided in Table 2. The complete modeling framework described in this section provides a coherent basis for the quality assessment of fresh cheese with respect to the development of spore-forming bacteria.
+
+References
+
+Author, A. et al. (2017). Cardinal models for the temperature dependence of microbial growth. Journal of Dairy Science, 100(7), 5234–5246.
+
+Author, B. et al. (2018). Spoilage thresholds in fresh cheese: a meta-analysis. Journal of Dairy Science, 101(9), 7345–7358.
+
+Author, C. et al. (2019). Combined effects of environmental factors on microbial growth in dairy matrices. Journal of Dairy Science, 102(4), 2987–3001.

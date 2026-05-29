@@ -1,0 +1,404 @@
+{
+  "paper": {
+    "doi": "10.3168/jds.2021-21206",
+    "openalex_id": null,
+    "title": "Development of a risk assessment model to predict the occurrence of late blowing defect in Gouda cheese and evaluate potential intervention strategies",
+    "abstract_text": "Late blowing defect (LBD) is an important spoilage issue in semi-hard cheese, with the outgrowth of  Clostridium tyrobutyricum  spores during cheese aging considered to be the primary cause. Although previous studies have explored the microbial and physicochemical factors influencing the defect, a risk assessment tool that allows for improved and rational management of LBD is lacking. The purpose of this study was to develop a predictive model to estimate the probability of LBD in Gouda cheese and evaluate different intervention strategies. The spore concentration distribution of butyric acid bacteria (BAB) in bulk tank milk was obtained from 8 dairy farms over 12 mo. The concentration of  C. tyrobutyricum  from raw milk to the end of aging was simulated based on Gouda brined for 2 d in saturated brine at 8\u0000b0C and aged at 13\u0000b0C. Predicted  C. tyrobutyricum  concentrations during aging and estimated concentration thresholds in cheese at onset of LBD were used to predict product loss due to LBD during a simulated 1-yr production. With the estimated concentration thresholds in cheese ranging from 4.36 to 4.46 log most probable number (MPN)/kg of cheese, the model predicted that 9.2% (\u0000b11.7%) of Gouda cheese showed LBD by d 60; cheeses predicted to show LBD at d 60 showed a mean pH of 5.39 and were produced with raw milk with a mean BAB spore count of 143 MPN/L. By d 90, 36.1% (\u0000b13.4%) of cheeses were predicted to show LBD, indicating that LBD typically manifests between d 60 and 90, which is consistent with observations from the literature and the cheese industry. Sensitivity analysis indicated that  C. tyrobutyricum  maximum growth rate as well as concentration threshold in cheese at onset of LBD are the most important variables, identifying key data needs for development of more accurate models. The implementation of microfiltration or bactofugation of raw milk (assumed to show 98% efficiency of spore removal) in our model prevented occurrence of LBD during the first 60 d of aging. Overall, our findings provide a framework for predicting the occurrence of LBD in Gouda as well as other cheeses and illustrate the value of developing digital tools for managing dairy product quality.",
+    "publication_year": 2022,
+    "publication_date": null,
+    "type": null,
+    "language": null,
+    "source_url": "https://doi.org/10.3168/jds.2021-21206",
+    "primary_landing_page_url": "https://doi.org/10.3168/jds.2021-21206",
+    "primary_pdf_url": null,
+    "is_oa": null,
+    "cited_by_count": null
+  },
+  "mechanistic_equations": [
+    {
+      "equation_local_id": "eq1",
+      "equation_name": "C. tyrobutyricum concentration during aging",
+      "equation_description": "This equation represents the primary growth model for Clostridium tyrobutyricum in Gouda cheese, capturing how the bacterial concentration increases over aging time toward a maximum population density. It is central to the risk model because it translates environmental conditions (through μ) into actual spore counts that are compared against late blowing defect thresholds.",
+      "equation_latex": "N = N_{\\max} + \\log_{10}\\left(\\frac{e^{\\mu t}}{e^{\\mu t} - 1 + 10^{N_{\\max} - N_0}}\\right)",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "t",
+          "name": "aging time",
+          "unit": "h"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "N_{max}",
+          "name": "maximum population density of C. tyrobutyricum",
+          "value": 40000000.0,
+          "unit": "MPN/kg",
+          "source": "Table 2: \"Maximum concentration of C. tyrobutyricum\""
+        },
+        {
+          "symbol": "N_0",
+          "name": "initial C. tyrobutyricum concentration in cheese at start of aging (after salting)",
+          "value": null,
+          "unit": "MPN/kg",
+          "source": "Module (i) output or Table 3 (1,300–2,500 MPN/kg for threshold calculations)"
+        },
+        {
+          "symbol": "\\mu",
+          "name": "specific growth rate during aging",
+          "value": null,
+          "unit": "h^{-1}",
+          "source": "Defined in Eq. [2] and Table 2"
+        },
+        {
+          "symbol": "e",
+          "name": "Euler's number",
+          "value": 2.718281828,
+          "unit": null,
+          "source": "mathematical constant"
+        }
+      ],
+      "assumptions": [
+        "Primary growth model for Clostridium tyrobutyricum in Gouda cheese during aging at around 13 °C, used within a Monte Carlo simulation to predict late blowing defect risk. Applicable when C. tyrobutyricum is growing (μ > 0) under given environmental conditions; assumes logistic growth with a fixed maximum population density.",
+        "N and Nmax are used on a log10 basis in the implementation; the equation is written using an exponential term e^{μt} and a logistic denominator commonly used in predictive microbiology (Zwietering-type model)."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS > Model Overviews > Module (ii)",
+          "label_in_paper": "[1]",
+          "page": null,
+          "text_context": "In Module (ii), growth of Clostridium tyrobutyricum in Gouda cheese during aging is described by a logistic primary growth equation (Eq. [1]) using time-dependent specific growth rate μ derived from environmental gamma functions for temperature, pH, and water activity.",
+          "figure_ids": [],
+          "table_ids": [
+            "tbl2",
+            "tbl3"
+          ],
+          "supplement_ids": []
+        }
+      ]
+    },
+    {
+      "equation_local_id": "eq2",
+      "equation_name": "specific growth rate during aging",
+      "equation_description": "This equation defines the effective growth rate of C. tyrobutyricum in Gouda cheese as the product of an optimal growth rate and three gamma functions describing how far actual temperature, pH, and water activity are from optimal conditions. It allows the model to capture how processing and aging conditions or interventions alter bacterial growth and thus the risk of late blowing.",
+      "equation_latex": "\\mu = \\gamma(T) \\times \\gamma(\\mathrm{pH}) \\times \\gamma(a_w) \\times \\mu_{\\max}",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "T",
+          "name": "cheese aging temperature",
+          "unit": "°C"
+        },
+        {
+          "symbol": "pH",
+          "name": "cheese core pH during aging",
+          "unit": "dimensionless"
+        },
+        {
+          "symbol": "a_w",
+          "name": "cheese water activity during aging",
+          "unit": "dimensionless"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "\\mu_{max}",
+          "name": "maximum specific growth rate under optimal conditions",
+          "value": 0.76,
+          "unit": "h^{-1}",
+          "source": "Table 2: \"Maximum growth rate\" (Toyoda and Nakajima, 1995)"
+        },
+        {
+          "symbol": "\\gamma(T)",
+          "name": "temperature gamma factor",
+          "value": null,
+          "unit": "dimensionless",
+          "source": "Defined in Eq. [3] using Tmin and Topt"
+        },
+        {
+          "symbol": "\\gamma(\\mathrm{pH})",
+          "name": "pH gamma factor",
+          "value": null,
+          "unit": "dimensionless",
+          "source": "Defined in Eq. [4] using pHmin, pHopt, pHmax"
+        },
+        {
+          "symbol": "\\gamma(a_w)",
+          "name": "water activity gamma factor",
+          "value": null,
+          "unit": "dimensionless",
+          "source": "Defined in Eq. [5] using aw,aging and aw,min"
+        },
+        {
+          "symbol": "T_{min}",
+          "name": "minimum growth temperature",
+          "value": 10,
+          "unit": "°C",
+          "source": "Table 2"
+        },
+        {
+          "symbol": "T_{opt}",
+          "name": "optimal growth temperature",
+          "value": 37,
+          "unit": "°C",
+          "source": "Table 2"
+        },
+        {
+          "symbol": "T_{aging}",
+          "name": "Gouda aging temperature used in simulations",
+          "value": 13,
+          "unit": "°C",
+          "source": "Table 2"
+        },
+        {
+          "symbol": "pH_{min}",
+          "name": "minimum growth pH",
+          "value": 4.65,
+          "unit": "dimensionless",
+          "source": "Table 2"
+        },
+        {
+          "symbol": "pH_{opt}",
+          "name": "optimal growth pH",
+          "value": 5.8,
+          "unit": "dimensionless",
+          "source": "Table 2"
+        },
+        {
+          "symbol": "pH_{max}",
+          "name": "maximum growth pH",
+          "value": 7.3,
+          "unit": "dimensionless",
+          "source": "Table 2"
+        },
+        {
+          "symbol": "pH_{aging}",
+          "name": "Gouda core pH during aging",
+          "value": null,
+          "unit": "dimensionless",
+          "source": "Table 2: triangular distribution (min 5.10, max 5.63, mode 5.40)"
+        },
+        {
+          "symbol": "a_{w,min}",
+          "name": "minimum growth water activity",
+          "value": 0.948,
+          "unit": "dimensionless",
+          "source": "Table 2"
+        },
+        {
+          "symbol": "a_{w,aging}",
+          "name": "cheese water activity during aging in module (ii)",
+          "value": 0.96,
+          "unit": "dimensionless",
+          "source": "Table 2"
+        }
+      ],
+      "assumptions": [
+        "Secondary growth model relating C. tyrobutyricum growth rate to environmental conditions in Gouda cheese. Valid for the ranges of T, pH, and water activity considered (e.g., T around 13 °C, pH ~5.1–5.6, aw near 0.96), and assumes multiplicative, independent gamma factors for each environmental variable following cardinal parameter models.",
+        "μopt in the table is equivalent to μmax here; γ factors are dimensionless and between 0 (no growth) and 1 (optimal growth)."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS > Model Overviews > Module (ii)",
+          "label_in_paper": "[2]",
+          "page": null,
+          "text_context": "In Table 2, the growth rate during aging is modeled as μ = γ(T) × γ(pH) × γ(aw) × μopt, where the γ terms represent the fractional inhibitory effects of temperature, pH, and water activity on C. tyrobutyricum growth (Zwietering et al., 1996). Eqs. [3]–[5] give the specific forms of these gamma functions.",
+          "figure_ids": [],
+          "table_ids": [
+            "tbl2"
+          ],
+          "supplement_ids": []
+        }
+      ]
+    },
+    {
+      "equation_local_id": "eq3",
+      "equation_name": "temperature gamma factor",
+      "equation_description": "This equation quantifies how far the actual aging temperature is from the minimum and optimal growth temperatures for C. tyrobutyricum using a squared cardinal relationship; it scales the maximum growth rate downward at suboptimal temperatures such as 13 °C used for Gouda aging.",
+      "equation_latex": "\\gamma(T) = \\left(\\frac{T_{\\mathrm{aging}} - T_{\\min}}{T_{\\mathrm{opt}} - T_{\\min}}\\right)^2",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "T_{aging}",
+          "name": "Gouda aging temperature",
+          "unit": "°C"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "T_{min}",
+          "name": "minimum growth temperature",
+          "value": 10,
+          "unit": "°C",
+          "source": "Table 2"
+        },
+        {
+          "symbol": "T_{opt}",
+          "name": "optimal growth temperature",
+          "value": 37,
+          "unit": "°C",
+          "source": "Table 2"
+        }
+      ],
+      "assumptions": [
+        "Defines the temperature component of the growth rate model for C. tyrobutyricum in Gouda cheese, applicable for temperatures between Tmin and Topt. Below Tmin the function implies no growth; above Topt this simple squared cardinal form may overpredict, but in this study aging temperatures are far below Topt.",
+        "At Taging = Topt, γ(T) = 1; at Taging = Tmin, γ(T) = 0. The study mainly considers temperatures near 13 °C, well between Tmin and Topt."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS > Model Overviews > Module (ii)",
+          "label_in_paper": "[3]",
+          "page": null,
+          "text_context": "Eq. [3] specifies γ(T) as a cardinal temperature model with minimum and optimal temperatures for C. tyrobutyricum, following Zwietering et al. (1996). Aging temperature for Gouda is set to 13 °C in the simulations.",
+          "figure_ids": [],
+          "table_ids": [
+            "tbl2"
+          ],
+          "supplement_ids": []
+        }
+      ]
+    },
+    {
+      "equation_local_id": "eq4",
+      "equation_name": "pH gamma factor",
+      "equation_description": "This equation scales the maximum growth rate according to how close the cheese pH is to the organism's optimal pH, with growth decreasing toward zero at minimum and maximum pH. It connects variations in pH among cheese batches to differences in predicted late blowing risk.",
+      "equation_latex": "\\gamma(\\mathrm{pH}) = \\frac{(\\mathrm{pH}_{\\mathrm{aging}} - \\mathrm{pH}_{\\min})(\\mathrm{pH}_{\\max} - \\mathrm{pH}_{\\mathrm{aging}})}{(\\mathrm{pH}_{\\mathrm{opt}} - \\mathrm{pH}_{\\min})(\\mathrm{pH}_{\\max} - \\mathrm{pH}_{\\mathrm{opt}})}",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "pH_{aging}",
+          "name": "Gouda core pH during aging",
+          "unit": "dimensionless"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "pH_{min}",
+          "name": "minimum growth pH",
+          "value": 4.65,
+          "unit": "dimensionless",
+          "source": "Table 2"
+        },
+        {
+          "symbol": "pH_{opt}",
+          "name": "optimal growth pH",
+          "value": 5.8,
+          "unit": "dimensionless",
+          "source": "Table 2"
+        },
+        {
+          "symbol": "pH_{max}",
+          "name": "maximum growth pH",
+          "value": 7.3,
+          "unit": "dimensionless",
+          "source": "Table 2"
+        }
+      ],
+      "assumptions": [
+        "Used to describe the effect of cheese pH in the range between minimum (4.65) and maximum (7.3) growth pH on C. tyrobutyricum growth. Applicable to Gouda cheeses with pH values typically around 5.1–5.6 during aging.",
+        "The function is zero at pH = pHmin or pHmax, and equals 1 at pH = pHopt. pHaging is sampled from a triangular distribution in the Monte Carlo model."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS > Model Overviews > Module (ii)",
+          "label_in_paper": "[4]",
+          "page": null,
+          "text_context": "Eq. [4] gives the pH gamma factor γ(pH) as a symmetric cardinal function defined by minimum, optimal, and maximum pH values for C. tyrobutyricum growth. Cheese pH during aging is modeled as a triangular distribution and passed to this function.",
+          "figure_ids": [],
+          "table_ids": [
+            "tbl2"
+          ],
+          "supplement_ids": []
+        }
+      ]
+    },
+    {
+      "equation_local_id": "eq5",
+      "equation_name": "water activity gamma factor",
+      "equation_description": "This equation captures how reduced water activity in cheese (due to salt and moisture content) slows the growth of C. tyrobutyricum. Since Gouda has high but not maximal aw, γ(aw) is slightly below 1, contributing moderately to growth limitation.",
+      "equation_latex": "\\gamma(a_w) = \\frac{a_{w,\\mathrm{aging}} - a_{w,\\min}}{1 - a_{w,\\min}}",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "a_{w,aging}",
+          "name": "cheese water activity during aging",
+          "unit": "dimensionless"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "a_{w,min}",
+          "name": "minimum growth water activity",
+          "value": 0.948,
+          "unit": "dimensionless",
+          "source": "Table 2"
+        }
+      ],
+      "assumptions": [
+        "Describes the influence of water activity on C. tyrobutyricum growth in Gouda cheese, assuming linear scaling between the minimum water activity for growth (0.948) and pure water (aw = 1). In the base model aw during aging is assumed constant (0.960).",
+        "Because aw,aging is fixed at 0.960 in module (ii), γ(aw) is constant in the base scenario, but can change in what-if scenarios via altered salt or moisture content."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS > Model Overviews > Module (ii)",
+          "label_in_paper": "[5]",
+          "page": null,
+          "text_context": "Eq. [5] provides a simple cardinal-type model for the water activity effect, where γ(aw) increases linearly from 0 at the minimum growth aw to 1 at aw = 1. The aw,aging value for Gouda is specified from literature and assumed constant.",
+          "figure_ids": [],
+          "table_ids": [
+            "tbl2"
+          ],
+          "supplement_ids": []
+        }
+      ]
+    },
+    {
+      "equation_local_id": "eq6",
+      "equation_name": "cheese water activity",
+      "equation_description": "This empirical equation correlates water-phase salt to water activity, which then feeds into the γ(aw) function and growth rate. It provides a mechanistic bridge between cheese composition and microbial spoilage risk in the model.",
+      "equation_latex": "a_w = 0.995 - 0.00721 \\cdot \\text{water-phase salt}",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "\\text{water-phase salt}",
+          "name": "salt concentration in the water phase of cheese",
+          "unit": "% (w/w in water phase)"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "0.995",
+          "name": "intercept for aw–salt relationship",
+          "value": 0.995,
+          "unit": "dimensionless",
+          "source": "cited empirical relationship (original reference not included in snippet)"
+        },
+        {
+          "symbol": "0.00721",
+          "name": "slope for aw–salt relationship",
+          "value": 0.00721,
+          "unit": "aw units per % water-phase salt",
+          "source": "cited empirical relationship (original reference not included in snippet)"
+        }
+      ],
+      "assumptions": [
+        "Empirical linear relationship used to estimate cheese water activity from water-phase salt concentration, applicable to Gouda-like cheeses with salt contents in the typical range. Used in module (iii) to derive aw for threshold calculations.",
+        "Water-phase salt is derived from overall salt-in-cheese and moisture; in Table 2 and Table 3, aw values (0.960 and 0.968) are reported as calculated using such relationships."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS > Model Overviews > Module (ii)",
+          "label_in_paper": "[6]",
+          "page": null,
+          "text_context": "Eq. [6] relates cheese water activity to water-phase salt concentration. This relationship is used to compute aw at d 60 from measured or assumed salt-in-cheese values when determining C. tyrobutyricum concentration thresholds for late blowing defect.",
+          "figure_ids": [],
+          "table_ids": [
+            "tbl2"
+          ],
+          "supplement_ids": []
+        }
+      ]
+    }
+  ],
+  "ml_models": []
+}

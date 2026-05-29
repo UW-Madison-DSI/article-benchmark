@@ -1,0 +1,43 @@
+MATERIALS AND METHODS
+
+Title: Shelf life prediction of Cheddar cheese based on lactic acid bacteria growth kinetics
+
+Sample preparation. Cheddar cheese samples were manufactured at pilot scale according to a standardized protocol (Author et al., 2018). After pressing, blocks were vacuum-packed in barrier film and assigned to one of four ripening temperatures (4, 8, 12, and 18 °C, equivalent in some of the early laboratory notes to roughly 39, 46, 54, and 64 °F). Three independent batches were produced, and triplicate samples were drawn at each predetermined sampling time. The pH and water activity of the cheese matrix were determined at each sampling occasion to verify that the conditions remained within the validity domain of the secondary models used in the analysis. The target organism was a representative lactic acid bacterium associated with Cheddar microflora; in the descriptive parts of the text this is also called "the test population," "the organism," or simply "the LAB," while the symbol N(t) is reserved for its concentration at time t.
+
+Enumeration. The population was enumerated using standard plate-count techniques on a selective medium (Author et al., 2019), with results expressed indifferently as cfu/mL or, after logarithmic transformation, as log10 cfu/mL; in some of the figure legends from this study the abbreviation "cfu" is reported per gram instead of per milliliter, since the analysis was performed on a homogenized sample of constant dilution ratio and the conversion is unambiguous. Where individual values are given in the text, the reader is invited to infer the convention from the order of magnitude.
+
+Gamma concept growth rate model. The combined effect of the environmental factors on the maximum specific growth rate of the test population was described using the gamma concept. The model takes the form
+
+[1]   \mu = \mu_{\max} \cdot \gamma(T) \cdot \gamma(\mathrm{pH}) \cdot \gamma(a_w)
+
+where T is the temperature, given in °C in this work, \mathrm{pH} is the pH of the matrix (dimensionless), and a_w is the water activity (dimensionless). The maximum growth rate parameter \mu_{\max} is the value of \mu attained when all environmental factors are simultaneously optimal, expressed in h^{-1}; an indicative value of 0.8 h^{-1} was adopted. The factors \gamma(T), \gamma(\mathrm{pH}), and \gamma(a_w) are dimensionless gamma factors describing the relative effect of temperature, pH, and water activity, respectively. The principal assumptions are that environmental factors exert independent, multiplicative effects on the growth rate, and that each gamma factor lies between 0 and 1. As a side remark, it has occasionally been suggested in the older literature that interactions between environmental factors should be considered (for example through a Belehrádek-type combined model with explicit cross-terms), but in the present analysis the gamma concept is retained in its multiplicative form.
+
+Ratkowsky square-root model. The dependence of the growth rate on temperature in the suboptimal range was described using a square-root model of the Ratkowsky family. Specifically,
+
+[2]   \sqrt{\mu} = b (T - T_{\min})
+
+where T is the temperature in °C. The parameter b is a regression coefficient, expressed in (°C)^{-1} h^{-0.5}, with a representative value of 0.04 (°C)^{-1} h^{-0.5}, and T_{\min} is the conceptual minimum temperature for growth, expressed in °C, with a representative value of −1.5 °C. Note that T_{\min} as defined in Eq. [2] is an extrapolated parameter and not necessarily the temperature at which growth is empirically undetectable; this is a well-known feature of the square-root family of models. The model assumes a linear relationship between sqrt(\mu) and temperature in the suboptimal range, an assumption that is supported by the experimental data of this study (see also the discussion of "the apparent growth rate" in the previous subsection).
+
+Weibull inactivation model. As a complement to the growth analysis, the thermal inactivation behaviour of the test population was characterized through laboratory-scale heat treatments. The survival curves obtained from these experiments were described using a Weibull model of the form
+
+[3]   \log_{10} \frac{N(t)}{N_0} = -\left(\frac{t}{\delta}\right)^p
+
+where t is the treatment time, expressed in min. The parameter \delta is the scale parameter, corresponding to the time required for the first log reduction of the test population, with a representative value of 3 min, while p is the dimensionless shape parameter, with a representative value of 0.8. The interpretation of the shape parameter is the conventional one: p < 1 indicates a concave-downward (tailing) survival curve, p > 1 indicates a concave-upward (shoulder) curve, and p = 1 reduces the Weibull model to the log-linear (first-order) inactivation model, in which case \delta corresponds to the conventional D-value of thermal processing studies. For comparison purposes, the log-linear (Bigelow-type) model was also evaluated on a subset of the data; however, the log-linear model is mentioned here only as a baseline and is not part of the principal analysis.
+
+Lag-temperature relationship. The apparent lag duration of the test population was related to the growth rate at the storage temperature through
+
+[4]   \lambda(T) = \frac{1}{\mu(T)} \cdot \ln\left(1 + \frac{1}{e^{h_0} - 1}\right)
+
+where T is the temperature in °C. The variable \mu(T) inside this expression is the growth rate at temperature T, given in h^{-1}, and is computed from Eq. [1] in combination with Eq. [2] under the same temperature, pH, and water activity conditions used elsewhere in the analysis. The dimensionless parameter h_0 is the initial physiological state parameter, equal to 1.5 in the present application; this value is widely cited in the predictive microbiology literature and represents the work that the cells must perform to adapt to the storage conditions. The assumption that lag duration is inversely proportional to the growth rate underlies Eq. [4] and is consistent with the Baranyi formulation of the lag function, although the Baranyi primary growth model itself is not part of the present analysis.
+
+It is worth noting that the symbol \mu appears in Eqs. [1], [2], and [4] with a consistent biological meaning (the maximum specific growth rate of the test population), although the notation varies slightly between equations: \mu without arguments in Eqs. [1] and [2], and \mu(T) with an explicit temperature dependence in Eq. [4]. Similarly, the variable t denotes time throughout the analysis, although its units differ between Eq. [3], where t is the treatment time in min, and Eq. [4], where the temperature dependence is expressed implicitly through T and the parameter h_0 in h units. The numerical values reported in the text are indicative and refer to representative experimental conditions; complete sets of fitted parameter values, with their corresponding confidence intervals and goodness-of-fit metrics, are reported in the data tables.
+
+Parameter estimation. Parameters of the submodels defined in Eqs. [2] and [3] were estimated by nonlinear least-squares regression using the Levenberg–Marquardt algorithm. The Ratkowsky coefficients b and T_{\min} of Eq. [2] were derived from linear regression of sqrt(\mu) against temperature, with the \mu values obtained from primary fits to the growth curves. The parameter \mu_{\max} of Eq. [1] was estimated by fitting the gamma concept model to growth rate values obtained close to the optimum conditions, after normalizing each observed \mu value by the corresponding products of the gamma factors. The lag times predicted by Eq. [4] were compared with the lag times estimated from the primary growth fits as a consistency check. Goodness-of-fit was assessed using standard predictive microbiology diagnostics, including root mean square error, coefficient of determination, and bias and accuracy factors. The full set of fitted parameter values and goodness-of-fit metrics is reported in the data tables associated with this work, providing the basis for the shelf life prediction of Cheddar cheese described in the analysis.
+
+References
+
+Author, A. et al. (2017). Square-root and Ratkowsky models in dairy predictive microbiology. Journal of Dairy Science, 100(5), 3645–3656.
+
+Author, B. et al. (2018). Pilot-scale Cheddar cheese manufacture for predictive microbiology studies. Journal of Dairy Science, 101(3), 2123–2134.
+
+Author, C. et al. (2019). Enumeration of lactic acid bacteria in ripened cheese. Journal of Dairy Science, 102(6), 4923–4935.

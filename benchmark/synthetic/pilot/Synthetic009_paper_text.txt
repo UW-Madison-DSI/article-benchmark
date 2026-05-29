@@ -1,0 +1,81 @@
+MATERIALS AND METHODS
+
+Title: Modeling the effect of salt concentration on lactic acid bacteria growth in butter
+
+Sample Preparation and Experimental Design
+
+Butter samples were manufactured at laboratory scale according to a standardized churning protocol with controlled adjustment of the salt content during processing. Salt levels were varied across the experimental design to produce butters with water activity (a_w) values ranging from approximately 0.94 to 0.99. After processing, samples were portioned into 100 g units, packaged in aluminium foil, and assigned to one of four storage temperatures (4, 8, 12, and 18 °C). The pH of the matrix was measured at the start of storage and at each sampling time, while water activity was determined gravimetrically and verified by direct measurement. Three independent batches were produced, and within each batch triplicate samples were drawn at each predetermined sampling time.
+
+The target organism considered in this work was a representative member of the lactic acid bacteria associated with butter. Inoculation levels were adjusted to give an initial population of approximately 3.0 ln cfu/mL, corresponding to typical post-processing levels. Enumeration of the target organism was performed using standard plate-count techniques following procedures described by Author et al. (2019). Where applicable, the same variables are referred to with consistent symbols across the equations described below; in particular, T denotes temperature in °C, t denotes time in hours, and N(t) denotes the population at time t, with the units explicitly defined for each model. Cross-references between the equations of the framework are highlighted in the following subsections.
+
+Modeling Framework
+
+The kinetic framework adopted in this study integrates seven equations into a coherent description of the growth rate and population dynamics of the target organism. A gamma concept model describes the multiplicative effects of temperature, pH, and water activity on the growth rate; cardinal submodels are introduced for pH and temperature; a modified Gompertz model is used as one of the primary growth models; the Baranyi model with explicit lag is used as the alternative primary formulation; a water activity submodel completes the gamma concept; and a logistic growth model is used for additional comparison. Parameter values for all submodels are summarized in Tables 1 and 2, with the gamma concept parameters cross-referenced to the corresponding submodels.
+
+Gamma Concept Growth Rate Model
+
+The combined effect of the environmental factors on the maximum specific growth rate was described using the gamma concept, in which each environmental factor contributes a multiplicative dimensionless term. The model is given by:
+
+[1]   \mu = \mu_{\max} \cdot \gamma(T) \cdot \gamma(\mathrm{pH}) \cdot \gamma(a_w)
+
+where T is temperature in °C, \mathrm{pH} is the pH of the medium (dimensionless), and a_w is the water activity (dimensionless). The parameter \mu_{\max} is the maximum specific growth rate of the target organism under conditions in which all environmental factors are simultaneously optimal, expressed in h^{-1}; a value of 0.8 h^{-1} was used as the initial estimate. The remaining factors \gamma(T), \gamma(\mathrm{pH}) and \gamma(a_w) are dimensionless gamma factors describing the relative effects of temperature, pH, and water activity, respectively. The principal assumptions of this approach are that the environmental factors exert independent, multiplicative effects on the growth rate, and that each gamma factor lies between 0 (complete inhibition) and 1 (optimal conditions).
+
+Cardinal pH Submodel
+
+The dependence of the growth rate on the pH was described by the cardinal pH model:
+
+[2]   \gamma(\mathrm{pH}) = \frac{(\mathrm{pH} - \mathrm{pH}_{\min})(\mathrm{pH}_{\max} - \mathrm{pH})}{(\mathrm{pH}_{\mathrm{opt}} - \mathrm{pH}_{\min})(\mathrm{pH}_{\max} - \mathrm{pH}_{\mathrm{opt}})}
+
+where \mathrm{pH} is the pH of the medium (dimensionless). The parameter \mathrm{pH}_{\min} is the minimum growth pH of the target organism, set to 4.5; \mathrm{pH}_{\mathrm{opt}} is the optimum growth pH, set to 7.0; and \mathrm{pH}_{\max} is the maximum growth pH, set to 9.0. The model assumes that the growth rate is zero at \mathrm{pH}_{\min} and \mathrm{pH}_{\max} and reaches its maximum at \mathrm{pH}_{\mathrm{opt}}, and is consistent with the assumption of independent, multiplicative effect of pH used in Eq. [1].
+
+Modified Gompertz Growth Model
+
+One of the two primary growth models considered in this work is the modified Gompertz growth model, in the reparameterization proposed by Zwietering and colleagues (Author et al., 2017):
+
+[3]   \log_{10} N(t) = A + C \cdot \exp\left(-\exp\left(\frac{\mu_m \cdot e}{C}(\lambda - t) + 1\right)\right)
+
+where t is time in h. The parameter A is the lower asymptote of the curve, corresponding to the initial log count of the target organism, set to 2.0 log10 cfu/mL; C is the log increase from the initial to the maximum population, set to 6.0 log10 cfu/mL; \mu_m is the maximum specific growth rate, expressed in log10 cfu/mL/h, with a representative value of 0.5 log10 cfu/mL/h; \lambda is the lag time, expressed in h, with a representative value of 5.0 h; and e is Euler's number, taken as 2.71828. The model is sigmoidal in shape and is applicable when the growth data show a clear lag, exponential, and stationary phase, in agreement with the reparameterization for biological interpretability.
+
+Baranyi Growth Model with Lag
+
+The alternative primary growth model adopted in this study is the Baranyi growth model with explicit lag phase:
+
+[4]   N(t) = N_0 + \mu A(t) - \ln\left(1 + \frac{e^{\mu A(t)} - 1}{e^{N_{\max} - N_0}}\right)
+
+where t is time in h and N(t) is the population at time t, expressed in natural log units (ln cfu/mL). The parameter N_0 is the initial population, set to 3.0 ln cfu/mL; N_{\max} is the maximum population, set to 20.0 ln cfu/mL; and \mu is the maximum specific growth rate (in h^{-1}), treated as a free parameter to be estimated. The adjustment function A(t) = t + (1/\mu) \cdot \ln(e^{-\mu t} + e^{-h_0} - e^{-\mu t - h_0}) introduces the lag phase, where h_0 is a strain-specific parameter representing the initial physiological state of the cells. Where mu is defined in Eq. [4], it has the same biological meaning as \mu_m in Eq. [3], with the difference that \mu_m is referred to a log10-based scale.
+
+Full Cardinal Temperature Model
+
+The temperature gamma factor was described using the full Rosso cardinal temperature model:
+
+[5]   \gamma(T) = \frac{(T - T_{\max})(T - T_{\min})^2}{(T_{\mathrm{opt}} - T_{\min})\left((T_{\mathrm{opt}} - T_{\min})(T - T_{\mathrm{opt}}) - (T_{\mathrm{opt}} - T_{\max})(T_{\mathrm{opt}} + T_{\min} - 2T)\right)}
+
+where T is temperature in °C, T_{\min} is the minimum growth temperature (1.0 °C), T_{\mathrm{opt}} is the optimum growth temperature (30.0 °C), and T_{\max} is the maximum growth temperature (45.0 °C). The model captures the asymmetric response around the optimum, and ensures that growth rate is zero at T_{\min} and T_{\max} and maximal at T_{\mathrm{opt}}.
+
+Water Activity Gamma Factor
+
+The dependence of the growth rate on water activity was described by a linear gamma submodel:
+
+[6]   \gamma(a_w) = \frac{a_w - a_{w,\min}}{1 - a_{w,\min}}
+
+where a_w is the water activity of the matrix, expressed as a dimensionless quantity. The parameter a_{w,\min} is the minimum water activity for growth of the target organism, set to 0.92. The model assumes a linear relationship between a_w and the growth rate fraction, with a_w = 1 corresponding to the full growth potential from this factor.
+
+Logistic Growth Model
+
+For comparative purposes, a logistic growth model was also fitted to selected datasets that did not exhibit a clear lag phase:
+
+[7]   N(t) = \frac{N_{\max}}{1 + \left(\frac{N_{\max}}{N_0} - 1\right) e^{-\mu t}}
+
+where t is time in h. The parameter N_{\max} is the carrying capacity, set to 1 × 10^9 cfu/mL; N_0 is the initial population, set to 1 × 10^3 cfu/mL; and \mu is the growth rate constant, expressed in h^{-1}, with an initial value of 0.4 h^{-1}. The logistic model assumes a symmetric growth curve around the inflection point and does not include an explicit lag phase.
+
+Parameter Estimation and Implementation
+
+Parameters of all equations were estimated by nonlinear least-squares regression using the Levenberg–Marquardt algorithm. Where shared variables appear in multiple equations with the same meaning, they are defined once and used consistently throughout. The cardinal parameters of Eqs. [2] and [5] were estimated by fitting the gamma profiles to the observed growth rate ratios. The growth rate \mu in the primary models (Eqs. [3], [4], and [7]) was related to the environmental conditions through Eq. [1] in combination with Eqs. [2], [5], and [6], establishing a connected mathematical framework with shared variables across submodels. Goodness-of-fit was assessed using standard predictive microbiology diagnostics, including root mean square error, coefficient of determination, and bias and accuracy factors. The complete framework described above provides a comprehensive description of the kinetic behaviour of the target organism in butter as a function of temperature, pH, and water activity.
+
+References
+
+Author, A. et al. (2017). Reparameterization of the Gompertz model for predictive microbiology applications. Journal of Dairy Science, 100(7), 5234–5246.
+
+Author, B. et al. (2018). Effect of salt concentration on lactic acid bacteria in fermented dairy products. Journal of Dairy Science, 101(4), 2934–2946.
+
+Author, C. et al. (2019). Standardized enumeration of lactic acid bacteria in butter. Journal of Dairy Science, 102(7), 5723–5734.

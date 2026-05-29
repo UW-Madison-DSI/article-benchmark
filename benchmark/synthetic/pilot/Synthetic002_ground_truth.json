@@ -1,0 +1,77 @@
+{
+  "paper": {
+    "doi": "10.0000/synthetic-pilot-002",
+    "openalex_id": null,
+    "title": "Development of a quality assessment model for dairy microflora in raw milk",
+    "abstract_text": null,
+    "publication_year": 2020,
+    "publication_date": null,
+    "type": null,
+    "language": "en",
+    "source_url": null,
+    "primary_landing_page_url": null,
+    "primary_pdf_url": null,
+    "is_oa": null,
+    "cited_by_count": null
+  },
+  "mechanistic_equations": [
+    {
+      "equation_local_id": "eq1",
+      "equation_name": "logistic growth model",
+      "equation_description": "Simple logistic growth equation for microbial populations, describing symmetric sigmoidal growth toward a carrying capacity.",
+      "equation_latex": "N(t) = \\frac{N_{\\max}}{1 + \\left(\\frac{N_{\\max}}{N_0} - 1\\right) e^{-\\mu t}}",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "t",
+          "name": "time",
+          "unit": "h"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "N_{\\max}",
+          "name": "carrying capacity",
+          "value": 1000000000.0,
+          "unit": "cfu/mL"
+        },
+        {
+          "symbol": "N_0",
+          "name": "initial population",
+          "value": 1000,
+          "unit": "cfu/mL"
+        },
+        {
+          "symbol": "\\mu",
+          "name": "growth rate constant",
+          "value": 0.4,
+          "unit": "h^{-1}"
+        }
+      ],
+      "assumptions": [
+        "Symmetric growth curve around the inflection point.",
+        "No explicit lag phase."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[1]",
+          "page": null,
+          "text_context": "Simple logistic growth equation for microbial populations, describing symmetric sigmoidal growth toward a carrying capacity.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    }
+  ],
+  "ml_models": [],
+  "_metadata": {
+    "difficulty": "easy",
+    "domain": "microbial_growth",
+    "template_ids": [
+      "mg_logistic"
+    ],
+    "generator_version": "0.1.0"
+  }
+}

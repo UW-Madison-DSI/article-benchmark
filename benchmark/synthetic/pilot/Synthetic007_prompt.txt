@@ -1,0 +1,131 @@
+CONTEXT: This is for an academic food science benchmarking project. We are
+generating synthetic methods sections to test equation-extraction software. The
+equations below are standard mathematical models used in dairy science for
+predicting product quality and shelf life.
+
+You are an expert in dairy science and mathematical modeling. Write a realistic
+MATERIALS AND METHODS section for a research paper with the following details:
+
+Title: Growth kinetics of starter cultures during refrigerated storage of butter
+Journal style: Journal of Dairy Science
+
+The section must contain ALL of the following equations embedded naturally in the prose.
+Use generic terms like "target organism", "spoilage flora", or "microbial population"
+rather than specific species names.
+
+Equation [1]:
+  Name: Baranyi growth model (no lag phase)
+  LaTeX: N(t) = N_{\max} + \log_{10}\left(\frac{e^{\mu t}}{e^{\mu t} - 1 + 10^{N_{\max} - N_0}}\right)
+  Variables: [
+  {
+    "symbol": "t",
+    "name": "time",
+    "unit": "h",
+    "description": "elapsed time since start of growth"
+  },
+  {
+    "symbol": "N(t)",
+    "name": "population at time t",
+    "unit": "log10 cfu/g",
+    "description": "logarithmic concentration of the target organism at time t"
+  }
+]
+  Parameters: [
+  {
+    "symbol": "N_{\\max}",
+    "name": "maximum population density",
+    "value": 8.0,
+    "unit": "log10 cfu/g"
+  },
+  {
+    "symbol": "N_0",
+    "name": "initial population density",
+    "value": 2.5,
+    "unit": "log10 cfu/g"
+  },
+  {
+    "symbol": "\\mu",
+    "name": "specific growth rate",
+    "value": null,
+    "unit": "h^{-1}"
+  }
+]
+  Assumptions: ["No lag phase; growth begins immediately at the given rate.", "Logistic growth with a fixed maximum population density."]
+
+Equation [2]:
+  Name: z-value thermal resistance model
+  LaTeX: \log_{10} D(T) = \log_{10} D_{\mathrm{ref}} - \frac{T - T_{\mathrm{ref}}}{z}
+  Variables: [
+  {
+    "symbol": "T",
+    "name": "temperature",
+    "unit": "\\degree C"
+  }
+]
+  Parameters: [
+  {
+    "symbol": "D_{\\mathrm{ref}}",
+    "name": "D-value at reference temperature",
+    "value": 10.0,
+    "unit": "min"
+  },
+  {
+    "symbol": "T_{\\mathrm{ref}}",
+    "name": "reference temperature",
+    "value": 121.1,
+    "unit": "\\degree C"
+  },
+  {
+    "symbol": "z",
+    "name": "z-value",
+    "value": 10.0,
+    "unit": "\\degree C"
+  }
+]
+  Assumptions: ["Log-linear relationship between D and temperature.", "Applicable within the relevant temperature range for the organism."]
+
+Equation [3]:
+  Name: Weibull inactivation model
+  LaTeX: \log_{10} \frac{N(t)}{N_0} = -\left(\frac{t}{\delta}\right)^p
+  Variables: [
+  {
+    "symbol": "t",
+    "name": "treatment time",
+    "unit": "min"
+  }
+]
+  Parameters: [
+  {
+    "symbol": "\\delta",
+    "name": "scale parameter (time for first log reduction)",
+    "value": 3.0,
+    "unit": "min"
+  },
+  {
+    "symbol": "p",
+    "name": "shape parameter",
+    "value": 0.8,
+    "unit": "dimensionless"
+  }
+]
+  Assumptions: ["p < 1 indicates concave-downward (tailing) survival curves.", "p > 1 indicates concave-upward (shoulder) survival curves.", "p = 1 reduces to the log-linear model."]
+
+INSTRUCTIONS FOR WRITING STYLE:
+Write a realistic methods section. Equations should be:
+- Displayed with labels, but some variables may be defined in a separate paragraph
+- Some parameters should be introduced in the text as "where X is the..." format
+- Reference relationships between equations (e.g., "where mu is defined in Eq. [2]")
+- Include references to tables for parameter values
+
+CRITICAL REQUIREMENTS:
+1. Include EVERY equation listed above with its EXACT LaTeX form.
+2. Define ALL variables and parameters mentioned in the equation descriptions.
+3. Write 800-2500 words depending on the number of equations.
+4. Use a formal academic writing style appropriate for a dairy science journal.
+5. Do NOT include an abstract, introduction, results, or discussion.
+6. Do NOT add equations that are not in the list above.
+7. Include realistic references to literature (you may use placeholder citations like "(Author et al., 2020)").
+8. Structure the section with appropriate subsections if there are 3+ equations.
+9. Use generic terms for organisms (e.g., "the target organism", "spoilage bacteria").
+
+Return ONLY the methods section text. Do not include any metadata or JSON.

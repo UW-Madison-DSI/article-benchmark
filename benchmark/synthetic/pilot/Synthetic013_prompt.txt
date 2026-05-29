@@ -1,0 +1,168 @@
+CONTEXT: This is for an academic food science benchmarking project. We are
+generating synthetic methods sections to test equation-extraction software. The
+equations below are standard mathematical models used in dairy science for
+predicting product quality and shelf life.
+
+You are an expert in dairy science and mathematical modeling. Write a realistic
+MATERIALS AND METHODS section for a research paper with the following details:
+
+Title: Shelf life prediction of raw milk based on spore-forming bacteria growth kinetics
+Journal style: Journal of Dairy Science
+
+The section must contain ALL of the following equations embedded naturally in the prose.
+Use generic terms like "target organism", "spoilage flora", or "microbial population"
+rather than specific species names.
+
+Equation [1]:
+  Name: microbial spoilage threshold model
+  LaTeX: t_{\mathrm{shelf}} = \frac{\ln(N_{\mathrm{spoil}}) - \ln(N_0)}{\mu}
+  Variables: [
+  {
+    "symbol": "N_0",
+    "name": "initial contamination level",
+    "unit": "cfu/mL"
+  },
+  {
+    "symbol": "N_{\\mathrm{spoil}}",
+    "name": "spoilage threshold",
+    "unit": "cfu/mL"
+  }
+]
+  Parameters: [
+  {
+    "symbol": "N_{\\mathrm{spoil}}",
+    "name": "spoilage threshold concentration",
+    "value": 10000000.0,
+    "unit": "cfu/mL"
+  },
+  {
+    "symbol": "\\mu",
+    "name": "growth rate at storage temperature",
+    "value": null,
+    "unit": "h^{-1}"
+  }
+]
+  Assumptions: ["Exponential growth assumed throughout shelf life.", "Spoilage occurs when a threshold concentration is reached.", "No lag phase considered."]
+
+Equation [2]:
+  Name: z-value thermal resistance model
+  LaTeX: \log_{10} D(T) = \log_{10} D_{\mathrm{ref}} - \frac{T - T_{\mathrm{ref}}}{z}
+  Variables: [
+  {
+    "symbol": "T",
+    "name": "temperature",
+    "unit": "\\degree C"
+  }
+]
+  Parameters: [
+  {
+    "symbol": "D_{\\mathrm{ref}}",
+    "name": "D-value at reference temperature",
+    "value": 10.0,
+    "unit": "min"
+  },
+  {
+    "symbol": "T_{\\mathrm{ref}}",
+    "name": "reference temperature",
+    "value": 121.1,
+    "unit": "\\degree C"
+  },
+  {
+    "symbol": "z",
+    "name": "z-value",
+    "value": 10.0,
+    "unit": "\\degree C"
+  }
+]
+  Assumptions: ["Log-linear relationship between D and temperature.", "Applicable within the relevant temperature range for the organism."]
+
+Equation [3]:
+  Name: temperature-dependent lag duration
+  LaTeX: \lambda(T) = \frac{1}{\mu(T)} \cdot \ln\left(1 + \frac{1}{e^{h_0} - 1}\right)
+  Variables: [
+  {
+    "symbol": "T",
+    "name": "temperature",
+    "unit": "\\degree C"
+  }
+]
+  Parameters: [
+  {
+    "symbol": "\\mu(T)",
+    "name": "growth rate at temperature T",
+    "value": null,
+    "unit": "h^{-1}"
+  },
+  {
+    "symbol": "h_0",
+    "name": "initial physiological state parameter",
+    "value": 1.5,
+    "unit": "dimensionless"
+  }
+]
+  Assumptions: ["Lag duration is inversely proportional to growth rate.", "h0 is a strain-specific parameter representing the work needed to adapt to new conditions."]
+
+Equation [4]:
+  Name: modified Gompertz growth model
+  LaTeX: \log_{10} N(t) = A + C \cdot \exp\left(-\exp\left(\frac{\mu_m \cdot e}{C}(\lambda - t) + 1\right)\right)
+  Variables: [
+  {
+    "symbol": "t",
+    "name": "time",
+    "unit": "h"
+  }
+]
+  Parameters: [
+  {
+    "symbol": "A",
+    "name": "lower asymptote (initial log count)",
+    "value": 2.0,
+    "unit": "log10 cfu/mL"
+  },
+  {
+    "symbol": "C",
+    "name": "log increase from initial to maximum",
+    "value": 6.0,
+    "unit": "log10 cfu/mL"
+  },
+  {
+    "symbol": "\\mu_m",
+    "name": "maximum specific growth rate",
+    "value": 0.5,
+    "unit": "log10 cfu/mL/h"
+  },
+  {
+    "symbol": "\\lambda",
+    "name": "lag time",
+    "value": 5.0,
+    "unit": "h"
+  },
+  {
+    "symbol": "e",
+    "name": "Euler's number",
+    "value": 2.71828,
+    "unit": null
+  }
+]
+  Assumptions: ["Sigmoidal growth curve; applicable when growth data show a clear lag, exponential, and stationary phase.", "Reparameterized form from Zwietering et al. (1990) for biological interpretability."]
+
+INSTRUCTIONS FOR WRITING STYLE:
+Write a methods section that makes equation extraction challenging:
+- Some equations should be embedded in running prose rather than displayed
+- Use inconsistent notation (e.g., refer to the same variable by different names in text vs. equation)
+- Include a "distractor" equation that is mentioned but not central to the model
+- Define some parameters only implicitly through example values in the text
+- Mix units in text (e.g., mention values in different unit systems)
+
+CRITICAL REQUIREMENTS:
+1. Include EVERY equation listed above with its EXACT LaTeX form.
+2. Define ALL variables and parameters mentioned in the equation descriptions.
+3. Write 800-2500 words depending on the number of equations.
+4. Use a formal academic writing style appropriate for a dairy science journal.
+5. Do NOT include an abstract, introduction, results, or discussion.
+6. Do NOT add equations that are not in the list above.
+7. Include realistic references to literature (you may use placeholder citations like "(Author et al., 2020)").
+8. Structure the section with appropriate subsections if there are 3+ equations.
+9. Use generic terms for organisms (e.g., "the target organism", "spoilage bacteria").
+
+Return ONLY the methods section text. Do not include any metadata or JSON.

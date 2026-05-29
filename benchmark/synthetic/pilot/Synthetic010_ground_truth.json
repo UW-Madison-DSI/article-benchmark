@@ -1,0 +1,377 @@
+{
+  "paper": {
+    "doi": "10.0000/synthetic-pilot-010",
+    "openalex_id": null,
+    "title": "Development of a quality assessment model for dairy microflora in fresh cheese",
+    "abstract_text": null,
+    "publication_year": 2019,
+    "publication_date": null,
+    "type": null,
+    "language": "en",
+    "source_url": null,
+    "primary_landing_page_url": null,
+    "primary_pdf_url": null,
+    "is_oa": null,
+    "cited_by_count": null
+  },
+  "mechanistic_equations": [
+    {
+      "equation_local_id": "eq1",
+      "equation_name": "gamma concept growth rate model",
+      "equation_description": "The gamma concept expresses the effective growth rate as the product of the maximum growth rate and individual dimensionless gamma factors for each environmental variable, assuming multiplicative and independent effects.",
+      "equation_latex": "\\mu = \\mu_{\\max} \\cdot \\gamma(T) \\cdot \\gamma(\\mathrm{pH}) \\cdot \\gamma(a_w)",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "T",
+          "name": "temperature",
+          "unit": "\\degree C"
+        },
+        {
+          "symbol": "\\mathrm{pH}",
+          "name": "pH",
+          "unit": "dimensionless"
+        },
+        {
+          "symbol": "a_w",
+          "name": "water activity",
+          "unit": "dimensionless"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "\\mu_{\\max}",
+          "name": "maximum specific growth rate under optimal conditions",
+          "value": 0.8,
+          "unit": "h^{-1}"
+        },
+        {
+          "symbol": "\\gamma(T)",
+          "name": "temperature gamma factor",
+          "value": null,
+          "unit": "dimensionless"
+        },
+        {
+          "symbol": "\\gamma(\\mathrm{pH})",
+          "name": "pH gamma factor",
+          "value": null,
+          "unit": "dimensionless"
+        },
+        {
+          "symbol": "\\gamma(a_w)",
+          "name": "water activity gamma factor",
+          "value": null,
+          "unit": "dimensionless"
+        }
+      ],
+      "assumptions": [
+        "Environmental factors have independent, multiplicative effects on growth rate.",
+        "Each gamma factor ranges from 0 (complete inhibition) to 1 (optimal conditions)."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[1]",
+          "page": null,
+          "text_context": "The gamma concept expresses the effective growth rate as the product of the maximum growth rate and individual dimensionless gamma factors for each environmental variable, assuming multiplicative and independent effects.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    },
+    {
+      "equation_local_id": "eq2",
+      "equation_name": "water activity gamma factor",
+      "equation_description": "Linear cardinal model describing the effect of water activity on microbial growth rate, scaling from zero at the minimum water activity to one at pure water.",
+      "equation_latex": "\\gamma(a_w) = \\frac{a_w - a_{w,\\min}}{1 - a_{w,\\min}}",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "a_w",
+          "name": "water activity",
+          "unit": "dimensionless"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "a_{w,\\min}",
+          "name": "minimum water activity for growth",
+          "value": 0.92,
+          "unit": "dimensionless"
+        }
+      ],
+      "assumptions": [
+        "Linear relationship between a_w and growth rate fraction.",
+        "a_w = 1 corresponds to full growth potential from this factor."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[2]",
+          "page": null,
+          "text_context": "Linear cardinal model describing the effect of water activity on microbial growth rate, scaling from zero at the minimum water activity to one at pure water.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    },
+    {
+      "equation_local_id": "eq3",
+      "equation_name": "modified Gompertz growth model",
+      "equation_description": "Reparameterized Gompertz equation describing sigmoidal microbial growth as a function of time, with biologically meaningful parameters for maximum growth rate, lag time, and asymptotic population.",
+      "equation_latex": "\\log_{10} N(t) = A + C \\cdot \\exp\\left(-\\exp\\left(\\frac{\\mu_m \\cdot e}{C}(\\lambda - t) + 1\\right)\\right)",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "t",
+          "name": "time",
+          "unit": "h"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "A",
+          "name": "lower asymptote (initial log count)",
+          "value": 2.0,
+          "unit": "log10 cfu/mL"
+        },
+        {
+          "symbol": "C",
+          "name": "log increase from initial to maximum",
+          "value": 6.0,
+          "unit": "log10 cfu/mL"
+        },
+        {
+          "symbol": "\\mu_m",
+          "name": "maximum specific growth rate",
+          "value": 0.5,
+          "unit": "log10 cfu/mL/h"
+        },
+        {
+          "symbol": "\\lambda",
+          "name": "lag time",
+          "value": 5.0,
+          "unit": "h"
+        },
+        {
+          "symbol": "e",
+          "name": "Euler's number",
+          "value": 2.71828,
+          "unit": null
+        }
+      ],
+      "assumptions": [
+        "Sigmoidal growth curve; applicable when growth data show a clear lag, exponential, and stationary phase.",
+        "Reparameterized form from Zwietering et al. (1990) for biological interpretability."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[3]",
+          "page": null,
+          "text_context": "Reparameterized Gompertz equation describing sigmoidal microbial growth as a function of time, with biologically meaningful parameters for maximum growth rate, lag time, and asymptotic population.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    },
+    {
+      "equation_local_id": "eq4",
+      "equation_name": "cardinal temperature model (gamma factor)",
+      "equation_description": "Dimensionless gamma factor representing the fractional effect of temperature on microbial growth rate, using the cardinal temperature model with minimum and optimal temperatures.",
+      "equation_latex": "\\gamma(T) = \\left(\\frac{T - T_{\\min}}{T_{\\mathrm{opt}} - T_{\\min}}\\right)^2",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "T",
+          "name": "temperature",
+          "unit": "\\degree C"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "T_{\\min}",
+          "name": "minimum growth temperature",
+          "value": 0.0,
+          "unit": "\\degree C"
+        },
+        {
+          "symbol": "T_{\\mathrm{opt}}",
+          "name": "optimal growth temperature",
+          "value": 37.0,
+          "unit": "\\degree C"
+        }
+      ],
+      "assumptions": [
+        "Applicable for temperatures between T_min and T_opt.",
+        "Below T_min, gamma(T) = 0 (no growth).",
+        "Squared cardinal model following Ratkowsky or Zwietering convention."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[4]",
+          "page": null,
+          "text_context": "Dimensionless gamma factor representing the fractional effect of temperature on microbial growth rate, using the cardinal temperature model with minimum and optimal temperatures.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    },
+    {
+      "equation_local_id": "eq5",
+      "equation_name": "temperature-dependent lag duration",
+      "equation_description": "Relates microbial lag phase duration to storage temperature using an inverse power-law or exponential relationship, commonly used in shelf-life prediction models.",
+      "equation_latex": "\\lambda(T) = \\frac{1}{\\mu(T)} \\cdot \\ln\\left(1 + \\frac{1}{e^{h_0} - 1}\\right)",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "T",
+          "name": "temperature",
+          "unit": "\\degree C"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "\\mu(T)",
+          "name": "growth rate at temperature T",
+          "value": null,
+          "unit": "h^{-1}"
+        },
+        {
+          "symbol": "h_0",
+          "name": "initial physiological state parameter",
+          "value": 1.5,
+          "unit": "dimensionless"
+        }
+      ],
+      "assumptions": [
+        "Lag duration is inversely proportional to growth rate.",
+        "h0 is a strain-specific parameter representing the work needed to adapt to new conditions."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[5]",
+          "page": null,
+          "text_context": "Relates microbial lag phase duration to storage temperature using an inverse power-law or exponential relationship, commonly used in shelf-life prediction models.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    },
+    {
+      "equation_local_id": "eq6",
+      "equation_name": "Ratkowsky square-root model",
+      "equation_description": "Empirical square-root model relating the square root of growth rate to temperature, widely used in predictive microbiology as a simple secondary model.",
+      "equation_latex": "\\sqrt{\\mu} = b (T - T_{\\min})",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "T",
+          "name": "temperature",
+          "unit": "\\degree C"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "b",
+          "name": "regression coefficient",
+          "value": 0.04,
+          "unit": "(\\degree C)^{-1} h^{-0.5}"
+        },
+        {
+          "symbol": "T_{\\min}",
+          "name": "conceptual minimum temperature for growth",
+          "value": -1.5,
+          "unit": "\\degree C"
+        }
+      ],
+      "assumptions": [
+        "Linear relationship between sqrt(mu) and temperature in the suboptimal range.",
+        "T_min is a conceptual (extrapolated) value, not necessarily the observed minimum."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[6]",
+          "page": null,
+          "text_context": "Empirical square-root model relating the square root of growth rate to temperature, widely used in predictive microbiology as a simple secondary model.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    },
+    {
+      "equation_local_id": "eq7",
+      "equation_name": "full cardinal temperature model",
+      "equation_description": "Extended cardinal temperature model with minimum, optimum, and maximum temperatures, applicable across the full growth range including super-optimal temperatures.",
+      "equation_latex": "\\gamma(T) = \\frac{(T - T_{\\max})(T - T_{\\min})^2}{(T_{\\mathrm{opt}} - T_{\\min})\\left((T_{\\mathrm{opt}} - T_{\\min})(T - T_{\\mathrm{opt}}) - (T_{\\mathrm{opt}} - T_{\\max})(T_{\\mathrm{opt}} + T_{\\min} - 2T)\\right)}",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "T",
+          "name": "temperature",
+          "unit": "\\degree C"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "T_{\\min}",
+          "name": "minimum growth temperature",
+          "value": 1.0,
+          "unit": "\\degree C"
+        },
+        {
+          "symbol": "T_{\\mathrm{opt}}",
+          "name": "optimum growth temperature",
+          "value": 30.0,
+          "unit": "\\degree C"
+        },
+        {
+          "symbol": "T_{\\max}",
+          "name": "maximum growth temperature",
+          "value": 45.0,
+          "unit": "\\degree C"
+        }
+      ],
+      "assumptions": [
+        "Growth rate is zero at T_min and T_max, maximal at T_opt.",
+        "Asymmetric response around the optimum.",
+        "Rosso et al. (1993) cardinal model."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[7]",
+          "page": null,
+          "text_context": "Extended cardinal temperature model with minimum, optimum, and maximum temperatures, applicable across the full growth range including super-optimal temperatures.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    }
+  ],
+  "ml_models": [],
+  "_metadata": {
+    "difficulty": "hard",
+    "domain": "microbial_growth",
+    "template_ids": [
+      "mg_gamma_product",
+      "mg_gamma_aw",
+      "mg_gompertz",
+      "mg_gamma_temperature",
+      "mg_lag_temperature",
+      "mg_ratkowsky_sqrt",
+      "mg_cardinal_temp_full"
+    ],
+    "generator_version": "0.1.0"
+  }
+}

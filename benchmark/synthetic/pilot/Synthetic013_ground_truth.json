@@ -1,0 +1,233 @@
+{
+  "paper": {
+    "doi": "10.0000/synthetic-pilot-013",
+    "openalex_id": null,
+    "title": "Shelf life prediction of raw milk based on spore-forming bacteria growth kinetics",
+    "abstract_text": null,
+    "publication_year": 2022,
+    "publication_date": null,
+    "type": null,
+    "language": "en",
+    "source_url": null,
+    "primary_landing_page_url": null,
+    "primary_pdf_url": null,
+    "is_oa": null,
+    "cited_by_count": null
+  },
+  "mechanistic_equations": [
+    {
+      "equation_local_id": "eq1",
+      "equation_name": "microbial spoilage threshold model",
+      "equation_description": "Defines product shelf life as the time for the microbial population to reach a spoilage threshold concentration from a given initial contamination level.",
+      "equation_latex": "t_{\\mathrm{shelf}} = \\frac{\\ln(N_{\\mathrm{spoil}}) - \\ln(N_0)}{\\mu}",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "N_0",
+          "name": "initial contamination level",
+          "unit": "cfu/mL"
+        },
+        {
+          "symbol": "N_{\\mathrm{spoil}}",
+          "name": "spoilage threshold",
+          "unit": "cfu/mL"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "N_{\\mathrm{spoil}}",
+          "name": "spoilage threshold concentration",
+          "value": 10000000.0,
+          "unit": "cfu/mL"
+        },
+        {
+          "symbol": "\\mu",
+          "name": "growth rate at storage temperature",
+          "value": null,
+          "unit": "h^{-1}"
+        }
+      ],
+      "assumptions": [
+        "Exponential growth assumed throughout shelf life.",
+        "Spoilage occurs when a threshold concentration is reached.",
+        "No lag phase considered."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[1]",
+          "page": null,
+          "text_context": "Defines product shelf life as the time for the microbial population to reach a spoilage threshold concentration from a given initial contamination level.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    },
+    {
+      "equation_local_id": "eq2",
+      "equation_name": "z-value thermal resistance model",
+      "equation_description": "Describes how the decimal reduction time (D-value) changes with temperature, where z is the temperature increase required to reduce D by one log cycle.",
+      "equation_latex": "\\log_{10} D(T) = \\log_{10} D_{\\mathrm{ref}} - \\frac{T - T_{\\mathrm{ref}}}{z}",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "T",
+          "name": "temperature",
+          "unit": "\\degree C"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "D_{\\mathrm{ref}}",
+          "name": "D-value at reference temperature",
+          "value": 10.0,
+          "unit": "min"
+        },
+        {
+          "symbol": "T_{\\mathrm{ref}}",
+          "name": "reference temperature",
+          "value": 121.1,
+          "unit": "\\degree C"
+        },
+        {
+          "symbol": "z",
+          "name": "z-value",
+          "value": 10.0,
+          "unit": "\\degree C"
+        }
+      ],
+      "assumptions": [
+        "Log-linear relationship between D and temperature.",
+        "Applicable within the relevant temperature range for the organism."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[2]",
+          "page": null,
+          "text_context": "Describes how the decimal reduction time (D-value) changes with temperature, where z is the temperature increase required to reduce D by one log cycle.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    },
+    {
+      "equation_local_id": "eq3",
+      "equation_name": "temperature-dependent lag duration",
+      "equation_description": "Relates microbial lag phase duration to storage temperature using an inverse power-law or exponential relationship, commonly used in shelf-life prediction models.",
+      "equation_latex": "\\lambda(T) = \\frac{1}{\\mu(T)} \\cdot \\ln\\left(1 + \\frac{1}{e^{h_0} - 1}\\right)",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "T",
+          "name": "temperature",
+          "unit": "\\degree C"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "\\mu(T)",
+          "name": "growth rate at temperature T",
+          "value": null,
+          "unit": "h^{-1}"
+        },
+        {
+          "symbol": "h_0",
+          "name": "initial physiological state parameter",
+          "value": 1.5,
+          "unit": "dimensionless"
+        }
+      ],
+      "assumptions": [
+        "Lag duration is inversely proportional to growth rate.",
+        "h0 is a strain-specific parameter representing the work needed to adapt to new conditions."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[3]",
+          "page": null,
+          "text_context": "Relates microbial lag phase duration to storage temperature using an inverse power-law or exponential relationship, commonly used in shelf-life prediction models.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    },
+    {
+      "equation_local_id": "eq4",
+      "equation_name": "modified Gompertz growth model",
+      "equation_description": "Reparameterized Gompertz equation describing sigmoidal microbial growth as a function of time, with biologically meaningful parameters for maximum growth rate, lag time, and asymptotic population.",
+      "equation_latex": "\\log_{10} N(t) = A + C \\cdot \\exp\\left(-\\exp\\left(\\frac{\\mu_m \\cdot e}{C}(\\lambda - t) + 1\\right)\\right)",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "t",
+          "name": "time",
+          "unit": "h"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "A",
+          "name": "lower asymptote (initial log count)",
+          "value": 2.0,
+          "unit": "log10 cfu/mL"
+        },
+        {
+          "symbol": "C",
+          "name": "log increase from initial to maximum",
+          "value": 6.0,
+          "unit": "log10 cfu/mL"
+        },
+        {
+          "symbol": "\\mu_m",
+          "name": "maximum specific growth rate",
+          "value": 0.5,
+          "unit": "log10 cfu/mL/h"
+        },
+        {
+          "symbol": "\\lambda",
+          "name": "lag time",
+          "value": 5.0,
+          "unit": "h"
+        },
+        {
+          "symbol": "e",
+          "name": "Euler's number",
+          "value": 2.71828,
+          "unit": null
+        }
+      ],
+      "assumptions": [
+        "Sigmoidal growth curve; applicable when growth data show a clear lag, exponential, and stationary phase.",
+        "Reparameterized form from Zwietering et al. (1990) for biological interpretability."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[4]",
+          "page": null,
+          "text_context": "Reparameterized Gompertz equation describing sigmoidal microbial growth as a function of time, with biologically meaningful parameters for maximum growth rate, lag time, and asymptotic population.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    }
+  ],
+  "ml_models": [],
+  "_metadata": {
+    "difficulty": "adversarial",
+    "domain": "microbial_growth",
+    "template_ids": [
+      "mg_spoilage_shelf_life",
+      "mg_z_value",
+      "mg_lag_temperature",
+      "mg_gompertz"
+    ],
+    "generator_version": "0.1.0"
+  }
+}

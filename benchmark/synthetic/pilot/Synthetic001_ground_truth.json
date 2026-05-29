@@ -1,0 +1,84 @@
+{
+  "paper": {
+    "doi": "10.0000/synthetic-pilot-001",
+    "openalex_id": null,
+    "title": "Development of a quality assessment model for lactic acid bacteria in fresh cheese",
+    "abstract_text": null,
+    "publication_year": 2022,
+    "publication_date": null,
+    "type": null,
+    "language": "en",
+    "source_url": null,
+    "primary_landing_page_url": null,
+    "primary_pdf_url": null,
+    "is_oa": null,
+    "cited_by_count": null
+  },
+  "mechanistic_equations": [
+    {
+      "equation_local_id": "eq1",
+      "equation_name": "Baranyi growth model (no lag phase)",
+      "equation_description": "Logistic primary growth model for bacterial concentration over time, assuming no lag phase. The population grows from an initial level toward a maximum carrying capacity with growth rate governed by environmental conditions.",
+      "equation_latex": "N(t) = N_{\\max} + \\log_{10}\\left(\\frac{e^{\\mu t}}{e^{\\mu t} - 1 + 10^{N_{\\max} - N_0}}\\right)",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "t",
+          "name": "time",
+          "unit": "h",
+          "description": "elapsed time since start of growth"
+        },
+        {
+          "symbol": "N(t)",
+          "name": "population at time t",
+          "unit": "log10 cfu/g",
+          "description": "logarithmic concentration of the target organism at time t"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "N_{\\max}",
+          "name": "maximum population density",
+          "value": 8.0,
+          "unit": "log10 cfu/g"
+        },
+        {
+          "symbol": "N_0",
+          "name": "initial population density",
+          "value": 2.5,
+          "unit": "log10 cfu/g"
+        },
+        {
+          "symbol": "\\mu",
+          "name": "specific growth rate",
+          "value": null,
+          "unit": "h^{-1}"
+        }
+      ],
+      "assumptions": [
+        "No lag phase; growth begins immediately at the given rate.",
+        "Logistic growth with a fixed maximum population density."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[1]",
+          "page": null,
+          "text_context": "Logistic primary growth model for bacterial concentration over time, assuming no lag phase. The population grows from an initial level toward a maximum carrying capacity with growth rate governed by environmental conditions.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    }
+  ],
+  "ml_models": [],
+  "_metadata": {
+    "difficulty": "easy",
+    "domain": "microbial_growth",
+    "template_ids": [
+      "mg_baranyi_no_lag"
+    ],
+    "generator_version": "0.1.0"
+  }
+}

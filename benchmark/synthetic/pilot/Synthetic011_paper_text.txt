@@ -1,0 +1,73 @@
+MATERIALS AND METHODS
+
+Title: Growth kinetics of spoilage bacteria during fermentation of cream cheese
+
+Sample Preparation and Experimental Design
+
+Cream cheese samples were manufactured at pilot scale according to a standardized protocol developed for predictive microbiology studies (Author et al., 2018). The fermentation conditions were varied across the experimental design to produce matrices spanning a range of final pH values (4.5 to 6.5) and water activity (a_w) values (0.94 to 0.99). After processing, samples were portioned into 100 g aliquots, packaged in sterile barrier film, and randomly assigned to one of four storage temperatures: 4, 8, 12, and 18 °C. Three independent batches were produced, and within each batch triplicate samples were drawn at each predetermined sampling time. The pH and water activity of the matrix were measured at each sampling time to verify that the conditions remained within the validity domain of the secondary models used in the analysis.
+
+The target organism considered in this study was a representative spoilage organism associated with cream cheese during fermentation. Inoculation levels were adjusted to give an initial population of approximately 10^3 cfu/mL, and enumeration was performed at predetermined sampling intervals using standard plate-count techniques following the procedures described by Author et al. (2019). Where applicable, the same variables are referred to with consistent symbols across the equations described below; in particular T denotes temperature in °C, t denotes time in h or min as specified, and N(t) denotes the population at time t, with units defined for each model. Cross-references between the equations of the framework are emphasized in the subsections that follow.
+
+Modeling Framework
+
+The framework adopted in this study integrates six equations into a coherent description of growth and inactivation kinetics. A gamma concept growth rate model summarizes the multiplicative effects of environmental factors; the temperature gamma factor is described using the full cardinal temperature model; a logistic primary growth model describes the population dynamics during fermentation; the pH gamma factor is described using the cardinal pH submodel; a Weibull inactivation model describes the response of the target organism to a heat treatment applied as part of a separate set of trials; and a microbial spoilage threshold model is used to translate the kinetic predictions into a practical shelf-life estimate.
+
+Gamma Concept Growth Rate Model
+
+The combined effect of the environmental factors on the maximum specific growth rate of the target organism was described using the gamma concept:
+
+[1]   \mu = \mu_{\max} \cdot \gamma(T) \cdot \gamma(\mathrm{pH}) \cdot \gamma(a_w)
+
+where T is temperature in °C, \mathrm{pH} is the pH of the medium (dimensionless), and a_w is the water activity (dimensionless). The parameter \mu_{\max} is the maximum specific growth rate of the target organism under conditions in which all environmental factors are simultaneously optimal, expressed in h^{-1}; an initial value of 0.8 h^{-1} was adopted. The dimensionless gamma factors \gamma(T), \gamma(\mathrm{pH}), and \gamma(a_w) describe the relative effects of temperature, pH, and water activity, respectively. The principal assumptions of the gamma concept are that the environmental factors exert independent, multiplicative effects on the growth rate, and that each gamma factor lies between 0 (complete inhibition) and 1 (optimal conditions).
+
+Full Cardinal Temperature Model
+
+The temperature gamma factor was described using the full Rosso cardinal temperature model, which captures the asymmetric response around the optimum:
+
+[2]   \gamma(T) = \frac{(T - T_{\max})(T - T_{\min})^2}{(T_{\mathrm{opt}} - T_{\min})\left((T_{\mathrm{opt}} - T_{\min})(T - T_{\mathrm{opt}}) - (T_{\mathrm{opt}} - T_{\max})(T_{\mathrm{opt}} + T_{\min} - 2T)\right)}
+
+where T is temperature in °C, T_{\min} is the minimum growth temperature (1.0 °C), T_{\mathrm{opt}} is the optimum growth temperature (30.0 °C), and T_{\max} is the maximum growth temperature (45.0 °C). The model ensures that growth rate is zero at T_{\min} and T_{\max} and reaches a maximum at T_{\mathrm{opt}}.
+
+Logistic Primary Growth Model
+
+The primary description of the temporal evolution of the population during fermentation was provided by the logistic growth model:
+
+[3]   N(t) = \frac{N_{\max}}{1 + \left(\frac{N_{\max}}{N_0} - 1\right) e^{-\mu t}}
+
+where t is time in h. The parameter N_{\max} is the carrying capacity of the system, set to 1 × 10^9 cfu/mL in the present work; N_0 is the initial population at the start of fermentation, set to 1 × 10^3 cfu/mL; and \mu is the growth rate constant, expressed in h^{-1}, with an initial value of 0.4 h^{-1}. The logistic model assumes a symmetric growth curve around the inflection point and does not include an explicit lag phase. The growth rate \mu in Eq. [3] is related to the environmental conditions through Eq. [1].
+
+Cardinal pH Submodel
+
+The pH gamma factor was described using the cardinal pH model:
+
+[4]   \gamma(\mathrm{pH}) = \frac{(\mathrm{pH} - \mathrm{pH}_{\min})(\mathrm{pH}_{\max} - \mathrm{pH})}{(\mathrm{pH}_{\mathrm{opt}} - \mathrm{pH}_{\min})(\mathrm{pH}_{\max} - \mathrm{pH}_{\mathrm{opt}})}
+
+where \mathrm{pH} is the pH of the medium (dimensionless). The parameter \mathrm{pH}_{\min} is the minimum growth pH, set to 4.5; \mathrm{pH}_{\mathrm{opt}} is the optimum growth pH, set to 7.0; and \mathrm{pH}_{\max} is the maximum growth pH, set to 9.0. The model assumes that the growth rate is zero at \mathrm{pH}_{\min} and \mathrm{pH}_{\max} and maximal at \mathrm{pH}_{\mathrm{opt}}, and is consistent with the assumption of independent, multiplicative effect of pH on growth rate used in Eq. [1].
+
+Weibull Inactivation Model
+
+For the inactivation experiments conducted as part of a separate set of trials, the survival curves of the target organism were described using the Weibull inactivation model:
+
+[5]   \log_{10} \frac{N(t)}{N_0} = -\left(\frac{t}{\delta}\right)^p
+
+where t is the treatment time, expressed in minutes (min). The parameter \delta is the scale parameter, corresponding to the time for the first log reduction of the target organism, expressed in min; in the present application \delta was estimated for each survival curve, with a representative value of 3.0 min. The parameter p is the shape parameter, dimensionless, with a representative value of 0.8. As is well known from the literature on the Weibull model, p < 1 indicates a concave-downward (tailing) survival curve, p > 1 indicates a concave-upward (shoulder) survival curve, and p = 1 reduces Eq. [5] to the log-linear inactivation model.
+
+Microbial Spoilage Threshold Model
+
+The translation of the kinetic predictions into a shelf-life estimate was performed using a microbial spoilage threshold model:
+
+[6]   t_{\mathrm{shelf}} = \frac{\ln(N_{\mathrm{spoil}}) - \ln(N_0)}{\mu}
+
+where N_0 is the initial contamination level, expressed in cfu/mL, and N_{\mathrm{spoil}} is the spoilage threshold, also expressed in cfu/mL. In the present work N_{\mathrm{spoil}} was set to 1 × 10^7 cfu/mL on the basis of literature criteria for the relevant product category. The parameter \mu denotes the growth rate of the target organism at the storage temperature of interest and is computed from Eq. [1] in combination with the temperature and pH submodels defined in Eqs. [2] and [4]. The shelf life model rests on three principal assumptions: that exponential growth applies throughout the period leading up to spoilage, that the perception of spoilage corresponds to attainment of the threshold concentration, and that no significant lag phase is encountered under the conditions of interest.
+
+Parameter Estimation and Cross-Referencing
+
+Parameters of the submodels defined in Eqs. [2], [4], and [5] were estimated by nonlinear least-squares regression using the Levenberg–Marquardt algorithm, with initial guesses derived from literature values. The parameter \mu_{\max} appearing in Eq. [1] was estimated by fitting the gamma concept model to growth rate values obtained close to the optimum conditions, after normalizing each observed \mu value by the corresponding products of the gamma factors. The logistic model defined in Eq. [3] was fitted to the experimental growth curves to obtain the growth rate \mu, which was then linked to the environmental conditions through Eq. [1]. The shelf life predictions arising from Eq. [6] were generated by substitution of the appropriate \mu values into the model. Where shared variables appear in multiple equations with the same meaning, they are defined once and used consistently throughout the framework; the cross-references are summarized in Table 1, which collects parameter values and goodness-of-fit metrics. The complete framework described above provides a coherent and self-consistent description of the kinetic behaviour of the target organism in cream cheese during fermentation and subsequent storage.
+
+References
+
+Author, A. et al. (2017). Cardinal models for the temperature and pH dependence of microbial growth. Journal of Dairy Science, 100(5), 3645–3656.
+
+Author, B. et al. (2018). Pilot-scale cream cheese manufacture for predictive microbiology studies. Journal of Dairy Science, 101(3), 2123–2134.
+
+Author, C. et al. (2019). Enumeration of spoilage organisms in fermented cream cheese. Journal of Dairy Science, 102(6), 4923–4935.

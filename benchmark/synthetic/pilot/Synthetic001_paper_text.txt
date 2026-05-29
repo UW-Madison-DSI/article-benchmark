@@ -1,0 +1,47 @@
+MATERIALS AND METHODS
+
+Title: Development of a quality assessment model for lactic acid bacteria in fresh cheese
+
+Sample Preparation and Experimental Design
+
+Fresh cheese samples were manufactured under controlled laboratory conditions following the standard small-scale protocol described by previous workers (Author et al., 2019). After production, samples were portioned aseptically into 50 g aliquots, packaged in sterile polyethylene bags, and stored at four isothermal temperatures (4, 8, 12, and 15 °C) to simulate the range of refrigeration conditions encountered along the cold chain. The pH, water activity, and gross composition of the cheese matrix were verified at the start of each trial to ensure that the substrate characteristics fell within the range typical of commercial fresh cheese. Three independent batches were produced, and within each batch triplicate samples were drawn at each sampling point for microbiological enumeration.
+
+The target organism considered in this study was a representative member of the lactic acid bacteria associated with fresh cheese flora. Inoculation levels were adjusted to yield an initial population density of approximately 2.5 log10 cfu/g, which corresponds to realistic post-processing contamination of the product. Samples were periodically removed from storage and analyzed at intervals selected to capture the full kinetics of population development, with a higher sampling frequency during the period of rapid growth and a coarser frequency once stationary phase was approached.
+
+Enumeration of the Target Organism
+
+Enumeration of the target organism was performed using a selective agar medium incubated under conditions appropriate for the recovery of lactic acid bacteria, following the procedures recommended by Author et al. (2020). For each sample, 25 g of cheese were homogenized in 225 mL of buffered peptone water using a stomacher for 90 s. Serial decimal dilutions were prepared in maximum recovery diluent, and 1.0 mL or 0.1 mL aliquots were plated in duplicate. Colonies were counted after 72 h of incubation and the results expressed as log10 cfu/g of product.
+
+The reported counts were averaged across the technical replicates and used as the response variable for subsequent model fitting. All measurements falling below the detection limit (1.0 log10 cfu/g) were censored and excluded from the parameter estimation procedure.
+
+Primary Growth Model
+
+The kinetic behavior of the target organism in the cheese matrix was described using a primary growth model of the Baranyi family, in the form that omits an explicit lag phase. This formulation was selected because preliminary inspection of the growth curves indicated that the inoculated population, having been pre-cultured under conditions resembling those of the cheese matrix, did not exhibit a measurable lag phase prior to exponential growth. The dynamics of the microbial population were therefore represented by the following expression:
+
+[1]   N(t) = N_{\max} + \log_{10}\left(\frac{e^{\mu t}}{e^{\mu t} - 1 + 10^{N_{\max} - N_0}}\right)
+
+where t is the elapsed time since the start of growth, expressed in hours (h), and N(t) denotes the population at time t of the target organism, given as the decadic logarithm of the colony-forming-unit concentration (log10 cfu/g). The parameter N_{\max} is the maximum population density attainable in the cheese matrix and was fixed at 8.0 log10 cfu/g based on preliminary observations of the asymptotic level reached at the end of the storage trials. The parameter N_0 is the initial population density of the target organism, set to 2.5 log10 cfu/g to reflect the typical post-inoculation level. The parameter \mu is the specific growth rate of the target organism, expressed in h^{-1}, and represents the value to be estimated from the experimental data for each storage temperature.
+
+The model described by Eq. [1] is consistent with two underlying assumptions. First, no lag phase is considered, so that growth begins immediately at the specified rate from the moment of inoculation. Second, the population follows a logistic-type approach to a fixed maximum density N_{\max}, which captures the deceleration of growth as the carrying capacity of the matrix is approached. These assumptions are widely accepted in predictive microbiology when the inoculum is physiologically adapted to the substrate (Author et al., 2018) and yield a parsimonious model with a single kinetic parameter to be estimated.
+
+Parameter Estimation Procedure
+
+Estimation of \mu was performed by nonlinear least-squares regression of Eq. [1] to the experimental growth data, with N(t) treated as the dependent variable and t as the independent variable. The Levenberg–Marquardt algorithm was used as implemented in a widely available statistical computing environment, with convergence assessed by the relative change in the residual sum of squares between successive iterations. Initial guesses for \mu were derived from the maximum slope of a moving-window linear regression applied to the central, near-exponential portion of each growth curve. The fitting procedure was carried out independently for each combination of storage temperature and biological replicate, yielding a distribution of \mu values that captured both the temperature dependence and the batch-to-batch variability of the kinetic response.
+
+For each fitted curve, residuals were inspected for systematic patterns and the goodness of fit was assessed using the root mean square error and the coefficient of determination, complemented by the bias and accuracy factors recommended by Author et al. (2017). Parameter uncertainty was quantified by computing approximate 95 % confidence intervals from the asymptotic standard errors of the nonlinear regression. Fits exhibiting evident systematic deviation from the model, identified by visual inspection of the residuals, were flagged and re-fitted after re-examination of the underlying enumeration data.
+
+Quality Assessment and Application of the Model
+
+The fitted growth model served as the basis for the quality assessment scheme developed in this work. For a given storage scenario, defined by the temperature profile and the initial population N_0 of the target organism, Eq. [1] was used to project the expected concentration of the microbial population at any subsequent time t. The resulting predictions were then compared against a predefined quality threshold to estimate the remaining time during which the product could be expected to retain acceptable microbiological characteristics. Storage scenarios at constant temperatures within the range covered by the experimental design were evaluated directly using the temperature-specific \mu values, while intermediate temperatures were addressed by interpolation between adjacent experimental conditions.
+
+All model fitting, simulation, and visualization were performed using open-source scientific computing tools. The complete set of fitted parameter values, together with their associated uncertainty estimates, was tabulated for each experimental condition and used as input for subsequent analysis steps. The methodology described above provides a transparent and reproducible procedure for translating raw enumeration data into a primary growth model that can support quality assessment of fresh cheese during refrigerated storage.
+
+References
+
+Author, A. et al. (2017). Performance criteria for predictive microbiology models. Journal of Dairy Science, 100(4), 2345–2356.
+
+Author, B. et al. (2018). Lag phase behavior of pre-adapted lactic acid bacteria in fermented dairy products. Journal of Dairy Science, 101(7), 5567–5578.
+
+Author, C. et al. (2019). Standardized small-scale manufacture of fresh cheese for shelf-life studies. Journal of Dairy Science, 102(2), 1023–1034.
+
+Author, D. et al. (2020). Enumeration methodologies for lactic acid bacteria in fresh dairy products. Journal of Dairy Science, 103(5), 3987–3998.

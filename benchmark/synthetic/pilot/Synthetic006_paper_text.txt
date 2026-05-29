@@ -1,0 +1,55 @@
+MATERIALS AND METHODS
+
+Title: Development of a quality assessment model for psychrotrophic bacteria in yogurt
+
+Sample Preparation and Experimental Design
+
+Yogurt samples were prepared at laboratory scale following a standardized protocol intended to reproduce key features of commercial set-type yogurt production. Pasteurized whole milk was inoculated with a defined starter culture, incubated at the appropriate fermentation temperature until the target pH was reached, and then cooled. After fermentation the product was portioned into 100 mL sterile containers and stored at the four target temperatures of 4, 8, 12, and 15 °C, covering the range from optimal refrigeration to moderate temperature abuse. Each combination of storage temperature and yogurt formulation was prepared in triplicate within each of three independent manufacturing batches.
+
+The target organism considered in this work was a representative member of the psychrotrophic bacteria typically associated with refrigerated dairy spoilage. Inoculation levels were adjusted to give an initial population on the order of 10^3 cfu/mL, and microbiological analysis was performed at predetermined sampling intervals to capture the dynamics of the population development. The pH and water activity of the matrix were monitored at each sampling time to confirm that the conditions remained within the validity domain of the secondary models used in the analysis. Detailed parameter values for the fitted models are summarized in Table 1.
+
+Modeling Framework
+
+The framework used in this study to describe the growth rate of the target organism as a function of the matrix conditions consists of three interconnected equations. A primary gamma concept model combines the multiplicative contributions of temperature, pH, and water activity into an overall growth rate. The pH and temperature dependences are each described by a cardinal-type submodel, providing biologically interpretable parameters and a smooth response over the experimental range. The cross-references between these equations are highlighted in the subsections that follow.
+
+Gamma Concept Growth Rate Model
+
+The combined effect of the environmental factors on the maximum specific growth rate of the target organism was described using the gamma concept, in which each factor contributes a multiplicative term that varies between zero (complete inhibition) and one (optimal conditions). The model is given by:
+
+[1]   \mu = \mu_{\max} \cdot \gamma(T) \cdot \gamma(\mathrm{pH}) \cdot \gamma(a_w)
+
+where T is the temperature in °C, \mathrm{pH} is the pH of the matrix (dimensionless), and a_w is the water activity (dimensionless). The parameter \mu_{\max} is the maximum specific growth rate of the target organism under conditions in which all environmental factors are simultaneously optimal, expressed in h^{-1}; on the basis of published data for the target group of organisms a value of 0.8 h^{-1} was adopted as the initial estimate of this parameter. The remaining factors \gamma(T), \gamma(\mathrm{pH}), and \gamma(a_w) are dimensionless gamma factors describing the relative effect of temperature, pH, and water activity, respectively, each defined according to its corresponding cardinal submodel. As described by Author et al. (2017), the underlying assumptions of this approach are that the environmental factors exert independent, multiplicative effects on the growth rate, and that each gamma factor lies between 0 (complete inhibition) and 1 (optimal conditions).
+
+Cardinal pH Model
+
+The dependence of the growth rate on the pH of the matrix was described using a cardinal pH submodel. This formulation captures the characteristic bell-shaped response between the minimum and maximum growth pH values, with a maximum at the optimum pH. The model is defined as
+
+[2]   \gamma(\mathrm{pH}) = \frac{(\mathrm{pH} - \mathrm{pH}_{\min})(\mathrm{pH}_{\max} - \mathrm{pH})}{(\mathrm{pH}_{\mathrm{opt}} - \mathrm{pH}_{\min})(\mathrm{pH}_{\max} - \mathrm{pH}_{\mathrm{opt}})}
+
+where \mathrm{pH} is the pH of the medium (dimensionless). The parameter \mathrm{pH}_{\min} is the minimum growth pH of the target organism, set to 4.5 in the present work; \mathrm{pH}_{\mathrm{opt}} is the optimum growth pH, set to 7.0; and \mathrm{pH}_{\max} is the maximum growth pH, set to 9.0. These cardinal pH values were chosen on the basis of literature reports for the target organism and are reported in Table 1 alongside the corresponding parameters of the temperature submodel.
+
+The model defined in Eq. [2] rests on three principal assumptions. First, the growth rate is zero at \mathrm{pH}_{\min} and at \mathrm{pH}_{\max}, in agreement with the experimentally observed boundaries of the growth domain. Second, the growth rate is maximal at \mathrm{pH}_{\mathrm{opt}}, where the dimensionless gamma factor reaches unity. Third, the cardinal pH formulation is consistent with the assumption of independent, multiplicative effects of pH on the overall growth rate, as required by Eq. [1].
+
+Cardinal Temperature Model (Gamma Factor)
+
+The temperature dependence of the growth rate was described using a simplified cardinal temperature model, formulated as a squared ratio over the suboptimal temperature range:
+
+[3]   \gamma(T) = \left(\frac{T - T_{\min}}{T_{\mathrm{opt}} - T_{\min}}\right)^2
+
+where T is the temperature in °C. The parameter T_{\min} is the minimum growth temperature of the target organism, set to 0.0 °C for the present work, and T_{\mathrm{opt}} is the optimal growth temperature, set to 37.0 °C. As noted in standard references on predictive microbiology (Author et al., 2018), this formulation is applicable for temperatures between T_{\min} and T_{\mathrm{opt}}; below T_{\min}, the model is constrained to give \gamma(T) = 0, signifying no growth. The squared cardinal model used in Eq. [3] follows the convention introduced by Ratkowsky and subsequently formalized by Zwietering, and is closely related in functional form to the square-root formulation of the Ratkowsky model.
+
+The squared form of Eq. [3] has the advantage of providing a smooth, monotone increase from zero at T_{\min} to one at T_{\mathrm{opt}}, with no asymmetric decline above the optimum. For applications focused on refrigerated storage, which lies firmly below the optimum, the absence of a high-temperature term does not affect the predictive value of the model. Parameter values used in the present application of the model are given in Table 1.
+
+Parameter Estimation and Implementation
+
+The cardinal temperature and pH submodels defined in Eqs. [2] and [3] were fitted to the experimental data using nonlinear least-squares regression with the Levenberg–Marquardt algorithm, treating the cardinal values as the free parameters to be estimated. The parameter \mu_{\max} appearing in Eq. [1] was estimated by fitting the gamma concept model to growth rate values obtained at conditions close to the optimum for the non-temperature factors, after normalizing each observed \mu value by the corresponding products of the gamma factors derived from Eqs. [2] and [3]. Initial values for the cardinal parameters were obtained from literature data for the relevant group of organisms, and confidence intervals for the estimated parameters were derived from the asymptotic standard errors of the nonlinear regression.
+
+Goodness-of-fit was assessed using the root mean square error of the residuals, the coefficient of determination, and visual inspection of residual plots, supplemented by the bias and accuracy factors recommended in standard predictive microbiology practice. Where parameter values are mentioned in the text, they are taken from the estimates obtained under the experimental conditions of the present study; the complete set of values, together with their confidence intervals, is reported in Table 1 to allow direct reference from any of the equations defined above. The combined framework described in this section provides a self-consistent description of the growth rate of the target organism in yogurt as a function of the principal environmental factors influencing its development.
+
+References
+
+Author, A. et al. (2017). Implementation of the gamma concept for combined environmental effects. Journal of Dairy Science, 100(8), 6234–6246.
+
+Author, B. et al. (2018). Cardinal models for temperature-dependent microbial growth in dairy products. Journal of Dairy Science, 101(5), 3645–3656.
+
+Author, C. et al. (2019). Predictive modeling of psychrotrophic spoilage in fermented dairy products. Journal of Dairy Science, 102(11), 8923–8934.

@@ -1,0 +1,45 @@
+MATERIALS AND METHODS
+
+Title: Shelf life prediction of raw milk based on spore-forming bacteria growth kinetics
+
+Sample collection and handling. Raw milk samples were obtained from the bulk tank of three commercial dairy farms producing comparable volumes (roughly 8 000 L per day each), transported to the laboratory under refrigeration, and processed within an hour of collection. Compositional analysis of the milk was performed on arrival using standard methods (Author et al., 2018), and the gross composition (fat at 3.8–4.1 g/100 g, protein at 3.2–3.5 g/100 g) was found to fall within the expected commercial range. Storage trials were performed at four temperatures, namely 4, 8, 12, and 15 °C; in some of the discussion that follows, these temperatures are referred to interchangeably as the "chill" (4 °C), "mild" (8 °C), "elevated" (12 °C), and "abuse" (15 °C) conditions. The target organism studied in this work was a representative member of the spore-forming bacteria associated with raw milk spoilage; for ease of reference, this is also called "the test population" or simply "the organism" in the descriptive passages that follow, while the symbol N(t) is reserved for its concentration at time t.
+
+Enumeration was performed at predetermined sampling times using standard plate counts as described elsewhere (Author et al., 2019), and the counts were expressed indifferently as cfu/mL or, after logarithmic transformation, as log10 cfu/mL. Where individual values are given in the text, the reader is invited to infer the convention from the order of magnitude rather than from explicit notation.
+
+Modeling framework and shelf life prediction. The principal aim of the modeling analysis was to translate the kinetic information into a shelf life estimate using the spoilage threshold approach. The shelf life of the product was computed as t_{shelf} = (ln N_spoil − ln N_0) / mu, that is:
+
+[1]   t_{\mathrm{shelf}} = \frac{\ln(N_{\mathrm{spoil}}) - \ln(N_0)}{\mu}
+
+In Eq. [1], N_0 is the initial contamination level of the test population, expressed in cfu/mL, and N_{\mathrm{spoil}} is the spoilage threshold, also expressed in cfu/mL. The numerical value taken for the spoilage threshold N_{\mathrm{spoil}} was on the order of 10^7 cfu/mL, consistent with criteria reported by several authors for the relevant product category, while the parameter mu in the denominator is the growth rate of the organism at the storage temperature of interest and has units of h^{-1}. The assumptions underlying Eq. [1] are that exponential growth applies throughout the period leading up to spoilage, that the perception of spoilage corresponds to attainment of the threshold concentration, and that no significant lag phase is encountered. As a side remark, the inverse relationship between t_{shelf} and \mu is in qualitative agreement with the well-known Arrhenius dependence of biological rates on absolute temperature, although a full Arrhenius parameterization is not part of the present analysis.
+
+Thermal inactivation. As a complement to the growth analysis, the thermal resistance of the test population was characterized through inactivation experiments at temperatures spanning 60 to 80 °C, which on the Fahrenheit scale corresponds to 140 to 176 °F. The dependence of the decimal reduction time D on temperature was modeled using the conventional log-linear relationship known as the z-value model. The functional form
+
+[2]   \log_{10} D(T) = \log_{10} D_{\mathrm{ref}} - \frac{T - T_{\mathrm{ref}}}{z}
+
+is used here, where T is the temperature in °C; D_{\mathrm{ref}} is the D-value at a reference temperature T_{\mathrm{ref}}, with D_{\mathrm{ref}} = 10.0 min set on the basis of historical reports for the target group, and T_{\mathrm{ref}} = 121.1 °C consistent with the conventional reference temperature for sterilization studies; and z is the z-value, taken as 10.0 °C in the indicative calculations performed in this work. The assumptions of Eq. [2] are a log-linear relationship between D and T and applicability within the relevant temperature range for the organism.
+
+Lag duration. The apparent lag duration of the organism was related to the growth rate through
+
+[3]   \lambda(T) = \frac{1}{\mu(T)} \cdot \ln\left(1 + \frac{1}{e^{h_0} - 1}\right)
+
+where T denotes the temperature, expressed in °C. The variable \mu(T) inside this expression is the growth rate of the organism at temperature T, given in h^{-1}, and is computed at the same temperature for which \lambda(T) is sought. The dimensionless parameter h_0 is the initial physiological state parameter, equal to 1.5 in the present application; this value is widely cited in the predictive microbiology literature, although it should be remembered that h_0 may vary across strains, reflecting the work needed for the cells to adapt to the new conditions, and that the lag duration is inversely proportional to the growth rate.
+
+For comparison with this rigorous formulation, a simple Arrhenius-type relationship for the lag time was sometimes invoked in early reports (essentially \ln \lambda \propto 1/T_K, with T_K the absolute temperature in K). This relation is not part of the present model and is mentioned only because it occasionally appears in the older literature; the present analysis relies solely on Eq. [3] for the description of the lag.
+
+Primary growth model. The temporal evolution of the test population during refrigerated storage was described using the modified Gompertz growth model in the reparameterization that admits direct biological interpretation:
+
+[4]   \log_{10} N(t) = A + C \cdot \exp\left(-\exp\left(\frac{\mu_m \cdot e}{C}(\lambda - t) + 1\right)\right)
+
+where t is time, with t reported in h in the formal model fitting (although some of the figure legends in our records use days, with one day equal to 24 h). The parameter A is the lower asymptote of the curve, corresponding to the initial log count, set to 2.0 log10 cfu/mL; C is the log increase from the initial to the maximum population, set to 6.0 log10 cfu/mL; \mu_m, sometimes referred to in the discussion as "the apparent growth rate" or even simply as the slope of the exponential phase, is the maximum specific growth rate, here expressed in log10 cfu/mL/h, with a representative value of 0.5; \lambda is the lag time in h, with a representative value of 5.0; and e is Euler's number, taken as approximately 2.71828. The model is applicable when the growth data show a clear lag, exponential, and stationary phase, and follows the reparameterization of Zwietering and colleagues for biological interpretability.
+
+Note that the variable referred to as "the population" in the text appears variously as N, N(t), or simply as the bacterial count; these notations all refer to the same physical quantity. Likewise, the symbol \mu_m in Eq. [4] is, up to the factor of ln 10 implicit in the log10 reparameterization, the same biological quantity that is denoted by \mu in Eq. [1] and \mu(T) in Eq. [3]; the reader is invited to keep this correspondence in mind when consulting the parameter tables. The numerical values reported in the tables follow the convention indicated by the equation in which the parameter appears.
+
+Parameter estimation. Parameters of the model defined in Eq. [4] were estimated by nonlinear least-squares regression using a Levenberg–Marquardt algorithm. Once \mu_m had been estimated from the Gompertz fit, the corresponding value was used in Eq. [1] to compute the predicted shelf life under the various storage conditions. Eq. [3] was applied as a consistency check on the lag times derived from the Gompertz fit, and Eq. [2] was used independently to characterize the thermal resistance of the organism. The complete set of parameter values, together with the corresponding goodness-of-fit metrics, is summarized in the data tables; values quoted in the text are indicative and refer to representative experimental conditions rather than to specific replicates.
+
+References
+
+Author, A. et al. (2017). Shelf life prediction approaches for refrigerated dairy products. Journal of Dairy Science, 100(5), 3645–3656.
+
+Author, B. et al. (2018). Compositional analysis of raw bulk-tank milk. Journal of Dairy Science, 101(3), 2123–2134.
+
+Author, C. et al. (2019). Enumeration of spore-forming bacteria in raw milk. Journal of Dairy Science, 102(6), 4923–4935.

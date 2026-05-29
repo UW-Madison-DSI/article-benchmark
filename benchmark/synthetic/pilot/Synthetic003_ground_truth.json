@@ -1,0 +1,82 @@
+{
+  "paper": {
+    "doi": "10.0000/synthetic-pilot-003",
+    "openalex_id": null,
+    "title": "Development of a quality assessment model for mesophilic flora in Cheddar cheese",
+    "abstract_text": null,
+    "publication_year": 2024,
+    "publication_date": null,
+    "type": null,
+    "language": "en",
+    "source_url": null,
+    "primary_landing_page_url": null,
+    "primary_pdf_url": null,
+    "is_oa": null,
+    "cited_by_count": null
+  },
+  "mechanistic_equations": [
+    {
+      "equation_local_id": "eq1",
+      "equation_name": "Baranyi growth model (with lag phase)",
+      "equation_description": "Full Baranyi primary growth model incorporating both a lag phase adjustment function and logistic saturation. The lag is modeled through an adjustment function A(t) that depends on the initial physiological state of the cells.",
+      "equation_latex": "N(t) = N_0 + \\mu A(t) - \\ln\\left(1 + \\frac{e^{\\mu A(t)} - 1}{e^{N_{\\max} - N_0}}\\right)",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "t",
+          "name": "time",
+          "unit": "h"
+        },
+        {
+          "symbol": "N(t)",
+          "name": "population at time t",
+          "unit": "ln cfu/mL"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "N_0",
+          "name": "initial population",
+          "value": 3.0,
+          "unit": "ln cfu/mL"
+        },
+        {
+          "symbol": "N_{\\max}",
+          "name": "maximum population",
+          "value": 20.0,
+          "unit": "ln cfu/mL"
+        },
+        {
+          "symbol": "\\mu",
+          "name": "maximum specific growth rate",
+          "value": null,
+          "unit": "h^{-1}"
+        }
+      ],
+      "assumptions": [
+        "Lag phase is modeled via an adjustment function A(t) = t + (1/mu) * ln(exp(-mu*t) + exp(-h0) - exp(-mu*t - h0)).",
+        "Parameter h0 represents the initial physiological state of the cells."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[1]",
+          "page": null,
+          "text_context": "Full Baranyi primary growth model incorporating both a lag phase adjustment function and logistic saturation. The lag is modeled through an adjustment function A(t) that depends on the initial physiological state of the cells.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    }
+  ],
+  "ml_models": [],
+  "_metadata": {
+    "difficulty": "easy",
+    "domain": "microbial_growth",
+    "template_ids": [
+      "mg_baranyi_with_lag"
+    ],
+    "generator_version": "0.1.0"
+  }
+}

@@ -1,0 +1,176 @@
+{
+  "paper": {
+    "doi": "10.0000/synthetic-pilot-008",
+    "openalex_id": null,
+    "title": "A cardinal parameter approach to estimate spoilage risk in Cheddar cheese",
+    "abstract_text": null,
+    "publication_year": 2022,
+    "publication_date": null,
+    "type": null,
+    "language": "en",
+    "source_url": null,
+    "primary_landing_page_url": null,
+    "primary_pdf_url": null,
+    "is_oa": null,
+    "cited_by_count": null
+  },
+  "mechanistic_equations": [
+    {
+      "equation_local_id": "eq1",
+      "equation_name": "gamma concept growth rate model",
+      "equation_description": "The gamma concept expresses the effective growth rate as the product of the maximum growth rate and individual dimensionless gamma factors for each environmental variable, assuming multiplicative and independent effects.",
+      "equation_latex": "\\mu = \\mu_{\\max} \\cdot \\gamma(T) \\cdot \\gamma(\\mathrm{pH}) \\cdot \\gamma(a_w)",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "T",
+          "name": "temperature",
+          "unit": "\\degree C"
+        },
+        {
+          "symbol": "\\mathrm{pH}",
+          "name": "pH",
+          "unit": "dimensionless"
+        },
+        {
+          "symbol": "a_w",
+          "name": "water activity",
+          "unit": "dimensionless"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "\\mu_{\\max}",
+          "name": "maximum specific growth rate under optimal conditions",
+          "value": 0.8,
+          "unit": "h^{-1}"
+        },
+        {
+          "symbol": "\\gamma(T)",
+          "name": "temperature gamma factor",
+          "value": null,
+          "unit": "dimensionless"
+        },
+        {
+          "symbol": "\\gamma(\\mathrm{pH})",
+          "name": "pH gamma factor",
+          "value": null,
+          "unit": "dimensionless"
+        },
+        {
+          "symbol": "\\gamma(a_w)",
+          "name": "water activity gamma factor",
+          "value": null,
+          "unit": "dimensionless"
+        }
+      ],
+      "assumptions": [
+        "Environmental factors have independent, multiplicative effects on growth rate.",
+        "Each gamma factor ranges from 0 (complete inhibition) to 1 (optimal conditions)."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[1]",
+          "page": null,
+          "text_context": "The gamma concept expresses the effective growth rate as the product of the maximum growth rate and individual dimensionless gamma factors for each environmental variable, assuming multiplicative and independent effects.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    },
+    {
+      "equation_local_id": "eq2",
+      "equation_name": "cardinal temperature model (gamma factor)",
+      "equation_description": "Dimensionless gamma factor representing the fractional effect of temperature on microbial growth rate, using the cardinal temperature model with minimum and optimal temperatures.",
+      "equation_latex": "\\gamma(T) = \\left(\\frac{T - T_{\\min}}{T_{\\mathrm{opt}} - T_{\\min}}\\right)^2",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "T",
+          "name": "temperature",
+          "unit": "\\degree C"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "T_{\\min}",
+          "name": "minimum growth temperature",
+          "value": 0.0,
+          "unit": "\\degree C"
+        },
+        {
+          "symbol": "T_{\\mathrm{opt}}",
+          "name": "optimal growth temperature",
+          "value": 37.0,
+          "unit": "\\degree C"
+        }
+      ],
+      "assumptions": [
+        "Applicable for temperatures between T_min and T_opt.",
+        "Below T_min, gamma(T) = 0 (no growth).",
+        "Squared cardinal model following Ratkowsky or Zwietering convention."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[2]",
+          "page": null,
+          "text_context": "Dimensionless gamma factor representing the fractional effect of temperature on microbial growth rate, using the cardinal temperature model with minimum and optimal temperatures.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    },
+    {
+      "equation_local_id": "eq3",
+      "equation_name": "water activity gamma factor",
+      "equation_description": "Linear cardinal model describing the effect of water activity on microbial growth rate, scaling from zero at the minimum water activity to one at pure water.",
+      "equation_latex": "\\gamma(a_w) = \\frac{a_w - a_{w,\\min}}{1 - a_{w,\\min}}",
+      "equation_sympy": null,
+      "variables": [
+        {
+          "symbol": "a_w",
+          "name": "water activity",
+          "unit": "dimensionless"
+        }
+      ],
+      "parameters": [
+        {
+          "symbol": "a_{w,\\min}",
+          "name": "minimum water activity for growth",
+          "value": 0.92,
+          "unit": "dimensionless"
+        }
+      ],
+      "assumptions": [
+        "Linear relationship between a_w and growth rate fraction.",
+        "a_w = 1 corresponds to full growth potential from this factor."
+      ],
+      "source_spans": [
+        {
+          "section": "MATERIALS AND METHODS",
+          "label_in_paper": "[3]",
+          "page": null,
+          "text_context": "Linear cardinal model describing the effect of water activity on microbial growth rate, scaling from zero at the minimum water activity to one at pure water.",
+          "figure_ids": [],
+          "table_ids": [],
+          "supplement_ids": []
+        }
+      ]
+    }
+  ],
+  "ml_models": [],
+  "_metadata": {
+    "difficulty": "medium",
+    "domain": "microbial_growth",
+    "template_ids": [
+      "mg_gamma_product",
+      "mg_gamma_temperature",
+      "mg_gamma_aw"
+    ],
+    "generator_version": "0.1.0"
+  }
+}
