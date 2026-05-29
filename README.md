@@ -90,6 +90,13 @@ The 14 pilot papers span four difficulty tiers designed to test different extrac
 
 93% of ground-truth parameter values appear verbatim in the generated text. 15 of 18 equation templates are exercised across the pilot.
 
+## Slide decks
+
+Both decks are self-contained HTML files that open in any browser. Arrow keys or click to navigate.
+
+- **[slides.html](slides.html)** -- Project plan overview: problem statement, approach, phased timeline, and design decisions (14 slides)
+- **[performance.html](performance.html)** -- Pilot generation quality: per-paper metrics, template coverage, structural variation by difficulty, parameter fidelity, and gaps to address (10 slides)
+
 ## Next steps
 
 1. Run the extraction pipeline on all 14 pilot papers
