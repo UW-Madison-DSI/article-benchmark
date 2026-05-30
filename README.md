@@ -92,10 +92,10 @@ The 14 pilot papers span four difficulty tiers designed to test different extrac
 
 ## Slide decks
 
-Both decks are self-contained HTML files that open in any browser. Arrow keys or click to navigate.
+Both decks are self-contained HTML files. Arrow keys or click to navigate.
 
-- **[slides.html](slides.html)** -- Project plan overview: problem statement, approach, phased timeline, and design decisions (14 slides)
-- **[performance.html](performance.html)** -- Pilot generation quality: per-paper metrics, template coverage, structural variation by difficulty, parameter fidelity, and gaps to address (10 slides)
+- **[Project plan](https://uw-madison-dsi.github.io/article-benchmark/slides.html)** -- Problem statement, approach, phased timeline, and design decisions (14 slides)
+- **[Pilot generation quality](https://uw-madison-dsi.github.io/article-benchmark/performance.html)** -- Per-paper metrics, template coverage, structural variation by difficulty, parameter fidelity, and gaps to address (10 slides)
 
 ## Next steps
 
